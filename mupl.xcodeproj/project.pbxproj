@@ -15,6 +15,13 @@
 		08415CE22B3C973F00764CD6 /* SidebarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CE12B3C973F00764CD6 /* SidebarSection.swift */; };
 		08415CE62B3CC07000764CD6 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CE52B3CC07000764CD6 /* SearchView.swift */; };
 		08415CEA2B3CC09900764CD6 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CE92B3CC09900764CD6 /* LibraryView.swift */; };
+		08415CF42B3DBCB600764CD6 /* Playbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CF32B3DBCB600764CD6 /* Playbar.swift */; };
+		08415CF62B3DBCD500764CD6 /* PlaybarSongPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CF52B3DBCD500764CD6 /* PlaybarSongPreview.swift */; };
+		08415CF82B3DBE5E00764CD6 /* PlaybarSongControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CF72B3DBE5E00764CD6 /* PlaybarSongControls.swift */; };
+		08415CFB2B3DC1FA00764CD6 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CFA2B3DC1FA00764CD6 /* Slider.swift */; };
+		08415CFD2B3DD03A00764CD6 /* View + Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CFC2B3DD03A00764CD6 /* View + Size.swift */; };
+		08415CFF2B3DF25700764CD6 /* SliderDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CFE2B3DF25700764CD6 /* SliderDimension.swift */; };
+		08415D012B3DF65C00764CD6 /* PlaybarVolumeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D002B3DF65C00764CD6 /* PlaybarVolumeControls.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -30,6 +37,13 @@
 		08415CE12B3C973F00764CD6 /* SidebarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarSection.swift; sourceTree = "<group>"; };
 		08415CE52B3CC07000764CD6 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		08415CE92B3CC09900764CD6 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		08415CF32B3DBCB600764CD6 /* Playbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playbar.swift; sourceTree = "<group>"; };
+		08415CF52B3DBCD500764CD6 /* PlaybarSongPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybarSongPreview.swift; sourceTree = "<group>"; };
+		08415CF72B3DBE5E00764CD6 /* PlaybarSongControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybarSongControls.swift; sourceTree = "<group>"; };
+		08415CFA2B3DC1FA00764CD6 /* Slider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		08415CFC2B3DD03A00764CD6 /* View + Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Size.swift"; sourceTree = "<group>"; };
+		08415CFE2B3DF25700764CD6 /* SliderDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDimension.swift; sourceTree = "<group>"; };
+		08415D002B3DF65C00764CD6 /* PlaybarVolumeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybarVolumeControls.swift; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +85,7 @@
 		08415CC82B321B3000764CD6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				08415CF02B3D83E800764CD6 /* Models */,
 				08415CCD2B321C3800764CD6 /* Extensions */,
 				08415CC92B321B3400764CD6 /* Components */,
 			);
@@ -80,6 +95,8 @@
 		08415CC92B321B3400764CD6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				08415CF92B3DC1F400764CD6 /* Slider */,
+				08415CF22B3DBCAE00764CD6 /* Playbar */,
 				08415CCA2B321B3A00764CD6 /* Sidebar */,
 			);
 			path = Components;
@@ -116,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				08415CD62B32267F00764CD6 /* View + Border.swift */,
+				08415CFC2B3DD03A00764CD6 /* View + Size.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -185,6 +203,41 @@
 				08B77F4A2B20F9D3004B6D8D /* Preview Content */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		08415CF02B3D83E800764CD6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				08415CF12B3D83F600764CD6 /* Services */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		08415CF12B3D83F600764CD6 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		08415CF22B3DBCAE00764CD6 /* Playbar */ = {
+			isa = PBXGroup;
+			children = (
+				08415CF32B3DBCB600764CD6 /* Playbar.swift */,
+				08415CF52B3DBCD500764CD6 /* PlaybarSongPreview.swift */,
+				08415CF72B3DBE5E00764CD6 /* PlaybarSongControls.swift */,
+				08415D002B3DF65C00764CD6 /* PlaybarVolumeControls.swift */,
+			);
+			path = Playbar;
+			sourceTree = "<group>";
+		};
+		08415CF92B3DC1F400764CD6 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				08415CFA2B3DC1FA00764CD6 /* Slider.swift */,
+				08415CFE2B3DF25700764CD6 /* SliderDimension.swift */,
+			);
+			path = Slider;
 			sourceTree = "<group>";
 		};
 		08B77F382B20F9D2004B6D8D = {
@@ -291,15 +344,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08415CF82B3DBE5E00764CD6 /* PlaybarSongControls.swift in Sources */,
 				08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */,
 				08415CE62B3CC07000764CD6 /* SearchView.swift in Sources */,
 				08415CE22B3C973F00764CD6 /* SidebarSection.swift in Sources */,
 				08415CD02B321C9800764CD6 /* CGFloat + Size.swift in Sources */,
 				08415CD42B32225600764CD6 /* SidebarItem.swift in Sources */,
+				08415CFB2B3DC1FA00764CD6 /* Slider.swift in Sources */,
+				08415D012B3DF65C00764CD6 /* PlaybarVolumeControls.swift in Sources */,
 				08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */,
 				08415CDC2B3C901B00764CD6 /* HomeView.swift in Sources */,
+				08415CFF2B3DF25700764CD6 /* SliderDimension.swift in Sources */,
+				08415CF62B3DBCD500764CD6 /* PlaybarSongPreview.swift in Sources */,
 				08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */,
+				08415CF42B3DBCB600764CD6 /* Playbar.swift in Sources */,
 				08415CEA2B3CC09900764CD6 /* LibraryView.swift in Sources */,
+				08415CFD2B3DD03A00764CD6 /* View + Size.swift in Sources */,
 				08415CD72B32267F00764CD6 /* View + Border.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

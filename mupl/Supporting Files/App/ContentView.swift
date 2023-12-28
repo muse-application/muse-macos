@@ -28,6 +28,8 @@ struct ContentView: View {
                     selectedItem.content
                 }
             }
+            
+            Playbar()
         }
     }
 }
