@@ -24,10 +24,10 @@ struct Slider: View {
     
     var body: some View {
         ZStack(alignment: .init(horizontal: .leading, vertical: .center)) {
-            Color.secondary
+            Color.secondaryFill
                 .clipShape(.rect(cornerRadius: self.currentSize.height / 2.0))
             
-            Color.primary
+            Color.primaryFill
                 .frame(width: self.percentage * self.currentSize.width)
                 .clipShape(.rect(cornerRadius: self.currentSize.height / 2.0))
         }
@@ -66,15 +66,15 @@ struct Slider: View {
 
 extension Slider {
     private func opacity() -> CGFloat {
-        if self.isHovered {
-            return 0.8
-        }
-        
         if self.isDragging {
             return 1.0
         }
         
-        return 0.4
+        if self.isHovered {
+            return 0.8
+        }
+        
+        return 0.6
     }
 }
 

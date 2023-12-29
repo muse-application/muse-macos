@@ -22,6 +22,9 @@
 		08415CFD2B3DD03A00764CD6 /* View + Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CFC2B3DD03A00764CD6 /* View + Size.swift */; };
 		08415CFF2B3DF25700764CD6 /* SliderDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CFE2B3DF25700764CD6 /* SliderDimension.swift */; };
 		08415D012B3DF65C00764CD6 /* PlaybarVolumeControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D002B3DF65C00764CD6 /* PlaybarVolumeControls.swift */; };
+		08415D072B3E00B300764CD6 /* View + IfCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D062B3E00B300764CD6 /* View + IfCondition.swift */; };
+		08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D092B3F550A00764CD6 /* View + Tappable.swift */; };
+		08415D0C2B3F5D4700764CD6 /* Color + Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D0B2B3F5D4700764CD6 /* Color + Constants.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -44,6 +47,9 @@
 		08415CFC2B3DD03A00764CD6 /* View + Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Size.swift"; sourceTree = "<group>"; };
 		08415CFE2B3DF25700764CD6 /* SliderDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderDimension.swift; sourceTree = "<group>"; };
 		08415D002B3DF65C00764CD6 /* PlaybarVolumeControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybarVolumeControls.swift; sourceTree = "<group>"; };
+		08415D062B3E00B300764CD6 /* View + IfCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + IfCondition.swift"; sourceTree = "<group>"; };
+		08415D092B3F550A00764CD6 /* View + Tappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Tappable.swift"; sourceTree = "<group>"; };
+		08415D0B2B3F5D4700764CD6 /* Color + Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Constants.swift"; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,6 +140,9 @@
 			children = (
 				08415CD62B32267F00764CD6 /* View + Border.swift */,
 				08415CFC2B3DD03A00764CD6 /* View + Size.swift */,
+				08415D062B3E00B300764CD6 /* View + IfCondition.swift */,
+				08415D092B3F550A00764CD6 /* View + Tappable.swift */,
+				08415D0B2B3F5D4700764CD6 /* Color + Constants.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -347,9 +356,12 @@
 				08415CF82B3DBE5E00764CD6 /* PlaybarSongControls.swift in Sources */,
 				08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */,
 				08415CE62B3CC07000764CD6 /* SearchView.swift in Sources */,
+				08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */,
 				08415CE22B3C973F00764CD6 /* SidebarSection.swift in Sources */,
+				08415D072B3E00B300764CD6 /* View + IfCondition.swift in Sources */,
 				08415CD02B321C9800764CD6 /* CGFloat + Size.swift in Sources */,
 				08415CD42B32225600764CD6 /* SidebarItem.swift in Sources */,
+				08415D0C2B3F5D4700764CD6 /* Color + Constants.swift in Sources */,
 				08415CFB2B3DC1FA00764CD6 /* Slider.swift in Sources */,
 				08415D012B3DF65C00764CD6 /* PlaybarVolumeControls.swift in Sources */,
 				08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */,

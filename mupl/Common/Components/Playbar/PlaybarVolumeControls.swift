@@ -12,11 +12,13 @@ struct PlaybarVolumeControls: View {
         HStack(spacing: 8.0) {
             Image(systemName: "speaker.fill")
                 .font(.system(size: 10.0, weight: .medium))
+                .foregroundStyle(Color.primaryText)
             
             Slider(width: .constant(64.0))
             
             Image(systemName: "speaker.wave.3.fill")
                 .font(.system(size: 10.0, weight: .medium))
+                .foregroundStyle(Color.primaryText)
         }
         .frame(minWidth: 240.0)
     }

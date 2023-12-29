@@ -10,20 +10,25 @@ import SwiftUI
 #warning("TODO: Add Song injection")
 struct PlaybarSongPreview: View {
     var body: some View {
-        HStack(spacing: .s3) {
-            Color.secondary
-                .frame(width: .s9, height: .s9)
-                .clipShape(.rect(cornerRadius: .s2))
-                .border(style: .quinary, cornerRadius: .s2)
-            
-            VStack(alignment: .leading, spacing: .zero) {
-                Text("Song title")
-                    .font(.system(size: .s3, weight: .semibold))
-                    .foregroundStyle(.primary)
+        ZStack {
+            HStack(spacing: .s3) {
+                Color.secondaryFill
+                    .frame(width: .s9, height: .s9)
+                    .clipShape(.rect(cornerRadius: .s2))
+                    .border(style: Color.quinaryFill, cornerRadius: .s2)
                 
-                Text("Artist name")
-                    .font(.system(size: 10.0, weight: .medium))
-                    .foregroundStyle(.secondary)
+                VStack(alignment: .leading, spacing: .zero) {
+                    Text("Song title")
+                        .font(.system(size: .s3, weight: .semibold))
+                        .foregroundStyle(Color.primaryText)
+                    
+                    Text("Artist name")
+                        .font(.system(size: 10.0, weight: .medium))
+                        .foregroundStyle(Color.secondaryText)
+                }
+            }
+            .tappable(hoverStyle: .init(padding: .init(vertical: 8.0, horizontal: 12.0), cornerRadius: 8.0)) {
+                print("Pressed!")
             }
         }
         .frame(minWidth: 240.0)
