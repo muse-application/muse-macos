@@ -9,7 +9,6 @@ import SwiftUI
 
 enum SidebarItem: Hashable, Identifiable {
     case home
-    case search
     case library
     
     var id: Int {
@@ -21,8 +20,6 @@ enum SidebarItem: Hashable, Identifiable {
         switch self {
         case .home:
             return "Home"
-        case .search:
-            return "Search"
         case .library:
             return "Library"
         }
@@ -33,8 +30,6 @@ enum SidebarItem: Hashable, Identifiable {
         switch self {
         case .home:
             return "house"
-        case .search:
-            return "magnifyingglass"
         case .library:
             return "play.square.stack"
         }
@@ -46,8 +41,6 @@ enum SidebarItem: Hashable, Identifiable {
         switch self {
         case .home:
             HomeView()
-        case .search:
-            SearchView()
         case .library:
             LibraryView()
         }

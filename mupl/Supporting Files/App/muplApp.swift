@@ -13,5 +13,6 @@ struct muplApp: App {
         WindowGroup {
             ContentView()
         }
+        .windowToolbarStyle(.unified(showsTitle: false))
     }
 }
