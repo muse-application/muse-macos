@@ -19,7 +19,7 @@ struct PlaybarSongPreview: View {
                 
                 VStack(alignment: .leading, spacing: .zero) {
                     Text("Song title")
-                        .font(.system(size: .s3, weight: .semibold))
+                        .font(.system(size: 12.0, weight: .semibold))
                         .foregroundStyle(Color.primaryText)
                     
                     Text("Artist name")
@@ -27,7 +27,7 @@ struct PlaybarSongPreview: View {
                         .foregroundStyle(Color.secondaryText)
                 }
             }
-            .tappable(hoverStyle: .init(padding: .init(vertical: 8.0, horizontal: 12.0), cornerRadius: 8.0)) {
+            .tappable(hoverStyle: .init(padding: .init(vertical: .s2, horizontal: .s3), cornerRadius: .s2)) {
                 print("Pressed!")
             }
         }

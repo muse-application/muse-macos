@@ -1,5 +1,5 @@
 //
-//  CGFloat + Size.swift
+//  CGFloat + LayoutSize.swift
 //  mupl
 //
 //  Created by Tamerlan Satualdypov on 20.12.2023.

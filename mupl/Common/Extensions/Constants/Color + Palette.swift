@@ -1,5 +1,5 @@
 //
-//  Color + Constants.swift
+//  Color + Palette.swift
 //  mupl
 //
 //  Created by Tamerlan Satualdypov on 30.12.2023.

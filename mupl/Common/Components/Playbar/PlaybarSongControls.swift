@@ -9,8 +9,8 @@ import SwiftUI
 
 struct PlaybarSongControls: View {
     var body: some View {
-        VStack(spacing: 8.0) {
-            HStack(spacing: 8.0) {
+        VStack(spacing: .s2) {
+            HStack(spacing: .s2) {
                 Image(systemName: "shuffle")
                     .font(.system(size: 10.0, weight: .medium))
                     .foregroundStyle(Color.secondaryText)

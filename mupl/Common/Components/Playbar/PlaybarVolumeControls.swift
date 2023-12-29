@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlaybarVolumeControls: View {
     var body: some View {
-        HStack(spacing: 8.0) {
+        HStack(spacing: .s2) {
             Image(systemName: "speaker.fill")
                 .font(.system(size: 10.0, weight: .medium))
                 .foregroundStyle(Color.primaryText)

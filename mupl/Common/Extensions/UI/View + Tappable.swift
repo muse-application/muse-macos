@@ -13,7 +13,7 @@ struct TappableViewModifier: ViewModifier {
             let vertical: CGFloat
             let horizontal: CGFloat
             
-            init(vertical: CGFloat = 4.0, horizontal: CGFloat = 4.0) {
+            init(vertical: CGFloat = .s2, horizontal: CGFloat = .s2) {
                 self.vertical = vertical
                 self.horizontal = horizontal
             }
@@ -33,7 +33,7 @@ struct TappableViewModifier: ViewModifier {
         let cornerRadius: CGFloat
         let colorSet: ColorSet
         
-        init(padding: Padding = .init(), cornerRadius: CGFloat = 4.0, colorSet: ColorSet = .init()) {
+        init(padding: Padding = .init(), cornerRadius: CGFloat = .s2, colorSet: ColorSet = .init()) {
             self.padding = padding
             self.cornerRadius = cornerRadius
             self.colorSet = colorSet

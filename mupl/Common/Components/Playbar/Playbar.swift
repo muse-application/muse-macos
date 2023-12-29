@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Playbar: View {
     var body: some View {
-        HStack(spacing: 0.0) {
+        HStack(spacing: .zero) {
             PlaybarSongPreview()
                 .frame(maxWidth: .infinity)
             

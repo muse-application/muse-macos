@@ -17,7 +17,7 @@ struct Slider: View {
     @State private var isHovered: Bool = false
     @State private var isDragging: Bool = false
     
-    init(width: Dimension, height: Dimension = .constant(4.0)) {
+    init(width: Dimension, height: Dimension = .constant(.s2)) {
         self.width = width
         self.height = height
     }
