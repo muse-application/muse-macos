@@ -9,19 +9,23 @@ import SwiftUI
 
 struct Playbar: View {
     var body: some View {
-        HStack(spacing: .zero) {
-            PlaybarSongPreview()
-                .frame(maxWidth: .infinity)
+        VStack(spacing: 0.0) {
+            Divider()
             
-            PlaybarSongControls()
-                .frame(maxWidth: .infinity)
-            
-            PlaybarVolumeControls()
-                .frame(maxWidth: .infinity)
+            HStack(spacing: .zero) {
+                PlaybarSongPreview()
+                    .frame(maxWidth: .infinity)
+                
+                PlaybarSongControls()
+                    .frame(maxWidth: .infinity)
+                
+                PlaybarVolumeControls()
+                    .frame(maxWidth: .infinity)
+            }
+            .frame(height: 70.0)
+            .frame(maxWidth: .infinity)
+            .background(.ultraThickMaterial)
         }
-        .frame(height: 70.0)
-        .frame(maxWidth: .infinity)
-        .background(.ultraThickMaterial)
     }
 }
 

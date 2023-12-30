@@ -25,6 +25,7 @@
 		08415D072B3E00B300764CD6 /* View + IfCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D062B3E00B300764CD6 /* View + IfCondition.swift */; };
 		08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D092B3F550A00764CD6 /* View + Tappable.swift */; };
 		08415D0C2B3F5D4700764CD6 /* Color + Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */; };
+		08415D142B40BA6600764CD6 /* QueueBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D132B40BA6600764CD6 /* QueueBar.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		08415D062B3E00B300764CD6 /* View + IfCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + IfCondition.swift"; sourceTree = "<group>"; };
 		08415D092B3F550A00764CD6 /* View + Tappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Tappable.swift"; sourceTree = "<group>"; };
 		08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Palette.swift"; sourceTree = "<group>"; };
+		08415D132B40BA6600764CD6 /* QueueBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueBar.swift; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +93,6 @@
 		08415CC82B321B3000764CD6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				08415CF02B3D83E800764CD6 /* Models */,
 				08415CCD2B321C3800764CD6 /* Extensions */,
 				08415CC92B321B3400764CD6 /* Components */,
 			);
@@ -101,6 +102,7 @@
 		08415CC92B321B3400764CD6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				08415D112B40BA5700764CD6 /* QueueBar */,
 				08415CF92B3DC1F400764CD6 /* Slider */,
 				08415CF22B3DBCAE00764CD6 /* Playbar */,
 				08415CCA2B321B3A00764CD6 /* Sidebar */,
@@ -214,21 +216,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		08415CF02B3D83E800764CD6 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				08415CF12B3D83F600764CD6 /* Services */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		08415CF12B3D83F600764CD6 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		08415CF22B3DBCAE00764CD6 /* Playbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +234,14 @@
 				08415CFE2B3DF25700764CD6 /* SliderDimension.swift */,
 			);
 			path = Slider;
+			sourceTree = "<group>";
+		};
+		08415D112B40BA5700764CD6 /* QueueBar */ = {
+			isa = PBXGroup;
+			children = (
+				08415D132B40BA6600764CD6 /* QueueBar.swift */,
+			);
+			path = QueueBar;
 			sourceTree = "<group>";
 		};
 		08B77F382B20F9D2004B6D8D = {
@@ -367,6 +362,7 @@
 				08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */,
 				08415CDC2B3C901B00764CD6 /* HomeView.swift in Sources */,
 				08415CFF2B3DF25700764CD6 /* SliderDimension.swift in Sources */,
+				08415D142B40BA6600764CD6 /* QueueBar.swift in Sources */,
 				08415CF62B3DBCD500764CD6 /* PlaybarSongPreview.swift in Sources */,
 				08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */,
 				08415CF42B3DBCB600764CD6 /* Playbar.swift in Sources */,
