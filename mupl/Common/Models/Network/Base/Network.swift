@@ -11,6 +11,7 @@ final class Network {
     private let session: NetworkSession
     
     static let `default`: Network = .init(session: .default)
+    static let mock: Network = .init(session: .mock)
     
     init(session: NetworkSession) {
         self.session = session

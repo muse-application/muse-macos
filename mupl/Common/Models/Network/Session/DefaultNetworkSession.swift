@@ -10,6 +10,16 @@ import Foundation
 final class DefaultNetworkSession: NetworkSession {
     private typealias Response = (data: Data, httpResponse: HTTPURLResponse)
     
+    func request<T: Endpoint>(endpoint: T) async throws -> NetworkData<Data> {
+        let (data, response) = try await self.requestData(for: endpoint)
+        
+        return .init(
+            statusCode: response.statusCode,
+            requestURL: endpoint.url,
+            responseContent: data
+        )
+    }
+    
     func request<T: Endpoint, Object: Decodable>(endpoint: T, as type: Object.Type) async throws -> NetworkData<Object> {
         let (data, response) = try await self.requestData(for: endpoint)
         let decodedData = try data.decoded(as: type)

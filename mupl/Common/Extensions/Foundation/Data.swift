@@ -9,6 +9,9 @@ import Foundation
 
 extension Data {
     public func decoded<T: Decodable>(as type: T.Type) throws -> T {
-        return try JSONDecoder().decode(type, from: self)
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        return try decoder.decode(type, from: self)
     }
 }

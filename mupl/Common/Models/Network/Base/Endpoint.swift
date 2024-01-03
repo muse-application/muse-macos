@@ -57,6 +57,7 @@ class Endpoint {
         self.acceptType = acceptType
     }
     
+    @discardableResult
     func adding<T: Encodable>(body: T) -> Self {
         self.body = try? body.data
         return self
