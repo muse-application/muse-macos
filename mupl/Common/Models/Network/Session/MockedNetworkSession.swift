@@ -45,7 +45,7 @@ fileprivate final class Mocker {
 }
 
 final class MockedNetworkSession: NetworkSession {
-    func request<T: Endpoint>(endpoint: T) async throws -> NetworkData<Data> {
+    func request(endpoint: Endpoint) async throws -> NetworkData<Data> {
         let mockResponse = try Mocker.shared.getMock(of: endpoint.url, as: Data.self)
         
         try await self.delay(for: mockResponse.meta.responseDelay ?? 0.0)
@@ -57,7 +57,7 @@ final class MockedNetworkSession: NetworkSession {
         )
     }
     
-    func request<T: Endpoint, Object: Decodable>(endpoint: T, as type: Object.Type) async throws -> NetworkData<Object> {
+    func request<Object: Decodable>(endpoint: Endpoint, as type: Object.Type) async throws -> NetworkData<Object> {
         let mockResponse = try Mocker.shared.getMock(of: endpoint.url, as: type)
         
         try await self.delay(for: mockResponse.meta.responseDelay ?? 0.0)
@@ -67,6 +67,14 @@ final class MockedNetworkSession: NetworkSession {
             requestURL: endpoint.url,
             responseContent: mockResponse.data
         )
+    }
+    
+    func upload(to endpoint: Endpoint, payload: NetworkUploadPayload) async throws -> NetworkData<Data> {
+        return try await self.request(endpoint: endpoint)
+    }
+    
+    func upload<Object: Decodable>(to endpoint: Endpoint, payload: NetworkUploadPayload, responseType: Object.Type) async throws -> NetworkData<Object> {
+        return try await self.request(endpoint: endpoint, as: responseType)
     }
     
     private func delay(for time: Double) async throws {
@@ -87,4 +95,3 @@ extension Endpoint {
         return self
     }
 }
-

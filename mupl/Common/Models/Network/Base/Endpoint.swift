@@ -7,25 +7,11 @@
 
 import Foundation
 
-class Endpoint {
-    enum HTTPMethod: String {
-        case get = "GET"
-        case post = "POST"
-        case put = "PUT"
-        case patch = "PATCH"
-        case delete = "DELETE"
-    }
-    
-    enum MediaType: String {
-        case json = "application/json"
-        case formData = "multipart/form-data"
-        case image = "image/jpeg, image/jpg, image/png"
-    }
-    
+struct Endpoint {
     let url: String
-    let httpMethod: HTTPMethod
-    let contentType: MediaType
-    let acceptType: MediaType
+    let httpMethod: NetworkHTTPMethod
+    let contentType: NetworkMIMEType
+    let acceptType: NetworkMIMEType
     
     var body: Data?
     
@@ -47,9 +33,9 @@ class Endpoint {
     
     init(
         url: String,
-        httpMethod: HTTPMethod = .get,
-        contentType: MediaType = .json,
-        acceptType: MediaType = .json
+        httpMethod: NetworkHTTPMethod = .get,
+        contentType: NetworkMIMEType = .json,
+        acceptType: NetworkMIMEType = .json
     ) {
         self.url = url
         self.httpMethod = httpMethod
@@ -59,7 +45,8 @@ class Endpoint {
     
     @discardableResult
     func adding<T: Encodable>(body: T) -> Self {
-        self.body = try? body.data
-        return self
+        var _self = self
+        _self.body = try? body.data
+        return _self
     }
 }

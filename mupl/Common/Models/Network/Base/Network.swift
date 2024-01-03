@@ -17,11 +17,19 @@ final class Network {
         self.session = session
     }
     
-    func request<T: Endpoint>(endpoint: T) async throws -> NetworkData<Data> {
+    func request(endpoint: Endpoint) async throws -> NetworkData<Data> {
         return try await self.session.request(endpoint: endpoint, as: Data.self)
     }
     
-    func request<T: Endpoint, Object: Decodable>(endpoint: T, as type: Object.Type) async throws -> NetworkData<Object> {
+    func request<Object: Decodable>(endpoint: Endpoint, as type: Object.Type) async throws -> NetworkData<Object> {
         return try await self.session.request(endpoint: endpoint, as: type)
+    }
+    
+    func upload(to endpoint: Endpoint, payload: NetworkUploadPayload) async throws -> NetworkData<Data> {
+        return try await self.session.upload(to: endpoint, payload: payload)
+    }
+    
+    func upload<Object: Decodable>(to endpoint: Endpoint, payload: NetworkUploadPayload, responseType: Object.Type) async throws -> NetworkData<Object> {
+        return try await self.session.upload(to: endpoint, payload: payload, responseType: responseType)
     }
 }

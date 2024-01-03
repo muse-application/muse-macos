@@ -9,4 +9,5 @@ import Foundation
 
 final class NetworkError: AppError {
     static let invalidURL: NetworkError = .init(title: "", description: "")
+    static let failedMultipartBodyCreation: NetworkError = .init(title: "", description: "")
 }
