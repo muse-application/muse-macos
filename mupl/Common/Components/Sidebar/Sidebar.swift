@@ -10,9 +10,9 @@ import SwiftUI
 struct Sidebar: View {
     private let sections: [SidebarSection]
     
-    @Binding private var selectedItem: SidebarItem?
+    @Binding private var selectedItem: SidebarItem
     
-    init(sections: [SidebarSection], selectedItem: Binding<SidebarItem?>) {
+    init(sections: [SidebarSection], selectedItem: Binding<SidebarItem>) {
         self.sections = sections
         self._selectedItem = selectedItem
     }

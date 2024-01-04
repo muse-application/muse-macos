@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct muplApp: App {
+    @ObservedObject private var musicAuthenticator: MusicAuthenticator = .init()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -18,7 +20,11 @@ struct muplApp: App {
                     minHeight: 600.0,
                     idealHeight: 600.0
                 )
+                .task {
+                    await self.musicAuthenticator.requestIfNeeded()
+                }
         }
+        .environmentObject(self.musicAuthenticator)
         .windowToolbarStyle(.unified(showsTitle: false))
     }
 }
