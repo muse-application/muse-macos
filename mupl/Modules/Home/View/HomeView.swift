@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject private var musicCatalog: MusicCatalog
+    
     var body: some View {
         Text("Home")
     }

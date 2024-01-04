@@ -9,7 +9,8 @@ import SwiftUI
 
 @main
 struct muplApp: App {
-    @ObservedObject private var musicAuthenticator: MusicAuthenticator = .init()
+    @StateObject private var musicAuthenticator: MusicAuthenticator = .init()
+    @StateObject private var musicCatalog: MusicCatalog = .init()
     
     var body: some Scene {
         WindowGroup {
@@ -25,6 +26,7 @@ struct muplApp: App {
                 }
         }
         .environmentObject(self.musicAuthenticator)
+        .environmentObject(self.musicCatalog)
         .windowToolbarStyle(.unified(showsTitle: false))
     }
 }
