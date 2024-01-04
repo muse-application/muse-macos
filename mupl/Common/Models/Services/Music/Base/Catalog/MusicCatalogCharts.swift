@@ -12,23 +12,23 @@ extension MusicCatalog {
     struct Charts {
         var mostPlayed: MusicCatalogChart<Playlist>? {
             get async {
-                return await self.requestChartPlaylist(of: .mostPlayed)
+                return await self.requestPlaylistChart(of: .mostPlayed)
             }
         }
         
         var dailyGlobalTop: MusicCatalogChart<Playlist>? {
             get async {
-                return await self.requestChartPlaylist(of: .dailyGlobalTop)
+                return await self.requestPlaylistChart(of: .dailyGlobalTop)
             }
         }
         
         var cityTop: MusicCatalogChart<Playlist>? {
             get async {
-                return await self.requestChartPlaylist(of: .cityTop)
+                return await self.requestPlaylistChart(of: .cityTop)
             }
         }
         
-        private func requestChartPlaylist(of kind: MusicCatalogChartKind) async -> MusicCatalogChart<Playlist>? {
+        private func requestPlaylistChart(of kind: MusicCatalogChartKind) async -> MusicCatalogChart<Playlist>? {
             let request = MusicCatalogChartsRequest(kinds: [kind], types: [Playlist.self])
             let response = try? await request.response()
             
