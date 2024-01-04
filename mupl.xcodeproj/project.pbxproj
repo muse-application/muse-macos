@@ -26,6 +26,7 @@
 		08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D092B3F550A00764CD6 /* View + Tappable.swift */; };
 		08415D0C2B3F5D4700764CD6 /* Color + Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */; };
 		08415D142B40BA6600764CD6 /* QueueBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D132B40BA6600764CD6 /* QueueBar.swift */; };
+		0856A4B52B46E0D90073ACE7 /* MusicAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -68,6 +69,8 @@
 		08415D092B3F550A00764CD6 /* View + Tappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Tappable.swift"; sourceTree = "<group>"; };
 		08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Palette.swift"; sourceTree = "<group>"; };
 		08415D132B40BA6600764CD6 /* QueueBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueBar.swift; sourceTree = "<group>"; };
+		0856A4B32B46D7A60073ACE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAuthenticator.swift; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -243,6 +246,7 @@
 		08415CEC2B3CC13800764CD6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0856A4B32B46D7A60073ACE7 /* Info.plist */,
 				08B77F482B20F9D3004B6D8D /* Assets.xcassets */,
 				08B77F4D2B20F9D3004B6D8D /* mupl.entitlements */,
 				08F4232C2B45D29F005158F2 /* Mocks */,
@@ -277,6 +281,23 @@
 				08415D132B40BA6600764CD6 /* QueueBar.swift */,
 			);
 			path = QueueBar;
+			sourceTree = "<group>";
+		};
+		0856A4B12B46D5870073ACE7 /* MusicKit */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */,
+			);
+			path = MusicKit;
+			sourceTree = "<group>";
+		};
+		0856A4B22B46D58B0073ACE7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4B12B46D5870073ACE7 /* MusicKit */,
+				08F4230C2B45AC09005158F2 /* Network */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		08B77F382B20F9D2004B6D8D = {
@@ -335,7 +356,7 @@
 		08F423162B45AC9E005158F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				08F4230C2B45AC09005158F2 /* Network */,
+				0856A4B22B46D58B0073ACE7 /* Services */,
 				08F423172B45ACA4005158F2 /* AppError */,
 			);
 			path = Models;
@@ -489,6 +510,7 @@
 				08415CD42B32225600764CD6 /* SidebarItem.swift in Sources */,
 				08415D0C2B3F5D4700764CD6 /* Color + Palette.swift in Sources */,
 				08F4233A2B45ECAD005158F2 /* NetworkMIMEType.swift in Sources */,
+				0856A4B52B46E0D90073ACE7 /* MusicAuthenticator.swift in Sources */,
 				08F4231D2B45B27B005158F2 /* Data.swift in Sources */,
 				08415CFB2B3DC1FA00764CD6 /* Slider.swift in Sources */,
 				08F423382B45EC64005158F2 /* NetworkHTTPMethod.swift in Sources */,
@@ -651,6 +673,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -679,6 +702,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

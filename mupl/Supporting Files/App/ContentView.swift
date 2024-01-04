@@ -14,7 +14,9 @@ struct ContentView: View {
         )
     ]
     
-    @State private var selectedItem: SidebarItem?
+    @EnvironmentObject private var musicAuthenticator: MusicAuthenticator
+    
+    @State private var selectedItem: SidebarItem = .home
     @State private var isSongQueuePresented: Bool = false
     
     var body: some View {
@@ -42,14 +44,12 @@ struct ContentView: View {
     
     private var detailContent: some View {
         ZStack(alignment: .topTrailing) {
-            if let selectedItem = selectedItem {
-                selectedItem.content
-                    .frame(
-                        minWidth: 512.0,
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-            }
+            selectedItem.content
+                .frame(
+                    minWidth: 512.0,
+                    maxWidth: .infinity,
+                    maxHeight: .infinity
+                )
             
             QueueBar(isPresented: self.$isSongQueuePresented)
         }
