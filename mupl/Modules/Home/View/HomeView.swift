@@ -13,6 +13,8 @@ struct HomeView: View {
         static let bottomPadding: CGFloat = 70.0 + Self.padding
     }
     
+    private let sectionProvider: HomeSectionProvider = .init()
+    
     @EnvironmentObject private var musicCatalog: MusicCatalog
     
     @State private var recentlyPlayed: [any MusicTrackCollection] = []
@@ -29,9 +31,9 @@ struct HomeView: View {
                 Group {
                     switch self.loadingState {
                     case .idle, .loading:
-                        self.skeleton
+                        self.sectionProvider.skeleton(for: \.recommendations)
                     case .loaded:
-                        self.content
+                        self.sectionProvider.section(for: \.recommendations, value: self.recommendations)
                     }
                 }
                 .transition(.opacity)
@@ -48,28 +50,6 @@ struct HomeView: View {
             self.recommendations = await self.musicCatalog.personal.recommendations
             
             self.loadingState = .loaded
-        }
-    }
-    
-    // MARK: - Content
-    
-    private var content: some View {
-        VStack(alignment: .leading, spacing: .s8) {
-            TrackCollectionSection(title: "Recently Played", items: self.recentlyPlayed)
-            
-            ForEach(self.recommendations) { recommendation in
-                TrackCollectionSection(title: recommendation.title, items: recommendation.items)
-            }
-        }
-    }
-    
-    private var skeleton: some View {
-        VStack(alignment: .leading, spacing: .s8) {
-            TrackCollectionSection.Skeleton(quantity: 8)
-            
-            ForEach(0 ..< 4, id: \.self) { _ in
-                TrackCollectionSection.Skeleton(quantity: 8)
-            }
         }
     }
 }

@@ -39,6 +39,11 @@
 		0856A4D72B47381A0073ACE7 /* HoverableSystemButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4D62B47381A0073ACE7 /* HoverableSystemButtonStyle.swift */; };
 		0856A4DB2B474A670073ACE7 /* TrackCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4DA2B474A670073ACE7 /* TrackCollectionSection.swift */; };
 		0856A4DE2B47564D0073ACE7 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4DD2B47564D0073ACE7 /* LoadingState.swift */; };
+		0856A4E02B4876330073ACE7 /* HomeSectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4DF2B4876330073ACE7 /* HomeSectionProvider.swift */; };
+		0856A4E42B48933B0073ACE7 /* SectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4E32B48933B0073ACE7 /* SectionProvider.swift */; };
+		0856A4E62B48935E0073ACE7 /* ProvidableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4E52B48935E0073ACE7 /* ProvidableSection.swift */; };
+		0856A4E92B489BC40073ACE7 /* HomeRecommendationsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4E82B489BC40073ACE7 /* HomeRecommendationsSection.swift */; };
+		0856A4ED2B48AD830073ACE7 /* ScrollableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4EC2B48AD830073ACE7 /* ScrollableSection.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -95,6 +100,11 @@
 		0856A4D62B47381A0073ACE7 /* HoverableSystemButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverableSystemButtonStyle.swift; sourceTree = "<group>"; };
 		0856A4DA2B474A670073ACE7 /* TrackCollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCollectionSection.swift; sourceTree = "<group>"; };
 		0856A4DD2B47564D0073ACE7 /* LoadingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		0856A4DF2B4876330073ACE7 /* HomeSectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionProvider.swift; sourceTree = "<group>"; };
+		0856A4E32B48933B0073ACE7 /* SectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProvider.swift; sourceTree = "<group>"; };
+		0856A4E52B48935E0073ACE7 /* ProvidableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidableSection.swift; sourceTree = "<group>"; };
+		0856A4E82B489BC40073ACE7 /* HomeRecommendationsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendationsSection.swift; sourceTree = "<group>"; };
+		0856A4EC2B48AD830073ACE7 /* ScrollableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableSection.swift; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				0856A4D42B4738080073ACE7 /* Styles */,
+				0856A4EA2B48AD6F0073ACE7 /* Section */,
 				0856A4C32B4710420073ACE7 /* TrackCollection */,
 				08415D112B40BA5700764CD6 /* QueueBar */,
 				08415CF92B3DC1F400764CD6 /* Slider */,
@@ -216,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				08415CDD2B3C90B700764CD6 /* View */,
+				0856A4E12B488C5A0073ACE7 /* SectionProvider */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -405,6 +417,49 @@
 				0856A4DD2B47564D0073ACE7 /* LoadingState.swift */,
 			);
 			path = LoadingState;
+			sourceTree = "<group>";
+		};
+		0856A4E12B488C5A0073ACE7 /* SectionProvider */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4DF2B4876330073ACE7 /* HomeSectionProvider.swift */,
+				0856A4E72B489BA10073ACE7 /* Sections */,
+			);
+			path = SectionProvider;
+			sourceTree = "<group>";
+		};
+		0856A4E22B4893300073ACE7 /* SectionProvider */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4E32B48933B0073ACE7 /* SectionProvider.swift */,
+				0856A4E52B48935E0073ACE7 /* ProvidableSection.swift */,
+			);
+			path = SectionProvider;
+			sourceTree = "<group>";
+		};
+		0856A4E72B489BA10073ACE7 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4E82B489BC40073ACE7 /* HomeRecommendationsSection.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
+		0856A4EA2B48AD6F0073ACE7 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4EB2B48AD790073ACE7 /* ScrollableSection */,
+				0856A4E22B4893300073ACE7 /* SectionProvider */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		0856A4EB2B48AD790073ACE7 /* ScrollableSection */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4EC2B48AD830073ACE7 /* ScrollableSection.swift */,
+			);
+			path = ScrollableSection;
 			sourceTree = "<group>";
 		};
 		08B77F382B20F9D2004B6D8D = {
@@ -611,6 +666,7 @@
 				08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */,
 				08415CE62B3CC07000764CD6 /* SearchView.swift in Sources */,
 				08F423242B45B8A9005158F2 /* DefaultNetworkSession.swift in Sources */,
+				0856A4E42B48933B0073ACE7 /* SectionProvider.swift in Sources */,
 				08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */,
 				08415CE22B3C973F00764CD6 /* SidebarSection.swift in Sources */,
 				08415D072B3E00B300764CD6 /* View + IfCondition.swift in Sources */,
@@ -629,6 +685,7 @@
 				08F423152B45AC85005158F2 /* Encodable.swift in Sources */,
 				08F423212B45B76B005158F2 /* NetworkData.swift in Sources */,
 				0856A4BF2B470BF30073ACE7 /* MusicCatalogCharts.swift in Sources */,
+				0856A4E62B48935E0073ACE7 /* ProvidableSection.swift in Sources */,
 				08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */,
 				0856A4CA2B471C6D0073ACE7 /* Playlist + MusicTrackCollection.swift in Sources */,
 				08415CDC2B3C901B00764CD6 /* HomeView.swift in Sources */,
@@ -642,10 +699,13 @@
 				08F423122B45AC60005158F2 /* Endpoint.swift in Sources */,
 				0856A4BA2B46FF0E0073ACE7 /* MusicCatalog.swift in Sources */,
 				0856A4C72B471BA80073ACE7 /* MusicTrackCollection.swift in Sources */,
+				0856A4E02B4876330073ACE7 /* HomeSectionProvider.swift in Sources */,
+				0856A4E92B489BC40073ACE7 /* HomeRecommendationsSection.swift in Sources */,
 				0856A4BD2B470B4D0073ACE7 /* MusicCatalogPersonal.swift in Sources */,
 				08F4231F2B45B5A0005158F2 /* NetworkSession.swift in Sources */,
 				0856A4CE2B471D710073ACE7 /* Station + MusicTrackCollection.swift in Sources */,
 				08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */,
+				0856A4ED2B48AD830073ACE7 /* ScrollableSection.swift in Sources */,
 				08415CF42B3DBCB600764CD6 /* Playbar.swift in Sources */,
 				08F423362B45EC2C005158F2 /* NetworkUploadPayload.swift in Sources */,
 				08415CEA2B3CC09900764CD6 /* LibraryView.swift in Sources */,

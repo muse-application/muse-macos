@@ -42,10 +42,6 @@ extension MusicCatalog {
                 
                 if let recommendations = response?.recommendations {
                     return recommendations
-                        .filter { recommendation in
-                            // Excluding Recently Played section from resulting array.
-                            return recommendation.id != "7-2Tqlz47h9yro"
-                        }
                         .compactMap { recommendation in
                             // Mapping resulting array to more convenient type
                             // with common type for music items (albums, playlist, stations).
@@ -82,6 +78,7 @@ extension MusicCatalog {
                             guard !items.isEmpty else { return nil }
                             
                             return .init(
+                                type: .init(id: recommendation.id.rawValue),
                                 title: recommendation.title ?? "Recommended for You",
                                 items: items
                             )
