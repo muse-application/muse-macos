@@ -15,7 +15,7 @@ extension HomeSectionProvider {
                     switch recommendation.type {
                     case .madeForYou: 
                         MadeForYouRecommendationSection().section(with: recommendation)
-                    case .recentlyPlayed, .stationsForYou, .other:
+                    case .recentlyPlayed, .other:
                         DefaultRecommendationSection().section(with: recommendation)
                     }
                 }

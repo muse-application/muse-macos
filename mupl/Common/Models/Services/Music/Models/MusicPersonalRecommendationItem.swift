@@ -10,7 +10,6 @@ import Foundation
 enum MusicPersonalRecommendationType: String {
     case madeForYou = "6-27s5hU6azhJY"
     case recentlyPlayed = "7-2Tqlz47h9yro"
-    case stationsForYou = "20-3fkE98c8EUE3TlhgANBAwh"
     case other = "-"
     
     init(id: String) {
