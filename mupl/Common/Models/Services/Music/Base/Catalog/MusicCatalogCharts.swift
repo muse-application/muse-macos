@@ -10,29 +10,33 @@ import MusicKit
 
 extension MusicCatalog {
     struct Charts {
-        var mostPlayed: MusicCatalogChart<Playlist>? {
+        var compilation: MusicChartsCompilation {
             get async {
-                return await self.requestPlaylistChart(of: .mostPlayed)
+                let charts = await self.charts(for: [.mostPlayed, .dailyGlobalTop, .cityTop], types: [Song.self, Playlist.self])
+                let playlistCharts = Dictionary(uniqueKeysWithValues: charts?.playlistCharts.map { ($0.kind, $0) } ?? [])
+                
+                return .init(
+                    topSongs: charts?.songCharts.first(where: { $0.kind == .mostPlayed }),
+                    mostPlayedPlaylists: playlistCharts[.mostPlayed],
+                    dailyGlobalTopPlaylists: playlistCharts[.dailyGlobalTop],
+                    cityTopPlaylists: playlistCharts[.cityTop]
+                )
             }
         }
         
-        var dailyGlobalTop: MusicCatalogChart<Playlist>? {
-            get async {
-                return await self.requestPlaylistChart(of: .dailyGlobalTop)
-            }
+        func playlistChart(_ kind: MusicCatalogChartKind) async -> MusicCatalogChart<Playlist>? {
+            let charts = await self.charts(for: [kind], types: [Playlist.self])
+            return charts?.playlistCharts.first(where: { $0.kind == kind })
         }
         
-        var cityTop: MusicCatalogChart<Playlist>? {
-            get async {
-                return await self.requestPlaylistChart(of: .cityTop)
-            }
+        func songChart(_ kind: MusicCatalogChartKind) async -> MusicCatalogChart<Song>? {
+            let charts = await self.charts(for: [kind], types: [Song.self])
+            return charts?.songCharts.first(where: { $0.kind == kind })
         }
         
-        private func requestPlaylistChart(of kind: MusicCatalogChartKind) async -> MusicCatalogChart<Playlist>? {
-            let request = MusicCatalogChartsRequest(kinds: [kind], types: [Playlist.self])
-            let response = try? await request.response()
-            
-            return response?.playlistCharts.first(where: { $0.kind == kind })
+        private func charts(for kinds: [MusicCatalogChartKind], types: [MusicCatalogChartRequestable.Type]) async -> MusicCatalogChartsResponse? {
+            let request = MusicCatalogChartsRequest(kinds: kinds, types: types)
+            return try? await request.response()
         }
     }
 }

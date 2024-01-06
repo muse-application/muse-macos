@@ -86,6 +86,7 @@ extension HomeSectionProvider.RecommendationsSection {
                 }
                 .frame(height: 64.0)
                 .frame(maxWidth: .infinity)
+                .contentShape(Rectangle())
                 .clipShape(.rect(cornerRadius: 8.0))
                 .border(style: .quinaryFill, width: 2.0, cornerRadius: 8.0)
                 .animation(.easeInOut, value: self.isHovered)
