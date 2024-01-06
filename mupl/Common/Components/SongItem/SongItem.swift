@@ -78,3 +78,39 @@ struct SongItem: View {
         }
     }
 }
+
+// MARK: - Skeleton
+
+extension SongItem {
+    struct Skeleton: View {
+        var body: some View {
+            VStack {
+                HStack {
+                    HStack(spacing: .s3) {
+                        Color.tertiaryFill
+                            .frame(width: 40.0, height: 40.0)
+                            .clipShape(.rect(cornerRadius: 8.0))
+                        
+                        VStack(alignment: .leading, spacing: 2.0) {
+                            Color.tertiaryFill
+                                .frame(width: 120.0, height: 12.0)
+                                .clipShape(.rect(cornerRadius: 4.0))
+                            
+                            Color.tertiaryFill
+                                .frame(width: 80.0, height: 12.0)
+                                .clipShape(.rect(cornerRadius: 4.0))
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Color.tertiaryFill
+                        .frame(width: 32.0, height: 12.0)
+                        .clipShape(.rect(cornerRadius: 4.0))
+                }
+                
+                Divider()
+            }
+        }
+    }
+}

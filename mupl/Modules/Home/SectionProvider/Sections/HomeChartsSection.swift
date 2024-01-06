@@ -89,8 +89,16 @@ extension HomeSectionProvider.ChartsSection {
         }
         
         func skeleton() -> some View {
-            VStack {
+            VStack(alignment: .leading, spacing: .s6) {
+                Color.tertiaryFill
+                    .frame(width: 150.0, height: 16.0)
+                    .clipShape(.rect(cornerRadius: 4.0))
                 
+                LazyVGrid(columns: self.columns, spacing: .s2) {
+                    ForEach(0 ..< 8, id: \.self) { _ in
+                        SongItem.Skeleton()
+                    }
+                }
             }
         }
     }
