@@ -7,7 +7,18 @@
 
 import Foundation
 
+enum MusicPersonalRecommendationType: String {
+    case madeForYou = "6-27s5hU6azhJY"
+    case recentlyPlayed = "7-2Tqlz47h9yro"
+    case other = "-"
+    
+    init(id: String) {
+        self = MusicPersonalRecommendationType(rawValue: id) ?? .other
+    }
+}
+
 struct MusicPersonalRecommendationItem: Hashable, Identifiable {
+    let type: MusicPersonalRecommendationType
     let title: String
     let items: [any MusicTrackCollection]
     

@@ -1,0 +1,16 @@
+//
+//  MusicChartsCompilation.swift
+//  mupl
+//
+//  Created by Tamerlan Satualdypov on 06.01.2024.
+//
+
+import Foundation
+import MusicKit
+
+struct MusicChartsCompilation {
+    let topSongs: MusicCatalogChart<Song>?
+    let mostPlayedPlaylists: MusicCatalogChart<Playlist>?
+    let dailyGlobalTopPlaylists: MusicCatalogChart<Playlist>?
+    let cityTopPlaylists: MusicCatalogChart<Playlist>?
+}

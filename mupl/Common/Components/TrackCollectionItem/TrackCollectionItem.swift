@@ -16,7 +16,7 @@ struct TrackCollectionItem: View {
         var size: CGSize {
             switch self {
             case .medium:
-                return .init(width: 150.0, height: 150.0)
+                return .init(width: 180.0, height: 180.0)
             case .large:
                 return .init(width: 200.0, height: 200.0)
             }
