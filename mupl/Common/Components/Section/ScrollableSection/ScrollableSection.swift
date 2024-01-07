@@ -27,9 +27,12 @@ struct ScrollableSection<Data: RandomAccessCollection, ID: Hashable, Content: Vi
                 .foregroundStyle(Color.primaryText)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: .s4) {
+                LazyHStack(spacing: .s4) {
                     ForEach(self.items, id: self.itemIDKeyPath) { item in
                         self.itemBuilder(item)
+                    }
+                    .scrollTransition { view, phase in
+                        view.opacity(phase.isIdentity ? 1.0 : 0.0)
                     }
                 }
                 .scrollTargetLayout()

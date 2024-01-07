@@ -14,28 +14,31 @@ struct HomeView: View {
     
     @State private var recommendations: [MusicPersonalRecommendationItem] = []
     @State private var charts: MusicChartsCompilation?
-    
     @State private var loadingState: LoadingState = .idle
     
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: .s6) {
-                Text("Listen Now")
-                    .font(.system(size: 32.0, weight: .bold))
-                    .foregroundStyle(Color.primaryText)
-                
-                Group {
-                    switch self.loadingState {
-                    case .idle, .loading:
-                        self.skeleton
-                    case .loaded:
-                        self.content
+            ZStack {
+                LazyVStack(alignment: .leading, spacing: .s6) {
+                    Text("Listen Now")
+                        .font(.system(size: 32.0, weight: .bold))
+                        .foregroundStyle(Color.primaryText)
+                    
+                    Group {
+                        switch self.loadingState {
+                        case .idle, .loading:
+                            self.skeleton
+                        case .loaded:
+                            self.content
+                        }
                     }
+                    .transition(.opacity)
                 }
-                .transition(.opacity)
+                .padding(.all, 24.0)
+                .frame(minWidth: 500.0, maxWidth: 1080.0, alignment: .top)
+                .animation(.easeInOut, value: self.loadingState)
             }
-            .padding(.all, 24.0)
-            .animation(.easeInOut, value: self.loadingState)
+            .frame(maxWidth: .infinity)
         }
         .padding(.bottom, 70.0)
         .scrollDisabled(self.loadingState != .loaded)

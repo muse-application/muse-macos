@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 extension HomeSectionProvider {
     struct RecommendationsSection: ProvidableSection {
@@ -68,14 +69,13 @@ extension HomeSectionProvider.RecommendationsSection {
             
             var body: some View {
                 ZStack {
-                    AsyncImage(url: self.item.artwork?.url(width: 1080, height: 1080)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 64.0, alignment: .bottom)
-                    } placeholder: {
-                        Color.secondaryFill
-                    }
+                    WebImage(url: self.item.artwork?.url(width: 1080, height: 1080))
+                        .resizable()
+                        .placeholder {
+                            Color.secondaryFill
+                        }
+                        .scaledToFill()
+                        .frame(height: 64.0, alignment: .bottom)
                     
                     Color.black
                         .opacity(self.isHovered ? 0.6 : 0.4)
