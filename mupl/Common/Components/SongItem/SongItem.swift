@@ -22,13 +22,7 @@ struct SongItem: View {
             HStack {
                 HStack(spacing: .s3) {
                     ZStack {
-                        Group {
-                            if let artwork = self.song.artwork {
-                                ArtworkImage(artwork, width: 40.0, height: 40.0)
-                            } else {
-                                Color.secondaryFill
-                            }
-                        }
+                        MusicArtworkImage(artwork: self.song.artwork)
                         
                         if self.isHovered {
                             ZStack {

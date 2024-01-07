@@ -47,6 +47,8 @@
 		0856A4F12B49C54C0073ACE7 /* HomeChartsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4F02B49C54C0073ACE7 /* HomeChartsSection.swift */; };
 		0856A4F42B49C6FB0073ACE7 /* SongItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4F32B49C6FB0073ACE7 /* SongItem.swift */; };
 		0856A4F62B49C8690073ACE7 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4F52B49C8690073ACE7 /* TimeInterval.swift */; };
+		0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */; };
+		0856A4FC2B4B326A0073ACE7 /* MusicArtworkImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4FB2B4B326A0073ACE7 /* MusicArtworkImage.swift */; };
 		08B77F452B20F9D2004B6D8D /* muplApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F442B20F9D2004B6D8D /* muplApp.swift */; };
 		08B77F472B20F9D3004B6D8D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B77F462B20F9D3004B6D8D /* ContentView.swift */; };
 		08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08B77F482B20F9D3004B6D8D /* Assets.xcassets */; };
@@ -111,6 +113,7 @@
 		0856A4F02B49C54C0073ACE7 /* HomeChartsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartsSection.swift; sourceTree = "<group>"; };
 		0856A4F32B49C6FB0073ACE7 /* SongItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongItem.swift; sourceTree = "<group>"; };
 		0856A4F52B49C8690073ACE7 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		0856A4FB2B4B326A0073ACE7 /* MusicArtworkImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicArtworkImage.swift; sourceTree = "<group>"; };
 		08B77F412B20F9D2004B6D8D /* mupl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mupl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B77F442B20F9D2004B6D8D /* muplApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = muplApp.swift; sourceTree = "<group>"; };
 		08B77F462B20F9D3004B6D8D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +186,7 @@
 				0856A4EA2B48AD6F0073ACE7 /* Section */,
 				0856A4C32B4710420073ACE7 /* TrackCollectionItem */,
 				0856A4F22B49C6DD0073ACE7 /* SongItem */,
+				0856A4FA2B4B32500073ACE7 /* MusicArtworkImage */,
 				08415D112B40BA5700764CD6 /* QueueBar */,
 				08415CF92B3DC1F400764CD6 /* Slider */,
 				08415CF22B3DBCAE00764CD6 /* Playbar */,
@@ -478,6 +483,14 @@
 			path = SongItem;
 			sourceTree = "<group>";
 		};
+		0856A4FA2B4B32500073ACE7 /* MusicArtworkImage */ = {
+			isa = PBXGroup;
+			children = (
+				0856A4FB2B4B326A0073ACE7 /* MusicArtworkImage.swift */,
+			);
+			path = MusicArtworkImage;
+			sourceTree = "<group>";
+		};
 		08B77F382B20F9D2004B6D8D = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +636,9 @@
 			dependencies = (
 			);
 			name = mupl;
+			packageProductDependencies = (
+				0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */,
+			);
 			productName = mupl;
 			productReference = 08B77F412B20F9D2004B6D8D /* mupl.app */;
 			productType = "com.apple.product-type.application";
@@ -651,6 +667,9 @@
 				Base,
 			);
 			mainGroup = 08B77F382B20F9D2004B6D8D;
+			packageReferences = (
+				0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 08B77F422B20F9D2004B6D8D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -716,6 +735,7 @@
 				08F4232B2B45CCE7005158F2 /* MockedNetworkSession.swift in Sources */,
 				08F4230E2B45AC10005158F2 /* Network.swift in Sources */,
 				08F423122B45AC60005158F2 /* Endpoint.swift in Sources */,
+				0856A4FC2B4B326A0073ACE7 /* MusicArtworkImage.swift in Sources */,
 				0856A4BA2B46FF0E0073ACE7 /* MusicCatalog.swift in Sources */,
 				0856A4C72B471BA80073ACE7 /* MusicTrackCollection.swift in Sources */,
 				0856A4E02B4876330073ACE7 /* HomeSectionProvider.swift in Sources */,
@@ -874,6 +894,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = mupl;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -903,6 +924,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = mupl;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -939,6 +961,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 08B77F392B20F9D2004B6D8D /* Project object */;
 }

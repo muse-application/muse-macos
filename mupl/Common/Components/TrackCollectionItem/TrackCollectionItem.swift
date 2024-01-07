@@ -16,9 +16,9 @@ struct TrackCollectionItem: View {
         var size: CGSize {
             switch self {
             case .medium:
-                return .init(width: 180.0, height: 180.0)
-            case .large:
                 return .init(width: 200.0, height: 200.0)
+            case .large:
+                return .init(width: 256.0, height: 256.0)
             }
         }
         
@@ -56,14 +56,8 @@ struct TrackCollectionItem: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .s1) {
             ZStack(alignment: .bottomLeading) {
-                Group {
-                    if let artwork = self.item.artwork {
-                        ArtworkImage(artwork, width: self.kind.size.width, height: self.kind.size.height)
-                    } else {
-                        Color.secondaryFill
-                    }
-                }
-                .zIndex(0)
+                MusicArtworkImage(artwork: self.item.artwork)
+                    .zIndex(0)
                 
                 if self.isHovered {
                     Group {
