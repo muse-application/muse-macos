@@ -23,3 +23,14 @@ protocol MusicTrackCollection: Hashable, Identifiable {
     var contentRating: ContentRating? { get }
     var tracks: MusicItemCollection<Track>? { get }
 }
+
+extension MusicTrackCollection {
+    var songs: [Song] {
+        guard let tracks = self.tracks else { return [] }
+        
+        return tracks.compactMap { track in
+            guard case .song(let song) = track else { return nil }
+            return song
+        }
+    }
+}

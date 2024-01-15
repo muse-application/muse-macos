@@ -8,68 +8,22 @@
 import SwiftUI
 import MusicKit
 
-struct SongItem: View {
+struct SongItem<S: SongItemStyle>: View {
     private let song: Song
+    private let style: S
     
     @State private var isHovered: Bool = false
     
-    init(song: Song) {
+    init(song: Song, style: S = .plain) {
         self.song = song
+        self.style = style
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                HStack(spacing: .s3) {
-                    ZStack {
-                        MusicArtworkImage(artwork: self.song.artwork)
-                        
-                        if self.isHovered {
-                            ZStack {
-                                Color.black.opacity(0.4)
-                                
-                                Image(systemName: "play.fill")
-                                    .foregroundStyle(Color.white)
-                                    .font(.system(size: 14.0, weight: .regular))
-                            }
-                            .transition(.opacity)
-                            .zIndex(1)
-                        }
-                    }
-                    .frame(width: 40.0, height: 40.0)
-                    .clipShape(.rect(cornerRadius: 8.0))
-                    .border(style: .quinaryFill, cornerRadius: 8.0)
-                    
-                    VStack(alignment: .leading, spacing: 2.0) {
-                        Text(self.song.title)
-                            .lineLimit(1)
-                            .font(.system(size: 12.0, weight: .medium))
-                            .foregroundStyle(Color.primaryText)
-                        
-                        Text(self.song.artistName)
-                            .lineLimit(1)
-                            .font(.system(size: 12.0, weight: .regular))
-                            .foregroundStyle(Color.secondaryText)
-                    }
-                }
-                
-                Spacer()
-                
-                HStack {
-                    if let duration = self.song.duration?.minutesAndSeconds {
-                        Text(duration)
-                            .font(.system(size: 12.0, weight: .medium))
-                            .foregroundStyle(Color.secondaryText)
-                    }
-                }
+        self.style.content(for: song, context: .init(isHovered: self.isHovered))
+            .onHover { hovering in
+                self.isHovered = hovering
             }
-            .animation(.easeInOut, value: self.isHovered)
-            
-            Divider()
-        }
-        .onHover { hovering in
-            self.isHovered = hovering
-        }
     }
 }
 
@@ -77,34 +31,14 @@ struct SongItem: View {
 
 extension SongItem {
     struct Skeleton: View {
+        private let style: S
+        
+        init(style: S = .plain) {
+            self.style = style
+        }
+        
         var body: some View {
-            VStack {
-                HStack {
-                    HStack(spacing: .s3) {
-                        Color.tertiaryFill
-                            .frame(width: 40.0, height: 40.0)
-                            .clipShape(.rect(cornerRadius: 8.0))
-                        
-                        VStack(alignment: .leading, spacing: 2.0) {
-                            Color.tertiaryFill
-                                .frame(width: 120.0, height: 12.0)
-                                .clipShape(.rect(cornerRadius: 4.0))
-                            
-                            Color.tertiaryFill
-                                .frame(width: 80.0, height: 12.0)
-                                .clipShape(.rect(cornerRadius: 4.0))
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    Color.tertiaryFill
-                        .frame(width: 32.0, height: 12.0)
-                        .clipShape(.rect(cornerRadius: 4.0))
-                }
-                
-                Divider()
-            }
+            self.style.skeleton()
         }
     }
 }

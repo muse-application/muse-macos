@@ -70,7 +70,7 @@ struct TrackCollectionItem: View {
                             Image(systemName: "play.circle.fill")
                                 .font(.system(size: 24.0))
                         }
-                        .buttonStyle(.systemHoverable)
+                        .buttonStyle(.systemHoverable())
                         .padding([.leading, .bottom], 8.0)
                         .zIndex(2)
                     }
