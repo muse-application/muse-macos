@@ -10,7 +10,7 @@ import MusicKit
 
 extension MusicCatalog {
     struct Personal {
-        var recentlyPlayed: [any MusicTrackCollection] {
+        var recentlyPlayed: [MusicTrackCollection] {
             get async {
                 let request = MusicRecentlyPlayedContainerRequest()
                 let response = try? await request.response()
@@ -20,11 +20,11 @@ extension MusicCatalog {
                         .compactMap { item in
                             switch item {
                             case .album(let album):
-                                return album
+                                return .init(album: album)
                             case .playlist(let playlist):
-                                return playlist
+                                return .init(playlist: playlist)
                             case .station(let station):
-                                return station
+                                return .init(station: station)
                             @unknown default:
                                 return nil
                             }
@@ -45,33 +45,33 @@ extension MusicCatalog {
                         .compactMap { recommendation in
                             // Mapping resulting array to more convenient type
                             // with common type for music items (albums, playlist, stations).
-                            var items: [any MusicTrackCollection] = []
+                            var items: [MusicTrackCollection] = []
                             
                             if recommendation.types.count > 1 {
                                 items = recommendation.items
                                     .compactMap { item in
                                         switch item {
                                         case .album(let album):
-                                            return album
+                                            return .init(album: album)
                                         case .playlist(let playlist):
-                                            return playlist
+                                            return .init(playlist: playlist)
                                         case .station(let station):
-                                            return station
+                                            return .init(station: station)
                                         @unknown default:
                                             return nil
                                         }
                                     }
                             } else {
                                 if recommendation.types.first is Album.Type {
-                                    items = recommendation.albums.map { $0 }
+                                    items = recommendation.albums.map { .init(album: $0) }
                                 }
                                 
                                 if recommendation.types.first is Playlist.Type {
-                                    items = recommendation.playlists.map { $0 }
+                                    items = recommendation.playlists.map { .init(playlist: $0) }
                                 }
                                 
                                 if recommendation.types.first is Station.Type {
-                                    items = recommendation.stations.map { $0 }
+                                    items = recommendation.stations.map { .init(station: $0) }
                                 }
                             }
                             

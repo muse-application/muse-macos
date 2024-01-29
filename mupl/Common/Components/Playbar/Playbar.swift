@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Playbar: View {
+    @Environment(\.playbarHeight) private var playbarHeight
+    
     var body: some View {
         VStack(spacing: 0.0) {
             Divider()
@@ -22,7 +24,7 @@ struct Playbar: View {
                 PlaybarVolumeControls()
                     .frame(maxWidth: .infinity)
             }
-            .frame(height: 70.0)
+            .frame(height: self.playbarHeight)
             .frame(maxWidth: .infinity)
             .background(.ultraThickMaterial)
         }

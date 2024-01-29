@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import MusicKit
 
 struct HomeView: View {
     private let sectionProvider: HomeSectionProvider = .init()
     
+    @Environment(\.playbarHeight) private var playbarHeight
     @EnvironmentObject private var musicCatalog: MusicCatalog
     
     @State private var recommendations: [MusicPersonalRecommendationItem] = []
@@ -40,7 +42,7 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(.bottom, 70.0)
+        .padding(.bottom, self.playbarHeight)
         .scrollDisabled(self.loadingState != .loaded)
         .task {
             self.loadingState = .loading
@@ -49,6 +51,9 @@ struct HomeView: View {
             self.charts = await self.musicCatalog.charts.compilation
             
             self.loadingState = .loaded
+        }
+        .navigationDestination(for: MusicTrackCollection.self) { item in
+            TrackCollectionDetailsView(item: item)
         }
     }
     

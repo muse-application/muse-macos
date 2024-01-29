@@ -40,8 +40,10 @@ extension HomeSectionProvider.RecommendationsSection {
     struct DefaultRecommendationSection: ProvidableSection {
         func section(with value: MusicPersonalRecommendationItem) -> some View {
             ScrollableSection(title: value.title, items: value.items, id: \.id) { item in
-                TrackCollectionItem(item: item, kind: .medium) { selectedItem in
-                    
+                NavigationLink(value: item) {
+                    TrackCollectionItem(item: item, kind: .medium) { selectedItem in
+                        
+                    }
                 }
             }
         }
@@ -59,11 +61,11 @@ extension HomeSectionProvider.RecommendationsSection {
 extension HomeSectionProvider.RecommendationsSection {
     struct MadeForYouRecommendationSection: ProvidableSection {
         private struct Item: View {
-            private let item: any MusicTrackCollection
+            private let item: MusicTrackCollection
             
             @State private var isHovered: Bool = false
             
-            init(item: any MusicTrackCollection) {
+            init(item: MusicTrackCollection) {
                 self.item = item
             }
             

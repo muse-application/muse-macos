@@ -48,7 +48,7 @@ extension HomeSectionProvider.ChartsSection {
     struct PlaylistChartSection: ProvidableSection {
         func section(with value: MusicCatalogChart<Playlist>) -> some View {
             ScrollableSection(title: value.title, items: value.items) { item in
-                TrackCollectionItem(item: item, kind: .medium) { selectedItem in
+                TrackCollectionItem(item: .init(playlist: item), kind: .medium) { selectedItem in
                     
                 }
             }

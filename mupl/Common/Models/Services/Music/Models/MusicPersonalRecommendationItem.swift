@@ -20,7 +20,7 @@ enum MusicPersonalRecommendationType: String {
 struct MusicPersonalRecommendationItem: Hashable, Identifiable {
     let type: MusicPersonalRecommendationType
     let title: String
-    let items: [any MusicTrackCollection]
+    let items: [MusicTrackCollection]
     
     var id: Int {
         return self.hashValue

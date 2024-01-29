@@ -18,6 +18,7 @@ struct ContentView: View {
     
     @State private var selectedItem: SidebarItem = .home
     @State private var isSongQueuePresented: Bool = false
+    @State private var navigationDetailPath: NavigationPath = .init()
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -44,12 +45,14 @@ struct ContentView: View {
     
     private var detailContent: some View {
         ZStack(alignment: .topTrailing) {
-            selectedItem.content
-                .frame(
-                    minWidth: 512.0,
-                    maxWidth: .infinity,
-                    maxHeight: .infinity
-                )
+            NavigationStack {
+                selectedItem.content
+                    .frame(
+                        minWidth: 512.0,
+                        maxWidth: .infinity,
+                        maxHeight: .infinity
+                    )
+            }
             
             QueueBar(isPresented: self.$isSongQueuePresented)
         }

@@ -27,7 +27,7 @@ struct GroupedSongItemStyle: SongItemStyle {
                 }
             }
             .font(.system(size: 14.0, weight: .bold))
-            .frame(width: 16.0, height: 16.0)
+            .frame(width: 20.0, height: 16.0)
             
             Text(song.title)
                 .lineLimit(1)
@@ -43,20 +43,19 @@ struct GroupedSongItemStyle: SongItemStyle {
                     .frame(width: 40.0)
             }
         }
-        .padding(.vertical, 12.0)
-        .padding(.horizontal, 16.0)
+        .padding(.all, 16.0)
         .background {
             if context.isHovered {
-                Color.black.opacity(0.1)
+                Color.primaryFill.opacity(0.1)
             } else {
                 if self.position % 2 == 0 {
                     Color.clear
                 } else {
-                    Color.black.opacity(0.02)
+                    Color.primaryFill.opacity(0.04)
                 }
             }
         }
-        .clipShape(.rect(cornerRadius: 4.0))
+        .clipShape(.rect(cornerRadius: 8.0))
     }
     
     func skeleton() -> some View {

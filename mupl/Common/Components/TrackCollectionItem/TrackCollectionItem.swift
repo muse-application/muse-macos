@@ -41,13 +41,13 @@ struct TrackCollectionItem: View {
         }
     }
     
-    private let item: any MusicTrackCollection
+    private let item: MusicTrackCollection
     private let kind: Kind
-    private let onTapAction: (any MusicTrackCollection) -> Void
+    private let onTapAction: (MusicTrackCollection) -> Void
     
     @State private var isHovered: Bool = false
     
-    init(item: any MusicTrackCollection, kind: Kind, onTap action: @escaping (any MusicTrackCollection) -> Void) {
+    init(item: MusicTrackCollection, kind: Kind, onTap action: @escaping (MusicTrackCollection) -> Void) {
         self.item = item
         self.kind = kind
         self.onTapAction = action
