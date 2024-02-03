@@ -59,9 +59,16 @@ struct GroupedSongItemStyle: SongItemStyle {
     }
     
     func skeleton() -> some View {
-        VStack {
-            
+        Group {
+            if self.position % 2 == 0 {
+                Color.tertiaryFill.opacity(0.2)
+            } else {
+                Color.tertiaryFill.opacity(0.8)
+            }
         }
+        .frame(height: 50.0)
+        .frame(maxWidth: .infinity)
+        .clipShape(.rect(cornerRadius: 8.0))
     }
 }
 
