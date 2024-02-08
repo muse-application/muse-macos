@@ -12,80 +12,76 @@ import MusicKit
  A common protocol that describes some track collection,
  e.g. album, playlist, station
  */
-struct MusicTrackCollection: Hashable, Identifiable {
-    let id: MusicItemID
-    let title: String
-    let description: String?
-    let artwork: Artwork?
-    let authorName: String?
-    let releaseDate: Date?
-    let genreNames: [String]
-    let contentRating: ContentRating?
-    let songsProvider: @Sendable () async -> [Song]
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+protocol MusicTrackCollection: Hashable, Identifiable {
+    var id: MusicItemID { get }
+    var title: String { get }
+    var description: String? { get }
+    var artwork: Artwork? { get }
+    var authorName: String? { get }
+    var releaseDate: Date? { get }
+    var genreNames: [String] { get }
+    var contentRating: ContentRating? { get }
+    var tracks: MusicItemCollection<Track>? { get }
+}
+
+extension Album: MusicTrackCollection {
+    var authorName: String? {
+        return self.artistName
     }
     
-    static func == (lhs: MusicTrackCollection, rhs: MusicTrackCollection) -> Bool {
-        return lhs.hashValue == rhs.hashValue
+    var description: String? {
+        return self.editorialNotes?.standard
     }
 }
 
-extension MusicTrackCollection {
-    init(album: Album) {
-        self.init(
-            id: album.id,
-            title: album.title,
-            description: album.editorialNotes?.standard,
-            artwork: album.artwork,
-            authorName: album.artistName,
-            releaseDate: album.releaseDate,
-            genreNames: album.genreNames,
-            contentRating: album.contentRating,
-            songsProvider: {
-                let tracks = (try? await album.with(.tracks))?.tracks ?? []
-                return tracks.compactMap { track in
-                    guard case .song(let song) = track else { return nil }
-                    return song
-                }
-            }
-        )
+extension Playlist: MusicTrackCollection {
+    var title: String {
+        return self.name
     }
     
-    init(playlist: Playlist) {
-        self.init(
-            id: playlist.id,
-            title: playlist.name,
-            description: playlist.standardDescription,
-            artwork: playlist.artwork,
-            authorName: playlist.curatorName,
-            releaseDate: playlist.lastModifiedDate,
-            genreNames: [],
-            contentRating: nil,
-            songsProvider: {
-                let tracks = (try? await playlist.with(.tracks))?.tracks ?? []
-                return tracks.compactMap { track in
-                    guard case .song(let song) = track else { return nil }
-                    return song
-                }
-            }
-        )
+    var description: String? {
+        return self.standardDescription
     }
     
-    init(station: Station) {
-        self.init(
-            id: station.id,
-            title: station.name,
-            description: station.editorialNotes?.standard,
-            artwork: station.artwork,
-            authorName: station.stationProviderName,
-            releaseDate: nil,
-            genreNames: [],
-            contentRating: station.contentRating,
-            songsProvider: {
-                return []
-            }
-        )
+    var authorName: String? {
+        return self.curatorName
+    }
+    
+    var releaseDate: Date? {
+        return self.lastModifiedDate
+    }
+    
+    var genreNames: [String] {
+        return []
+    }
+    
+    var contentRating: ContentRating? {
+        return nil
+    }
+}
+
+extension Station: MusicTrackCollection {
+    var title: String {
+        return self.name
+    }
+    
+    var description: String? {
+        return self.editorialNotes?.standard
+    }
+    
+    var authorName: String? {
+        return self.stationProviderName
+    }
+    
+    var releaseDate: Date? {
+        return nil
+    }
+    
+    var genreNames: [String] {
+        return []
+    }
+    
+    var tracks: MusicItemCollection<Track>? {
+        return nil
     }
 }

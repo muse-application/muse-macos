@@ -49,7 +49,7 @@ extension HomeSectionProvider.ChartsSection {
         func section(with value: MusicCatalogChart<Playlist>) -> some View {
             ScrollableSection(title: value.title, items: value.items) { item in
                 NavigationLink(value: item) {
-                    TrackCollectionItem(item: .init(playlist: item), kind: .medium)
+                    TrackCollectionItem(item: item, kind: .medium)
                 }
                 .buttonStyle(.plain)
             }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MusicKit
 
 enum MusicPersonalRecommendationType: String {
     case madeForYou = "6-27s5hU6azhJY"
@@ -20,18 +21,9 @@ enum MusicPersonalRecommendationType: String {
 struct MusicPersonalRecommendationItem: Hashable, Identifiable {
     let type: MusicPersonalRecommendationType
     let title: String
-    let items: [MusicTrackCollection]
+    let items: MusicItemCollection<MusicPersonalRecommendation.Item>
     
     var id: Int {
         return self.hashValue
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.title)
-        self.items.forEach { hasher.combine($0) }
-    }
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.hashValue == rhs.hashValue
     }
 }

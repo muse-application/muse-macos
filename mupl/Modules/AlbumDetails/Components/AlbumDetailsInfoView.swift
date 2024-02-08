@@ -1,30 +1,31 @@
 //
-//  TrackCollectionDetailsInfoView.swift
+//  AlbumDetailsInfoView.swift
 //  mupl
 //
 //  Created by Tamerlan Satualdypov on 30.01.2024.
 //
 
 import SwiftUI
+import MusicKit
 
-extension TrackCollectionDetailsView {
+extension AlbumDetailsView {
     
     struct InfoView: View {
-        private let item: MusicTrackCollection
+        private let album: Album
         
-        init(item: MusicTrackCollection) {
-            self.item = item
+        init(album: Album) {
+            self.album = album
         }
         
         var body: some View {
-            VStack(spacing: 16.0) {
+            VStack(alignment: .leading, spacing: 16.0) {
                 VStack(alignment: .leading, spacing: 12.0) {
-                    MusicArtworkImage(artwork: self.item.artwork)
+                    MusicArtworkImage(artwork: self.album.artwork)
                         .frame(width: 256.0, height: 256.0)
                         .clipShape(.rect(cornerRadius: 12.0))
                         .glow(
                             using: .init(
-                                color: Color(cgColor: self.item.artwork?.backgroundColor ?? .black),
+                                color: Color(cgColor: self.album.artwork?.backgroundColor ?? .black),
                                 radius: 16.0,
                                 duration: 8.0
                             )
@@ -34,6 +35,7 @@ extension TrackCollectionDetailsView {
                 }
                 
                 self.buttons
+                self.copyright
             }
             .frame(width: 256.0)
         }
@@ -44,15 +46,13 @@ extension TrackCollectionDetailsView {
             VStack(alignment: .leading, spacing: 8.0) {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading, spacing: 4.0) {
-                        Text(self.item.title)
+                        Text(self.album.title)
                             .font(.system(size: 18.0, weight: .bold))
                             .foregroundStyle(Color.primaryText)
                         
-                        if let authorName = self.item.authorName {
-                            Text(authorName)
-                                .font(.system(size: 16.0, weight: .medium))
-                                .foregroundStyle(Color.pinkAccent)
-                        }
+                        Text(self.album.artistName)
+                            .font(.system(size: 16.0, weight: .medium))
+                            .foregroundStyle(Color.pinkAccent)
                     }
                     
                     Spacer()
@@ -69,11 +69,11 @@ extension TrackCollectionDetailsView {
                 }
                 
                 HStack(spacing: 2.0) {
-                    if let genre = self.item.genreNames.first {
+                    if let genre = self.album.genreNames.first {
                         Text(genre.uppercased())
                     }
                     
-                    if let releaseYear = self.item.releaseDate?.format("YYYY") {
+                    if let releaseYear = self.album.releaseDate?.format("YYYY") {
                         Text("•")
                         Text(releaseYear)
                     }
@@ -81,7 +81,7 @@ extension TrackCollectionDetailsView {
                 .font(.system(size: 12.0, weight: .bold))
                 .foregroundColor(Color.secondaryText)
                 
-                if let description = self.item.description {
+                if let description = self.album.editorialNotes?.short {
                     Text(description)
                         .lineLimit(3)
                         .font(.system(size: 14.0, weight: .regular))
@@ -102,7 +102,7 @@ extension TrackCollectionDetailsView {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.app(.primary))
-
+                
                 Button {
                     
                 } label: {
@@ -113,6 +113,22 @@ extension TrackCollectionDetailsView {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.app(.secondary))
+            }
+        }
+        
+        private var copyright: some View {
+            VStack(alignment: .leading, spacing: 4.0) {
+                if let recordLabelName = self.album.recordLabelName {
+                    Text(recordLabelName)
+                        .font(.system(size: 10.0, weight: .semibold))
+                        .foregroundStyle(Color.secondaryText)
+                }
+                
+                if let copyright = self.album.copyright {
+                    Text(copyright)
+                        .font(.system(size: 10.0, weight: .regular))
+                        .foregroundStyle(Color.secondaryText)
+                }
             }
         }
     }

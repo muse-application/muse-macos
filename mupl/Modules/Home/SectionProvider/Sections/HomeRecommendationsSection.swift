@@ -40,10 +40,23 @@ extension HomeSectionProvider.RecommendationsSection {
     struct DefaultRecommendationSection: ProvidableSection {
         func section(with value: MusicPersonalRecommendationItem) -> some View {
             ScrollableSection(title: value.title, items: value.items, id: \.id) { item in
-                NavigationLink(value: item) {
-                    TrackCollectionItem(item: item, kind: .medium)
+                switch item {
+                case .album(let item):
+                    NavigationLink(value: item) {
+                        TrackCollectionItem(item: item, kind: .medium)
+                    }
+                    .buttonStyle(.plain)
+                case .playlist(let item):
+                    NavigationLink(value: item) {
+                        TrackCollectionItem(item: item, kind: .medium)
+                    }
+                    .buttonStyle(.plain)
+                case .station(let item):
+                    NavigationLink(value: item) {
+                        TrackCollectionItem(item: item, kind: .medium)
+                    }
+                    .buttonStyle(.plain)
                 }
-                .buttonStyle(.plain)
             }
         }
         
@@ -60,11 +73,11 @@ extension HomeSectionProvider.RecommendationsSection {
 extension HomeSectionProvider.RecommendationsSection {
     struct MadeForYouRecommendationSection: ProvidableSection {
         private struct Item: View {
-            private let item: MusicTrackCollection
+            private let item: any MusicTrackCollection
             
             @State private var isHovered: Bool = false
             
-            init(item: MusicTrackCollection) {
+            init(item: any MusicTrackCollection) {
                 self.item = item
             }
             
@@ -114,7 +127,14 @@ extension HomeSectionProvider.RecommendationsSection {
                 
                 HStack(spacing: .s2) {
                     ForEach(value.items, id: \.id) { item in
-                        Item(item: item) // <- Item (I think I'm sick)
+                        switch item {
+                        case .album(let item):
+                            Item(item: item)
+                        case .playlist(let item):
+                            Item(item: item)
+                        case .station(let item):
+                            Item(item: item)
+                        }
                     }
                 }
             }

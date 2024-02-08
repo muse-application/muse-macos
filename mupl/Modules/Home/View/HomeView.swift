@@ -52,8 +52,8 @@ struct HomeView: View {
             
             self.loadingState = .loaded
         }
-        .navigationDestination(for: MusicTrackCollection.self) { item in
-            TrackCollectionDetailsView(item: item)
+        .navigationDestination(for: Album.self) { album in
+            AlbumDetailsView(album: album)
         }
     }
     
