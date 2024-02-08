@@ -27,7 +27,7 @@ struct ScrollableSection<Data: RandomAccessCollection, ID: Hashable, Content: Vi
                 .foregroundStyle(Color.primaryText)
             
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(spacing: .s4) {
+                LazyHStack(alignment: .top, spacing: .s4) {
                     ForEach(self.items, id: self.itemIDKeyPath) { item in
                         self.itemBuilder(item)
                     }

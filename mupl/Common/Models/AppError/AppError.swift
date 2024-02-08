@@ -33,6 +33,6 @@ class AppError: Error, Hashable, Identifiable {
 // MARK: - Default Errors
 
 extension AppError {
-    static let `internal`: AppError = .init(title: "", description: "")
-    static let unknown: AppError = .init(title: "", description: "")
+    static let `internal`: AppError = .init(title: "Internal Error", description: "An internal error occured. We're on it and will have things back to normal soon.")
+    static let unknown: AppError = .init(title: "Unexpected Error", description: "Something went wrong. Please try again later.")
 }

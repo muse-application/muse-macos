@@ -8,7 +8,7 @@
 import Foundation
 import MusicKit
 
-struct MusicChartsCompilation {
+struct MusicChartsCompilation: Hashable {
     let topSongs: MusicCatalogChart<Song>?
     let mostPlayedPlaylists: MusicCatalogChart<Playlist>?
     let dailyGlobalTopPlaylists: MusicCatalogChart<Playlist>?

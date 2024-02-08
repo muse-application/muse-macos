@@ -43,11 +43,11 @@ struct TrackCollectionItem: View {
     
     private let item: any MusicTrackCollection
     private let kind: Kind
-    private let onTapAction: (any MusicTrackCollection) -> Void
+    private let onTapAction: ((any MusicTrackCollection) -> Void)?
     
     @State private var isHovered: Bool = false
     
-    init(item: any MusicTrackCollection, kind: Kind, onTap action: @escaping (any MusicTrackCollection) -> Void) {
+    init(item: any MusicTrackCollection, kind: Kind, onTap action: ((any MusicTrackCollection) -> Void)? = nil) {
         self.item = item
         self.kind = kind
         self.onTapAction = action
@@ -70,7 +70,7 @@ struct TrackCollectionItem: View {
                             Image(systemName: "play.circle.fill")
                                 .font(.system(size: 24.0))
                         }
-                        .buttonStyle(.systemHoverable)
+                        .buttonStyle(.systemHoverable())
                         .padding([.leading, .bottom], 8.0)
                         .zIndex(2)
                     }
