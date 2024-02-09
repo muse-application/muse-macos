@@ -129,11 +129,20 @@ extension HomeSectionProvider.RecommendationsSection {
                     ForEach(value.items, id: \.id) { item in
                         switch item {
                         case .album(let item):
-                            Item(item: item)
+                            NavigationLink(value: item) {
+                                Item(item: item)
+                            }
+                            .buttonStyle(.plain)
                         case .playlist(let item):
-                            Item(item: item)
+                            NavigationLink(value: item) {
+                                Item(item: item)
+                            }
+                            .buttonStyle(.plain)
                         case .station(let item):
-                            Item(item: item)
+                            NavigationLink(value: item) {
+                                Item(item: item)
+                            }
+                            .buttonStyle(.plain)
                         }
                     }
                 }
