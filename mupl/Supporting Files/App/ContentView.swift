@@ -10,77 +10,42 @@ import SwiftUI
 struct ContentView: View {
     private let sidebarSections: [SidebarSection] = [
         .init(
-            items: [.home, .library]
+            items: [.home, .search, .library]
         )
     ]
     
-    @EnvironmentObject private var musicAuthenticator: MusicAuthenticator
+    @Environment(\.sidebarWidth) private var sidebarWidth
+    @Environment(\.playbarHeight) private var playbarHeight
     
     @State private var selectedItem: SidebarItem = .home
-    @State private var isSongQueuePresented: Bool = false
-    @State private var navigationDetailPath: NavigationPath = .init()
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            NavigationSplitView {
-                Sidebar(
-                    sections: self.sidebarSections,
-                    selectedItem: self.$selectedItem
-                )
-                .toolbar(removing: .sidebarToggle)
-                .navigationSplitViewColumnWidth(200.0)
-            } detail: {
-                self.detailContent
-            }
-            .searchable(text: .constant(""), placement: .sidebar)
-            .toolbar {
-                self.toolbarContent
-            }
-            
-            Playbar()
-        }
-    }
-    
-    // MARK: - Components
-    
-    private var detailContent: some View {
-        ZStack(alignment: .topTrailing) {
-            NavigationStack {
-                selectedItem.content
+        ZStack {
+            ZStack(alignment: .topLeading) {
+                ZStack(alignment: .bottom) {
+                    NavigationStack {
+                        selectedItem.content
+                    }
                     .frame(
-                        minWidth: 512.0,
                         maxWidth: .infinity,
                         maxHeight: .infinity
                     )
-            }
-            
-            QueueBar(isPresented: self.$isSongQueuePresented)
-        }
-    }
-    
-    @ToolbarContentBuilder
-    private var toolbarContent: some ToolbarContent {
-        ToolbarItem(placement: .navigation) {
-            Button {
+                    .padding(.leading, self.sidebarWidth + 24.0)
+                    .padding(.bottom, self.playbarHeight + 24.0)
+                    
+                    Playbar()
+                        .padding(.horizontal, 24.0)
+                        .padding(.bottom, 24.0)
+                }
                 
-            } label: {
-                Image(systemName: "person.crop.circle")
+                Sidebar(sections: self.sidebarSections, selectedItem: self.$selectedItem)
+                    .padding(.top, 24.0)
+                    .padding(.leading, 24.0)
+                    .padding(.bottom, self.playbarHeight + 24.0 + 24.0)
             }
+            .frame(minWidth: 1080.0, maxWidth: 1080.0, alignment: .top)
         }
-        
-        ToolbarItem(placement: .principal) {
-            Spacer()
-        }
-        
-        ToolbarItem(placement: .primaryAction) {
-            Toggle(isOn: self.$isSongQueuePresented) {
-                Image(systemName: "list.bullet")
-            }
-            .toggleStyle(.button)
-        }
+        .frame(maxWidth: .infinity)
+        .frame(minHeight: 600.0)
     }
-}
-
-#Preview {
-    ContentView()
 }

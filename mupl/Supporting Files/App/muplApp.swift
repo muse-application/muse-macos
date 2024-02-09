@@ -15,18 +15,12 @@ struct muplApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(
-                    minWidth: 1024.0,
-                    idealWidth: 1024.0,
-                    minHeight: 600.0,
-                    idealHeight: 600.0
-                )
                 .task {
                     await self.musicAuthenticator.requestIfNeeded()
                 }
         }
         .environmentObject(self.musicAuthenticator)
         .environmentObject(self.musicCatalog)
-        .windowToolbarStyle(.unified(showsTitle: false))
+        .windowStyle(.hiddenTitleBar)
     }
 }

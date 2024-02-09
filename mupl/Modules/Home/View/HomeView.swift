@@ -11,7 +11,6 @@ import MusicKit
 struct HomeView: View {
     private let sectionProvider: HomeSectionProvider = .init()
     
-    @Environment(\.playbarHeight) private var playbarHeight
     @EnvironmentObject private var musicCatalog: MusicCatalog
     
     @State private var recommendations: [MusicPersonalRecommendationItem] = []
@@ -20,29 +19,24 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView {
-            ZStack {
-                LazyVStack(alignment: .leading, spacing: .s6) {
-                    Text("Listen Now")
-                        .font(.system(size: 32.0, weight: .bold))
-                        .foregroundStyle(Color.primaryText)
-                    
-                    Group {
-                        switch self.loadingState {
-                        case .idle, .loading:
-                            self.skeleton
-                        case .loaded:
-                            self.content
-                        }
+            LazyVStack(alignment: .leading, spacing: .s6) {
+                Text("Listen Now")
+                    .font(.system(size: 32.0, weight: .bold))
+                    .foregroundStyle(Color.primaryText)
+                
+                Group {
+                    switch self.loadingState {
+                    case .idle, .loading:
+                        self.skeleton
+                    case .loaded:
+                        self.content
                     }
-                    .transition(.opacity)
                 }
-                .padding(.all, 24.0)
-                .frame(minWidth: 500.0, maxWidth: 1080.0, alignment: .top)
-                .animation(.easeInOut, value: self.loadingState)
+                .transition(.opacity)
             }
-            .frame(maxWidth: .infinity)
+            .padding(.all, 24.0)
+            .animation(.easeInOut, value: self.loadingState)
         }
-        .padding(.bottom, self.playbarHeight)
         .scrollDisabled(self.loadingState != .loaded)
         .task {
             self.loadingState = .loading
