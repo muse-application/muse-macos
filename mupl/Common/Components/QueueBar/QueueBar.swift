@@ -17,13 +17,15 @@ struct QueueBar: View {
     var body: some View {
         ZStack {
             if self.isPresented {
-                HStack(spacing: 0.0) {
-                    Divider()
+                VStack {
+                    
                 }
                 .frame(width: 256.0, alignment: .leading)
                 .frame(maxHeight: .infinity)
                 .background(.ultraThinMaterial)
-                .transition(.move(edge: .trailing))
+                .clipShape(.rect(cornerRadius: 12.0))
+                .border(style: .quinaryFill, cornerRadius: 12.0)
+                .transition(.move(edge: .trailing).combined(with: .opacity))
             }
         }
         .animation(.easeIn, value: self.isPresented)

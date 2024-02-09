@@ -17,11 +17,7 @@ struct ContentView: View {
     @Environment(\.sidebarWidth) private var sidebarWidth
     @Environment(\.playbarHeight) private var playbarHeight
     
-    @EnvironmentObject private var musicAuthenticator: MusicAuthenticator
-    
     @State private var selectedItem: SidebarItem = .home
-    @State private var isSongQueuePresented: Bool = false
-    @State private var navigationDetailPath: NavigationPath = .init()
     
     var body: some View {
         ZStack {
