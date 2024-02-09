@@ -11,23 +11,21 @@ struct Playbar: View {
     @Environment(\.playbarHeight) private var playbarHeight
     
     var body: some View {
-        VStack(spacing: 0.0) {
-            Divider()
+        HStack(spacing: .zero) {
+            PlaybarSongPreview()
+                .frame(maxWidth: .infinity)
             
-            HStack(spacing: .zero) {
-                PlaybarSongPreview()
-                    .frame(maxWidth: .infinity)
-                
-                PlaybarSongControls()
-                    .frame(maxWidth: .infinity)
-                
-                PlaybarVolumeControls()
-                    .frame(maxWidth: .infinity)
-            }
-            .frame(height: self.playbarHeight)
-            .frame(maxWidth: .infinity)
-            .background(.ultraThickMaterial)
+            PlaybarSongControls()
+                .frame(maxWidth: .infinity)
+            
+            PlaybarVolumeControls()
+                .frame(maxWidth: .infinity)
         }
+        .frame(height: self.playbarHeight)
+        .frame(maxWidth: .infinity)
+        .background(.ultraThickMaterial)
+        .clipShape(.rect(cornerRadius: 12.0))
+        .border(style: .quinaryFill, cornerRadius: 12.0)
     }
 }
 

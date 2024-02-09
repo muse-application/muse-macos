@@ -11,8 +11,6 @@ import MusicKit
 struct AlbumDetailsView: View {
     private let item: Album
     
-    @Environment(\.playbarHeight) private var playbarHeight
-    
     @State private var album: LoadableValue<Album> = .init()
     
     init(album: Album) {
@@ -49,8 +47,7 @@ struct AlbumDetailsView: View {
                 InfoView(album: album)
                 TrackList(tracks: album.tracks)
             }
-            .padding([.top, .horizontal], 24.0)
-            .padding(.bottom, self.playbarHeight + 24.0)
+            .padding(.all, 24.0)
         }
     }
     
