@@ -55,6 +55,9 @@ struct HomeView: View {
         .navigationDestination(for: Album.self) { album in
             AlbumDetailsView(album: album)
         }
+        .navigationDestination(for: Playlist.self) { playlist in
+            PlaylistDetailsView(playlist: playlist)
+        }
     }
     
     // MARK: - Content
