@@ -37,6 +37,8 @@ class LoadableValue<T: Hashable> {
     
     private(set) var status: Status = .idle
     
+    private var task: Task<Void, Never>?
+    
     var value: T? {
         if case .loaded(let value) = self.status {
             return value
@@ -48,7 +50,7 @@ class LoadableValue<T: Hashable> {
     func load(_ task: @Sendable @escaping () async throws -> T) {
         self.status = .loading
         
-        Task {
+        self.task = Task {
             do {
                 let result = try await task()
                 self.status = .loaded(result)
@@ -60,5 +62,10 @@ class LoadableValue<T: Hashable> {
                 }
             }
         }
+    }
+    
+    func reset() {
+        self.task?.cancel()
+        self.status = .idle
     }
 }

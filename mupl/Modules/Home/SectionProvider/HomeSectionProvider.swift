@@ -10,12 +10,4 @@ import SwiftUI
 struct HomeSectionProvider: SectionProvider {
     let recommendations: RecommendationsSection = .init()
     let charts: ChartsSection = .init()
-    
-    func section<Section: ProvidableSection>(for keyPath: KeyPath<HomeSectionProvider, Section>, value: Section.Value) -> Section.Content {
-        return self[keyPath: keyPath].section(with: value)
-    }
-    
-    func skeleton<Section: ProvidableSection>(for keyPath: KeyPath<HomeSectionProvider, Section>) -> Section.SkeletonContent {
-        return self[keyPath: keyPath].skeleton()
-    }
 }
