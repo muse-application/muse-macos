@@ -688,8 +688,8 @@
 				08C4A3242B77CEC200734378 /* SearchResultsTopResultsSection.swift */,
 				08C4A3262B77CF3A00734378 /* SearchResultsArtistsSection.swift */,
 				08C4A3282B77CFD300734378 /* SearchResultsAlbumsSection.swift */,
-				08C4A32A2B77D01200734378 /* SearchResultsSongsSection.swift */,
 				08C4A3302B7801F000734378 /* SearchResultsPlaylistsSection.swift */,
+				08C4A32A2B77D01200734378 /* SearchResultsSongsSection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";

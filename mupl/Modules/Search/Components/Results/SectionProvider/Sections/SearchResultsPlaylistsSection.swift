@@ -12,7 +12,10 @@ extension SearchResultsSectionProvider {
     struct PlaylistsSection: ProvidableSection {
         func section(with value: MusicItemCollection<Playlist>) -> some View {
             ScrollableSection(title: "Playlists", items: value) { playlist in
-                TrackCollectionItem(item: playlist, kind: .medium)
+                NavigationLink(value: playlist) {
+                    TrackCollectionItem(item: playlist, kind: .medium)
+                }
+                .buttonStyle(.plain)
             }
         }
         

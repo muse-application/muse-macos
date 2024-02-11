@@ -23,15 +23,13 @@ struct ContentView: View {
         ZStack {
             ZStack(alignment: .topLeading) {
                 ZStack(alignment: .bottom) {
-                    NavigationStack {
-                        selectedItem.content
-                    }
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity
-                    )
-                    .padding(.leading, self.sidebarWidth + 24.0)
-                    .padding(.bottom, self.playbarHeight + 24.0)
+                    selectedItem.content
+                        .frame(
+                            maxWidth: .infinity,
+                            maxHeight: .infinity
+                        )
+                        .padding(.leading, self.sidebarWidth + 24.0)
+                        .padding(.bottom, self.playbarHeight + 24.0)
                     
                     Playbar()
                         .padding(.horizontal, 24.0)
@@ -47,5 +45,12 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity)
         .frame(minHeight: 600.0)
+        .toolbar {
+            // Empty item to prevent window from jumping
+            // when navigation bar back appears.
+            ToolbarItem(placement: .principal) {
+                Color.clear
+            }
+        }
     }
 }

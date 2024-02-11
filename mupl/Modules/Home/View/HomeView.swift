@@ -18,39 +18,41 @@ struct HomeView: View {
     @State private var loadingState: LoadingState = .idle
     
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: .s6) {
-                Text("Listen Now")
-                    .font(.system(size: 32.0, weight: .bold))
-                    .foregroundStyle(Color.primaryText)
-                
-                Group {
-                    switch self.loadingState {
-                    case .idle, .loading:
-                        self.skeleton
-                    case .loaded:
-                        self.content
+        NavigationStack {
+            ScrollView {
+                LazyVStack(alignment: .leading, spacing: .s6) {
+                    Text("Listen Now")
+                        .font(.system(size: 32.0, weight: .bold))
+                        .foregroundStyle(Color.primaryText)
+                    
+                    Group {
+                        switch self.loadingState {
+                        case .idle, .loading:
+                            self.skeleton
+                        case .loaded:
+                            self.content
+                        }
                     }
+                    .transition(.opacity)
                 }
-                .transition(.opacity)
+                .padding(.all, 24.0)
+                .animation(.easeInOut, value: self.loadingState)
             }
-            .padding(.all, 24.0)
-            .animation(.easeInOut, value: self.loadingState)
-        }
-        .scrollDisabled(self.loadingState != .loaded)
-        .task {
-            self.loadingState = .loading
-            
-            self.recommendations = await self.musicCatalog.personal.recommendations
-            self.charts = await self.musicCatalog.charts.compilation
-            
-            self.loadingState = .loaded
-        }
-        .navigationDestination(for: Album.self) { album in
-            AlbumDetailsView(album: album)
-        }
-        .navigationDestination(for: Playlist.self) { playlist in
-            PlaylistDetailsView(playlist: playlist)
+            .scrollDisabled(self.loadingState != .loaded)
+            .task {
+                self.loadingState = .loading
+                
+                self.recommendations = await self.musicCatalog.personal.recommendations
+                self.charts = await self.musicCatalog.charts.compilation
+                
+                self.loadingState = .loaded
+            }
+            .navigationDestination(for: Album.self) { album in
+                AlbumDetailsView(album: album)
+            }
+            .navigationDestination(for: Playlist.self) { playlist in
+                PlaylistDetailsView(playlist: playlist)
+            }
         }
     }
     

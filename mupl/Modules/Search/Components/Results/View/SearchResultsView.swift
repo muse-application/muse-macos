@@ -9,7 +9,6 @@ import SwiftUI
 import MusicKit
 
 extension SearchView {
-    
     struct ResultsView: View {
         private let results: MusicSearchResults
         private let sectionProvider: SearchResultsSectionProvider = .init()
@@ -43,5 +42,4 @@ extension SearchView {
             }
         }
     }
-    
 }
