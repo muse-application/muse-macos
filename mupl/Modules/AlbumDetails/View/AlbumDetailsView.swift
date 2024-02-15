@@ -34,7 +34,7 @@ struct AlbumDetailsView: View {
         .animation(.easeIn, value: self.album.status)
         .onAppear {
             self.album.load {
-                try await self.item.with(.tracks)
+                try await self.item.with(.tracks, .artists)
             }
         }
     }

@@ -37,7 +37,10 @@ extension SearchResultsSectionProvider {
         
         func section(with value: MusicItemCollection<Artist>) -> some View {
             ScrollableSection(title: "Artists", items: value) { artist in
-                Item(artist: artist)
+                NavigationLink(value: artist) {
+                    Item(artist: artist)
+                }
+                .buttonStyle(.plain)
             }
         }
         

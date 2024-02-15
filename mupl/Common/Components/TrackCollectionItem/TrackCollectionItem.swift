@@ -21,24 +21,6 @@ struct TrackCollectionItem: View {
                 return .init(width: 256.0, height: 256.0)
             }
         }
-        
-        var titleStyle: (size: CGFloat, weight: Font.Weight) {
-            switch self {
-            case .medium:
-                return (12.0, .medium)
-            case .large:
-                return (14.0, .medium)
-            }
-        }
-        
-        var subtitleStyle: (size: CGFloat, weight: Font.Weight) {
-            switch self {
-            case .medium:
-                return (12.0, .regular)
-            case .large:
-                return (14.0, .regular)
-            }
-        }
     }
     
     private let item: any MusicTrackCollection
@@ -85,13 +67,13 @@ struct TrackCollectionItem: View {
             VStack(alignment: .leading, spacing: 2.0) {
                 Text(self.item.title)
                     .lineLimit(1)
-                    .font(.system(size: self.kind.titleStyle.size, weight: self.kind.titleStyle.weight))
+                    .font(.system(size: 12.0, weight: .medium))
                     .foregroundStyle(Color.primaryText)
                 
                 if let authorName = self.item.authorName {
                     Text(authorName)
                         .lineLimit(1)
-                        .font(.system(size: self.kind.subtitleStyle.size, weight: self.kind.subtitleStyle.weight))
+                        .font(.system(size: 12.0, weight: .regular))
                         .foregroundStyle(Color.secondaryText)
                 }
             }
@@ -121,11 +103,11 @@ extension TrackCollectionItem {
                 
                 VStack(alignment: .leading, spacing: 2.0) {
                     Color.tertiaryFill
-                        .frame(width: self.kind.size.width * 0.8, height: self.kind.titleStyle.size)
+                        .frame(width: self.kind.size.width * 0.8, height: 12.0)
                         .clipShape(.rect(cornerRadius: 4.0))
                     
                     Color.tertiaryFill
-                        .frame(width: self.kind.size.width * 0.4, height: self.kind.subtitleStyle.size)
+                        .frame(width: self.kind.size.width * 0.4, height: 12.0)
                         .clipShape(.rect(cornerRadius: 4.0))
                 }
             }

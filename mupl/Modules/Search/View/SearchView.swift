@@ -80,6 +80,9 @@ struct SearchView: View {
             .onTapGesture {
                 self.isSearchFieldFocused = false
             }
+            .navigationDestination(for: Artist.self) { artist in
+                ArtistDetailsView(artist: artist)
+            }
             .navigationDestination(for: Genre.self) { genre in
                 ChartView(genre: genre)
             }
