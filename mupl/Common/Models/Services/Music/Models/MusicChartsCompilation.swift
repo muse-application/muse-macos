@@ -10,6 +10,7 @@ import MusicKit
 
 struct MusicChartsCompilation: Hashable {
     let topSongs: MusicCatalogChart<Song>?
+    let mostPlayedAlbums: MusicCatalogChart<Album>?
     let mostPlayedPlaylists: MusicCatalogChart<Playlist>?
     let dailyGlobalTopPlaylists: MusicCatalogChart<Playlist>?
     let cityTopPlaylists: MusicCatalogChart<Playlist>?

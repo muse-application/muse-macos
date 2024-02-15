@@ -11,4 +11,6 @@ import MusicKit
 final class MusicCatalog: ObservableObject {
     let personal: Personal = .init()
     let charts: Charts = .init()
+    let genres: Genres = .init()
+    let search: Search = .init()
 }
