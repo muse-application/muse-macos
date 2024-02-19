@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum SidebarItem: Hashable, Identifiable {
+enum SidebarItem: Hashable, Identifiable, CaseIterable {
     case home
     case search
     case library

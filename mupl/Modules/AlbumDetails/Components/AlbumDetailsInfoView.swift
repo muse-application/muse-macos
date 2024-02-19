@@ -13,6 +13,10 @@ extension AlbumDetailsView {
     struct InfoView: View {
         private let album: Album
         
+        @EnvironmentObject private var router: Router
+        
+        @Environment(\.openURL) private var openURL
+        
         init(album: Album) {
             self.album = album
         }
@@ -50,9 +54,9 @@ extension AlbumDetailsView {
                             .font(.system(size: 18.0, weight: .bold))
                             .foregroundStyle(Color.primaryText)
                         
-                        Text(self.album.artistName)
-                            .font(.system(size: 16.0, weight: .medium))
-                            .foregroundStyle(Color.pinkAccent)
+                        if let artists = self.album.artists {
+                            self.artistsLabel(for: artists)
+                        }
                     }
                     
                     Spacer()
@@ -67,6 +71,7 @@ extension AlbumDetailsView {
                     }
                     .buttonStyle(.plain)
                 }
+                .zIndex(1)
                 
                 HStack(spacing: 2.0) {
                     if let genre = self.album.genreNames.first {
@@ -130,6 +135,50 @@ extension AlbumDetailsView {
                         .foregroundStyle(Color.secondaryText)
                 }
             }
+        }
+        
+        @ViewBuilder
+        private func artistsLabel(for artists: MusicItemCollection<Artist>) -> some View {
+            if artists.count == 1 {
+                NavigationLink(value: artists.first) {
+                    Text(self.album.artistName)
+                        .font(.system(size: 16.0, weight: .medium))
+                        .foregroundStyle(Color.pinkAccent)
+                }
+                .buttonStyle(.plain)
+            } else {
+                Text(self.artistsText(for: artists))
+                    .font(.system(size: 16.0, weight: .medium))
+                    .foregroundStyle(Color.pinkAccent)
+                    .environment(\.openURL, OpenURLAction { url in
+                        guard let selectedArtist = artists.first(where: { url.absoluteString == $0.id.rawValue }) else {
+                            return .handled
+                        }
+                        
+                        self.router.push(selectedArtist)
+                        
+                        return .handled
+                    })
+            }
+        }
+        
+        private func artistsText(for artists: MusicItemCollection<Artist>) -> AttributedString {
+            var result: AttributedString = .init()
+            
+            for artist in artists {
+                var text = AttributedString("\(artist.name)")
+                text.link = URL(string: artist.id.rawValue)
+                text.foregroundColor = .pinkAccent
+                
+                result.append(text)
+                
+                if artist != artists.last {
+                    let separator = AttributedString(" & ")
+                    result.append(separator)
+                }
+            }
+            
+            return result
         }
     }
     

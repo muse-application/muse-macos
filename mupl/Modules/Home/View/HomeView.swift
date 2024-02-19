@@ -12,13 +12,14 @@ struct HomeView: View {
     private let sectionProvider: HomeSectionProvider = .init()
     
     @EnvironmentObject private var musicCatalog: MusicCatalog
+    @EnvironmentObject private var router: Router
     
     @State private var recommendations: [MusicPersonalRecommendationItem] = []
     @State private var charts: MusicChartsCompilation?
     @State private var loadingState: LoadingState = .idle
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: self.router.bindablePath(for: .home)) {
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: .s6) {
                     Text("Listen Now")
@@ -46,6 +47,9 @@ struct HomeView: View {
                 self.charts = await self.musicCatalog.charts.compilation()
                 
                 self.loadingState = .loaded
+            }
+            .navigationDestination(for: Artist.self) { artist in
+                ArtistDetailsView(artist: artist)
             }
             .navigationDestination(for: Album.self) { album in
                 AlbumDetailsView(album: album)

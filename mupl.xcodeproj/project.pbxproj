@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		082683C92B81F55C007108E9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683C82B81F55C007108E9 /* Router.swift */; };
 		08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CCB2B321B4100764CD6 /* Sidebar.swift */; };
 		08415CD02B321C9800764CD6 /* CGFloat + LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CCF2B321C9800764CD6 /* CGFloat + LayoutSize.swift */; };
 		08415CD42B32225600764CD6 /* SidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CD32B32225600764CD6 /* SidebarItem.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		082683C82B81F55C007108E9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		08415CCB2B321B4100764CD6 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		08415CCF2B321C9800764CD6 /* CGFloat + LayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat + LayoutSize.swift"; sourceTree = "<group>"; };
 		08415CD32B32225600764CD6 /* SidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItem.swift; sourceTree = "<group>"; };
@@ -228,6 +230,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		082683C72B81F553007108E9 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				082683C82B81F55C007108E9 /* Router.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		08415CC62B321B1E00764CD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -873,6 +883,7 @@
 			isa = PBXGroup;
 			children = (
 				0856A4B22B46D58B0073ACE7 /* Services */,
+				082683C72B81F553007108E9 /* Router */,
 				0856A4DC2B4756460073ACE7 /* LoadingState */,
 				08B4552D2B67F46A006007A9 /* LoadableValue */,
 				08F423172B45ACA4005158F2 /* AppError */,
@@ -1061,6 +1072,7 @@
 				08C4A32F2B77D4A600734378 /* SearchOverviewView.swift in Sources */,
 				08B5F7062B55AF47006248A7 /* PlainSongItemStyle.swift in Sources */,
 				08D1B60A2B76576E005FB6FA /* PlaylistDetailsInfoView.swift in Sources */,
+				082683C92B81F55C007108E9 /* Router.swift in Sources */,
 				08C4A3162B779F8500734378 /* AppTextFieldStyle.swift in Sources */,
 				08B4552F2B67F47C006007A9 /* LoadableValue.swift in Sources */,
 				0856A4BF2B470BF30073ACE7 /* MusicCatalogCharts.swift in Sources */,

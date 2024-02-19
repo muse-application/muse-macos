@@ -17,6 +17,8 @@ struct ContentView: View {
     @Environment(\.sidebarWidth) private var sidebarWidth
     @Environment(\.playbarHeight) private var playbarHeight
     
+    @EnvironmentObject private var router: Router
+    
     @State private var selectedItem: SidebarItem = .home
     
     var body: some View {
@@ -51,6 +53,12 @@ struct ContentView: View {
             ToolbarItem(placement: .principal) {
                 Color.clear
             }
+        }
+        .onAppear {
+            self.router.selectedItem = .home
+        }
+        .onChange(of: self.selectedItem) { _, newValue in
+            self.router.selectedItem = newValue
         }
     }
 }
