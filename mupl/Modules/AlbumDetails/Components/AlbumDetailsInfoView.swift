@@ -13,9 +13,9 @@ extension AlbumDetailsView {
     struct InfoView: View {
         private let album: Album
         
-        @EnvironmentObject private var router: Router
-        
         @Environment(\.openURL) private var openURL
+        
+        @EnvironmentObject private var router: Router
         
         init(album: Album) {
             self.album = album
