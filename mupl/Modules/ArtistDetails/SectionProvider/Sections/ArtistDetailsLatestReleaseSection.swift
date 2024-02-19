@@ -16,8 +16,8 @@ extension ArtistDetailsSectionProvider {
                     .font(.system(size: 16.0, weight: .bold))
                     .foregroundStyle(Color.primaryText)
                 
-                NavigationLink(value: value) {
-                    HStack {
+                HStack {
+                    NavigationLink(value: value) {
                         HStack(spacing: 16.0) {
                             MusicArtworkImage(artwork: value.artwork)
                                 .frame(width: 80.0, height: 80.0)
@@ -41,38 +41,38 @@ extension ArtistDetailsSectionProvider {
                                 }
                             }
                         }
-                        
-                        Spacer()
-                        
-                        HStack(spacing: 8.0) {
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "play.circle.fill")
-                                    .font(.system(size: 24.0))
-                                    .symbolRenderingMode(.multicolor)
-                                    .foregroundStyle(Color.pinkAccent)
-                            }
-                            .buttonStyle(.plain)
-                            
-                            Button {
-                                
-                            } label: {
-                                Image(systemName: "ellipsis.circle.fill")
-                                    .font(.system(size: 24.0))
-                                    .symbolRenderingMode(.hierarchical)
-                                    .foregroundStyle(Color.pinkAccent)
-                            }
-                            .buttonStyle(.plain)
-                        }
                     }
-                    .padding(.vertical, 12.0)
-                    .padding(.horizontal, 16.0)
-                    .background(.ultraThinMaterial)
-                    .clipShape(.rect(cornerRadius: 8.0))
-                    .border(style: .quinaryFill, cornerRadius: 8.0)
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 8.0) {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "play.circle.fill")
+                                .font(.system(size: 24.0))
+                                .symbolRenderingMode(.multicolor)
+                                .foregroundStyle(Color.pinkAccent)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "ellipsis.circle.fill")
+                                .font(.system(size: 24.0))
+                                .symbolRenderingMode(.hierarchical)
+                                .foregroundStyle(Color.pinkAccent)
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
-                .buttonStyle(.plain)
+                .padding(.vertical, 12.0)
+                .padding(.horizontal, 16.0)
+                .background(.ultraThinMaterial)
+                .clipShape(.rect(cornerRadius: 8.0))
+                .border(style: .quinaryFill, cornerRadius: 8.0)
             }
         }
         
