@@ -10,6 +10,7 @@ import MusicKit
 
 struct SearchView: View {
     @EnvironmentObject private var musicCatalog: MusicCatalog
+    @EnvironmentObject private var router: Router
     
     @State private var searchTerm: String = ""
     @State private var results: LoadableValue<MusicSearchResults> = .init()
@@ -17,9 +18,9 @@ struct SearchView: View {
     @FocusState private var isSearchFieldFocused: Bool
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: self.router.bindablePath(for: .search)) {
             VStack(alignment: .leading, spacing: 8.0) {
-                HStack {
+                HStack(spacing: 8.0) {
                     TextField("Songs, artists, lyrics...", text: self.$searchTerm)
                         .textFieldStyle(.app(icon: "magnifyingglass"))
                         .focused(self.$isSearchFieldFocused)
@@ -79,6 +80,9 @@ struct SearchView: View {
             .contentShape(Rectangle())
             .onTapGesture {
                 self.isSearchFieldFocused = false
+            }
+            .navigationDestination(for: Artist.self) { artist in
+                ArtistDetailsView(artist: artist)
             }
             .navigationDestination(for: Genre.self) { genre in
                 ChartView(genre: genre)
