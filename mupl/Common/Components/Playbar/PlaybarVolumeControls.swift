@@ -14,7 +14,7 @@ struct PlaybarVolumeControls: View {
                 .font(.system(size: 10.0, weight: .medium))
                 .foregroundStyle(Color.primaryText)
             
-            Slider(width: .constant(64.0))
+            Slider(width: .constant(64.0), percentage: .constant(0.5))
             
             Image(systemName: "speaker.wave.3.fill")
                 .font(.system(size: 10.0, weight: .medium))

@@ -11,15 +11,21 @@ struct Slider: View {
     private let width: Dimension
     private let height: Dimension
     
-    @State private var percentage: CGFloat = .zero
-    @State private var dragDiff: CGFloat = .zero
+    private var onDragAction: (() -> Void)?
+    private var onChangeAction: ((CGFloat) -> Void)? = nil
+    
+    @State private var dragDiff: CGFloat = 0.0
     @State private var currentSize: CGSize = .zero
     @State private var isHovered: Bool = false
     @State private var isDragging: Bool = false
     
-    init(width: Dimension, height: Dimension = .constant(.s1)) {
+    @Binding private var percentage: CGFloat
+    
+    init(width: Dimension, height: Dimension = .constant(4.0), percentage: Binding<CGFloat>) {
         self.width = width
         self.height = height
+        
+        self._percentage = percentage
     }
     
     var body: some View {
@@ -31,6 +37,7 @@ struct Slider: View {
                 .frame(width: self.percentage * self.currentSize.width)
                 .clipShape(.rect(cornerRadius: self.currentSize.height / 2.0))
         }
+        .animation(.easeIn, value: self.percentage)
         .opacity(self.opacity())
         .frame(
             minWidth: self.width.min,
@@ -84,6 +91,7 @@ extension Slider {
     private func tap(on location: CGPoint) {
         let width = self.currentSize.width
         self.percentage = location.x / width
+        self.onChangeAction?(self.percentage)
     }
     
     private func dragChanged(on value: DragGesture.Value) {
@@ -102,11 +110,31 @@ extension Slider {
         withAnimation {
             self.isDragging = true
         }
+        
+        self.onDragAction?()
     }
     
     private func dragEnded(on value: DragGesture.Value) {
         withAnimation {
             self.isDragging = false
         }
+        
+        self.onChangeAction?(self.percentage)
+    }
+}
+
+// MARK: - Modifiers
+
+extension Slider {
+    func onDrag(_ action: @escaping () -> Void) -> Self {
+        var _self = self
+        _self.onDragAction = action
+        return _self
+    }
+    
+    func onChange(_ action: @escaping (CGFloat) -> Void) -> Self {
+        var _self = self
+        _self.onChangeAction = action
+        return _self
     }
 }

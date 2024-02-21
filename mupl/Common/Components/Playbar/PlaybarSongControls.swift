@@ -8,37 +8,70 @@
 import SwiftUI
 
 struct PlaybarSongControls: View {
+    @EnvironmentObject private var musicPlayer: MusicPlayer
+    
+    @State private var playbackTimePercentage: CGFloat = 0.0
+    
     var body: some View {
-        VStack(spacing: .s2) {
-            HStack(spacing: .s2) {
+        VStack(spacing: 8.0) {
+            HStack(spacing: 8.0) {
                 Image(systemName: "shuffle")
                     .font(.system(size: 10.0, weight: .medium))
-                    .foregroundStyle(Color.secondaryText)
-                    .tappable { }
+                    .foregroundStyle(self.musicPlayer.shuffleMode == .songs ? Color.pinkAccent : Color.secondaryText)
+                    .tappable {
+                        self.musicPlayer.shuffleMode.toggle()
+                    }
                 
                 Group {
                     Image(systemName: "backward.fill")
                         .foregroundStyle(Color.secondaryText)
-                        .tappable { }
+                        .tappable {
+                            self.musicPlayer.skip(.backward)
+                        }
                     
-                    Image(systemName: "play.fill")
+                    Image(systemName: self.musicPlayer.playbackStatus == .playing ? "pause.fill" : "play.fill")
                         .foregroundStyle(Color.secondaryText)
-                        .tappable { }
+                        .tappable {
+                            if self.musicPlayer.playbackStatus == .playing {
+                                self.musicPlayer.pause()
+                            } else {
+                                self.musicPlayer.play()
+                            }
+                        }
                     
                     Image(systemName: "forward.fill")
                         .foregroundStyle(Color.secondaryText)
-                        .tappable { }
+                        .tappable {
+                            self.musicPlayer.skip(.forward)
+                        }
                 }
                 .font(.system(size: 14.0, weight: .medium))
                 
-                Image(systemName: "repeat")
+                Image(systemName: self.musicPlayer.repeatMode == .one ? "repeat.1" : "repeat")
                     .font(.system(size: 10.0, weight: .medium))
-                    .foregroundStyle(Color.secondaryText)
-                    .tappable { }
+                    .foregroundStyle(self.musicPlayer.repeatMode != .none ? Color.pinkAccent : Color.secondaryText)
+                    .tappable {
+                        self.musicPlayer.repeatMode.next()
+                    }
             }
             .frame(height: 24.0)
             
-            Slider(width: .flexible(min: 320.0, ideal: 320.0, max: 500.0))
+            Slider(width: .flexible(min: 320.0, ideal: 320.0, max: 500.0), percentage: self.$playbackTimePercentage)
+                .onDrag {
+                    self.musicPlayer.pause()
+                }
+                .onChange { requestedPercentage in
+                    guard let duration = self.musicPlayer.currentSong?.duration else { return }
+                    
+                    self.playbackTimePercentage = requestedPercentage
+                    
+                    self.musicPlayer.seek(to: requestedPercentage * duration)
+                    self.musicPlayer.play()
+                }
+        }
+        .onChange(of: self.musicPlayer.playbackTime) { _, value in
+            guard let duration = self.musicPlayer.currentSong?.duration else { return }
+            self.playbackTimePercentage = value / duration
         }
     }
 }

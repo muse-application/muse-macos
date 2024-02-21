@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		082683C92B81F55C007108E9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683C82B81F55C007108E9 /* Router.swift */; };
+		082683E72B83A197007108E9 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683E62B83A197007108E9 /* MusicPlayer.swift */; };
+		082683EA2B83C0A4007108E9 /* ISSoundAdditions in Frameworks */ = {isa = PBXBuildFile; productRef = 082683E92B83C0A4007108E9 /* ISSoundAdditions */; };
+		082683ED2B84B1B3007108E9 /* ShuffleMode + Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */; };
+		082683EF2B84B1FA007108E9 /* RepeatMode + Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683EE2B84B1FA007108E9 /* RepeatMode + Next.swift */; };
 		08415CCC2B321B4100764CD6 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CCB2B321B4100764CD6 /* Sidebar.swift */; };
 		08415CD02B321C9800764CD6 /* CGFloat + LayoutSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CCF2B321C9800764CD6 /* CGFloat + LayoutSize.swift */; };
 		08415CD42B32225600764CD6 /* SidebarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415CD32B32225600764CD6 /* SidebarItem.swift */; };
@@ -113,6 +117,9 @@
 
 /* Begin PBXFileReference section */
 		082683C82B81F55C007108E9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		082683E62B83A197007108E9 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShuffleMode + Toggle.swift"; sourceTree = "<group>"; };
+		082683EE2B84B1FA007108E9 /* RepeatMode + Next.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepeatMode + Next.swift"; sourceTree = "<group>"; };
 		08415CCB2B321B4100764CD6 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		08415CCF2B321C9800764CD6 /* CGFloat + LayoutSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat + LayoutSize.swift"; sourceTree = "<group>"; };
 		08415CD32B32225600764CD6 /* SidebarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarItem.swift; sourceTree = "<group>"; };
@@ -223,6 +230,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				082683EA2B83C0A4007108E9 /* ISSoundAdditions in Frameworks */,
 				0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +244,23 @@
 				082683C82B81F55C007108E9 /* Router.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		082683E52B83A190007108E9 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				082683E62B83A197007108E9 /* MusicPlayer.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		082683EB2B84B1A9007108E9 /* MusicKit */ = {
+			isa = PBXGroup;
+			children = (
+				082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */,
+				082683EE2B84B1FA007108E9 /* RepeatMode + Next.swift */,
+			);
+			path = MusicKit;
 			sourceTree = "<group>";
 		};
 		08415CC62B321B1E00764CD6 /* Supporting Files */ = {
@@ -300,6 +325,7 @@
 		08415CCD2B321C3800764CD6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				082683EB2B84B1A9007108E9 /* MusicKit */,
 				08415CD52B32266800764CD6 /* UI */,
 				08F423132B45AC6B005158F2 /* Foundation */,
 				08415CCE2B321C4300764CD6 /* Constants */,
@@ -482,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				0856A4D32B472C260073ACE7 /* Authenticator */,
+				082683E52B83A190007108E9 /* Player */,
 				0856A4BB2B470B370073ACE7 /* Catalog */,
 			);
 			path = Base;
@@ -974,6 +1001,7 @@
 			name = mupl;
 			packageProductDependencies = (
 				0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */,
+				082683E92B83C0A4007108E9 /* ISSoundAdditions */,
 			);
 			productName = mupl;
 			productReference = 08B77F412B20F9D2004B6D8D /* mupl.app */;
@@ -1005,6 +1033,7 @@
 			mainGroup = 08B77F382B20F9D2004B6D8D;
 			packageReferences = (
 				0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */,
 			);
 			productRefGroup = 08B77F422B20F9D2004B6D8D /* Products */;
 			projectDirPath = "";
@@ -1040,6 +1069,7 @@
 				08415CE62B3CC07000764CD6 /* SearchView.swift in Sources */,
 				08F423242B45B8A9005158F2 /* DefaultNetworkSession.swift in Sources */,
 				0856A4E42B48933B0073ACE7 /* SectionProvider.swift in Sources */,
+				082683EF2B84B1FA007108E9 /* RepeatMode + Next.swift in Sources */,
 				08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */,
 				086FDB8B2B7E3DF600A4102E /* ChartAlbumsSection.swift in Sources */,
 				0856A4EF2B49B7E00073ACE7 /* MusicChartsCompilation.swift in Sources */,
@@ -1066,6 +1096,7 @@
 				086FDBA02B7E645200A4102E /* ArtistDetailsPlaylistsSection.swift in Sources */,
 				08F423382B45EC64005158F2 /* NetworkHTTPMethod.swift in Sources */,
 				08C4A3272B77CF3A00734378 /* SearchResultsArtistsSection.swift in Sources */,
+				082683E72B83A197007108E9 /* MusicPlayer.swift in Sources */,
 				08415D012B3DF65C00764CD6 /* PlaybarVolumeControls.swift in Sources */,
 				08F423152B45AC85005158F2 /* Encodable.swift in Sources */,
 				08F423212B45B76B005158F2 /* NetworkData.swift in Sources */,
@@ -1121,6 +1152,7 @@
 				08C4A3292B77CFD300734378 /* SearchResultsAlbumsSection.swift in Sources */,
 				08F423362B45EC2C005158F2 /* NetworkUploadPayload.swift in Sources */,
 				08415CEA2B3CC09900764CD6 /* LibraryView.swift in Sources */,
+				082683ED2B84B1B3007108E9 /* ShuffleMode + Toggle.swift in Sources */,
 				08B815CB2B75020C00B9F438 /* View + Glow.swift in Sources */,
 				0856A4F62B49C8690073ACE7 /* TimeInterval.swift in Sources */,
 				08C4A31D2B77CE4500734378 /* SearchResultsView.swift in Sources */,
@@ -1339,6 +1371,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/InerziaSoft/ISSoundAdditions";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1350,6 +1390,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		082683E92B83C0A4007108E9 /* ISSoundAdditions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */;
+			productName = ISSoundAdditions;
+		};
 		0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

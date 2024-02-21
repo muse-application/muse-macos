@@ -16,13 +16,13 @@ struct Playbar: View {
         ZStack(alignment: .bottomTrailing) {
             HStack(spacing: .zero) {
                 PlaybarSongPreview()
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 
                 PlaybarSongControls()
                     .frame(maxWidth: .infinity)
                 
                 PlaybarVolumeControls()
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 Image(systemName: "list.bullet")
                     .font(.system(size: 18.0))
