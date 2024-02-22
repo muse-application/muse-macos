@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import MusicKit
 import ISSoundAdditions
+import AVFoundation
 
 final class MusicPlayer: ObservableObject {
     typealias PlaybackStatus = MusicKit.MusicPlayer.PlaybackStatus
@@ -21,14 +22,29 @@ final class MusicPlayer: ObservableObject {
     }
     
     private let player: ApplicationMusicPlayer = .shared
+    private let audio: Audio = .init()
     
+    private var volumeCancellable: AnyCancellable?
     private var playbackTimeCancellable: AnyCancellable?
     private var playerStateCancellable: AnyCancellable?
     private var playerQueueCancellable: AnyCancellable?
     
     @Published var queue: [Song] = []
-    @Published var currentSong: Song? = nil
     @Published var playbackTime: TimeInterval = 0.0
+    
+    @Published var currentSong: Song? = nil {
+        didSet {
+            if currentSong == nil {
+                self.playbackTime = 0.0
+            }
+        }
+    }
+    
+    @Published var volume: Float? = nil {
+        didSet {
+            self.audio.setVolume(self.volume)
+        }
+    }
     
     @Published private(set) var playbackStatus: PlaybackStatus = .stopped {
         didSet {
@@ -49,6 +65,10 @@ final class MusicPlayer: ObservableObject {
     }
     
     init() {
+        self.volumeCancellable = self.audio.volume
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.volume, on: self)
+        
         self.playerStateCancellable = self.player.state.objectWillChange
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -102,10 +122,12 @@ final class MusicPlayer: ObservableObject {
             
             if
                 case .song(let song) = self.player.queue.entries.last?.item,
-                song == self.currentSong
+                song.id == self.currentSong?.id
             {
-                self.player.queue = []
-                self.currentSong = nil
+                await MainActor.run {
+                    self.player.queue = []
+                    self.currentSong = nil
+                }
             }
         }
     }
@@ -113,13 +135,6 @@ final class MusicPlayer: ObservableObject {
     private func handleBackwardSkipping() {
         Task {
             try await self.player.skipToPreviousEntry()
-            
-            if 
-                case .song(let song) = self.player.queue.entries.first?.item,
-                song == self.currentSong
-            {
-                self.currentSong = nil
-            }
         }
     }
     
@@ -136,7 +151,7 @@ final class MusicPlayer: ObservableObject {
     }
     
     private func stopPlaybackTimeObservation() {
-        self.playbackTime = 0.0
+        self.currentSong = nil
         self.playbackTimeCancellable = nil
     }
     
