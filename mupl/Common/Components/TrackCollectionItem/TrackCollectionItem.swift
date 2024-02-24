@@ -64,7 +64,7 @@ struct TrackCollectionItem: View {
             .frame(width: self.kind.size.width, height: self.kind.size.height)
             .clipShape(.rect(cornerRadius: 8.0))
             .border(style: .quinaryFill, cornerRadius: 8.0)
-            .animation(.easeInOut, value: self.isHovered)
+            .animation(.easeIn(duration: 0.2), value: self.isHovered)
             
             VStack(alignment: .leading, spacing: 2.0) {
                 Text(self.item.title)
