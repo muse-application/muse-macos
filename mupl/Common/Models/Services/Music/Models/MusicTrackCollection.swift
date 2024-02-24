@@ -12,7 +12,7 @@ import MusicKit
  A common protocol that describes some track collection,
  e.g. album, playlist, station
  */
-protocol MusicTrackCollection: Hashable, Identifiable {
+protocol MusicTrackCollection: Hashable, Identifiable, PlayableMusicItem {
     var id: MusicItemID { get }
     var title: String { get }
     var description: String? { get }

@@ -9,6 +9,8 @@ import SwiftUI
 import MusicKit
 
 struct SongItemContext {
+    let isCurrent: Bool
+    let isCurrentlyPlaying: Bool
     let isHovered: Bool
 }
 

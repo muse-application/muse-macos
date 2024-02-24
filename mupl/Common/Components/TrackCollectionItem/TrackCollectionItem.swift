@@ -29,6 +29,8 @@ struct TrackCollectionItem: View {
     
     @State private var isHovered: Bool = false
     
+    @EnvironmentObject private var musicPlayer: MusicPlayer
+    
     init(item: any MusicTrackCollection, kind: Kind, onTap action: ((any MusicTrackCollection) -> Void)? = nil) {
         self.item = item
         self.kind = kind
@@ -47,7 +49,7 @@ struct TrackCollectionItem: View {
                             .zIndex(1)
                         
                         Button {
-                            
+                            self.musicPlayer.play(item: self.item)
                         } label: {
                             Image(systemName: "play.circle.fill")
                                 .font(.system(size: 24.0))

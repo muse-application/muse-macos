@@ -7,26 +7,41 @@
 
 import SwiftUI
 import MusicKit
+import Lottie
 
 struct PlainSongItemStyle: SongItemStyle {
     func content(for song: Song, context: SongItemContext) -> some View {
         VStack {
             HStack {
-                HStack(spacing: .s3) {
+                HStack(spacing: 12.0) {
                     ZStack {
                         MusicArtworkImage(artwork: song.artwork)
                         
-                        if context.isHovered {
-                            ZStack {
-                                Color.black.opacity(0.4)
-                                
-                                Image(systemName: "play.fill")
-                                    .foregroundStyle(Color.white)
-                                    .font(.system(size: 14.0, weight: .regular))
+                        Group {
+                            if context.isHovered {
+                                ZStack {
+                                    Color.black
+                                        .opacity(0.4)
+                                    
+                                    Image(systemName: context.isCurrentlyPlaying ? "pause.fill" : "play.fill")
+                                        .foregroundStyle(Color.white)
+                                        .font(.system(size: 14.0, weight: .regular))
+                                }
+                            } else if context.isCurrent {
+                                ZStack {
+                                    Color.black
+                                        .opacity(0.4)
+                                    
+                                    LottieView(animation: .named("soundwave"))
+                                        .playbackMode(
+                                            context.isCurrentlyPlaying ? .playing(.fromProgress(0.0, toProgress: 1.0, loopMode: .loop)) : .paused(at: .progress(0.0))
+                                        )
+                                        .frame(width: 16.0, height: 16.0)
+                                }
                             }
-                            .transition(.opacity)
-                            .zIndex(1)
                         }
+                        .transition(.opacity)
+                        .zIndex(1)
                     }
                     .frame(width: 40.0, height: 40.0)
                     .clipShape(.rect(cornerRadius: 8.0))
@@ -64,7 +79,7 @@ struct PlainSongItemStyle: SongItemStyle {
     func skeleton() -> some View {
         VStack {
             HStack {
-                HStack(spacing: .s3) {
+                HStack(spacing: 12.0) {
                     Color.tertiaryFill
                         .frame(width: 40.0, height: 40.0)
                         .clipShape(.rect(cornerRadius: 8.0))

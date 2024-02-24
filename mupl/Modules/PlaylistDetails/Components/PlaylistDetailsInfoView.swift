@@ -13,6 +13,8 @@ extension PlaylistDetailsView {
     struct InfoView: View {
         private let playlist: Playlist
         
+        @EnvironmentObject private var musicPlayer: MusicPlayer
+        
         init(playlist: Playlist) {
             self.playlist = playlist
         }
@@ -74,7 +76,7 @@ extension PlaylistDetailsView {
             HStack {
                 HStack(spacing: 4.0) {
                     Button {
-                        
+                        self.musicPlayer.play(item: self.playlist)
                     } label: {
                         HStack(spacing: 4.0) {
                             Image(systemName: "play.fill")
@@ -85,7 +87,7 @@ extension PlaylistDetailsView {
                     .buttonStyle(.app(.primary))
                     
                     Button {
-                        
+                        self.musicPlayer.play(item: self.playlist, shuffleMode: .songs)
                     } label: {
                         HStack(spacing: 4.0) {
                             Image(systemName: "shuffle")

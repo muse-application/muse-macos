@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MusicKit
+import Lottie
 
 struct GroupedSongItemStyle: SongItemStyle {
     private let position: Int
@@ -19,15 +20,23 @@ struct GroupedSongItemStyle: SongItemStyle {
         HStack(spacing: 16.0) {
             ZStack {
                 if context.isHovered {
-                    Image(systemName: "play.fill")
+                    Image(systemName: context.isCurrentlyPlaying ? "pause.fill" : "play.fill")
                         .foregroundStyle(Color.pinkAccent)
                 } else {
-                    Text("\(self.position)")
-                        .foregroundStyle(Color.secondaryText)
+                    if context.isCurrent {
+                        LottieView(animation: .named("soundwave"))
+                            .playbackMode(
+                                context.isCurrentlyPlaying ? .playing(.fromProgress(0.0, toProgress: 1.0, loopMode: .loop)) : .paused(at: .progress(0.0))
+                            )
+                            .animationSpeed(0.5)
+                    } else {
+                        Text("\(self.position)")
+                            .foregroundStyle(Color.secondaryText)
+                    }
                 }
             }
             .font(.system(size: 14.0, weight: .bold))
-            .frame(width: 20.0, height: 16.0)
+            .frame(width: 20.0, height: 20.0)
             
             Text(song.title)
                 .lineLimit(1)

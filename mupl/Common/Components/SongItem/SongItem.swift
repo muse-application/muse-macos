@@ -12,6 +12,10 @@ struct SongItem<S: SongItemStyle>: View {
     private let song: Song
     private let style: S
     
+    @EnvironmentObject private var musicPlayer: MusicPlayer
+    
+    @State private var isCurrent: Bool = false
+    @State private var isCurrentlyPlaying: Bool = false
     @State private var isHovered: Bool = false
     
     init(song: Song, style: S = .plain) {
@@ -20,10 +24,36 @@ struct SongItem<S: SongItemStyle>: View {
     }
     
     var body: some View {
-        self.style.content(for: song, context: .init(isHovered: self.isHovered))
-            .onHover { hovering in
-                self.isHovered = hovering
+        self.style.content(
+            for: self.song,
+            context: .init(
+                isCurrent: self.isCurrent,
+                isCurrentlyPlaying: self.isCurrentlyPlaying,
+                isHovered: self.isHovered
+            )
+        )
+        .onAppear {
+            self.isCurrent = self.musicPlayer.currentSong?.id == self.song.id
+            self.isCurrentlyPlaying = self.isCurrent && self.musicPlayer.playbackStatus == .playing
+        }
+        .onChange(of: self.musicPlayer.currentSong) { _, value in
+            self.isCurrent = value?.id == self.song.id
+        }
+        .onChange(of: self.musicPlayer.playbackStatus) { _, value in
+            self.isCurrentlyPlaying = self.isCurrent && value == .playing
+        }
+        .onHover { hovering in
+            self.isHovered = hovering
+        }
+        .onTapGesture {
+            if self.isCurrentlyPlaying {
+                self.musicPlayer.pause()
+            } else if self.isCurrent {
+                self.musicPlayer.play()
+            } else {
+                self.musicPlayer.play(item: self.song)
             }
+        }
     }
 }
 

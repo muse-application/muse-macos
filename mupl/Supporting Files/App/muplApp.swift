@@ -11,6 +11,7 @@ import SwiftUI
 struct muplApp: App {
     @StateObject private var musicAuthenticator: MusicAuthenticator = .init()
     @StateObject private var musicCatalog: MusicCatalog = .init()
+    @StateObject private var musicPlayer: MusicPlayer = .init()
     @StateObject private var router: Router = .init()
     
     var body: some Scene {
@@ -22,6 +23,7 @@ struct muplApp: App {
         }
         .environmentObject(self.musicAuthenticator)
         .environmentObject(self.musicCatalog)
+        .environmentObject(self.musicPlayer)
         .environmentObject(self.router)
         .windowToolbarStyle(.unified(showsTitle: false))
         .windowStyle(.hiddenTitleBar)

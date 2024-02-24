@@ -20,7 +20,7 @@ struct ArtistDetailsView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
-            InfoView(artist: self.item)
+            InfoView(artist: self.artist.value ?? self.item)
                 .padding([.top, .horizontal], 24.0)
             
             VStack(spacing: 0.0) {

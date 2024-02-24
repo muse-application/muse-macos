@@ -12,6 +12,8 @@ extension ArtistDetailsView {
     struct InfoView: View {
         private let artist: Artist
         
+        @EnvironmentObject private var musicPlayer: MusicPlayer
+        
         init(artist: Artist) {
             self.artist = artist
         }
@@ -24,7 +26,7 @@ extension ArtistDetailsView {
                         .clipShape(.rect(cornerRadius: 40.0))
                     
                     VStack(alignment: .leading, spacing: 0.0) {
-                        if let genres = self.artist.genreNames?.joined(separator: "").uppercased() {
+                        if let genres = self.artist.genreNames?.joined(separator: "●").uppercased() {
                             Text(genres)
                                 .font(.system(size: 12.0, weight: .bold))
                                 .foregroundStyle(Color.secondaryText)
@@ -40,7 +42,9 @@ extension ArtistDetailsView {
                 
                 HStack(spacing: 12.0) {
                     Button {
-                        
+                        if let topSongs = self.artist.topSongs {
+                            self.musicPlayer.play(songs: .init(topSongs), shuffleMode: .songs)
+                        }
                     } label: {
                         Image(systemName: "play.circle.fill")
                             .font(.system(size: 24.0))
@@ -48,6 +52,7 @@ extension ArtistDetailsView {
                             .foregroundStyle(Color.pinkAccent)
                     }
                     .buttonStyle(.plain)
+                    .disabled(self.artist.topSongs == nil)
                     
                     Color.quinaryFill
                         .frame(width: 4.0, height: 16.0)

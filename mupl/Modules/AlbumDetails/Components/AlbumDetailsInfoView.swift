@@ -15,6 +15,7 @@ extension AlbumDetailsView {
         
         @Environment(\.openURL) private var openURL
         
+        @EnvironmentObject private var musicPlayer: MusicPlayer
         @EnvironmentObject private var router: Router
         
         init(album: Album) {
@@ -98,7 +99,7 @@ extension AlbumDetailsView {
         private var buttons: some View {
             HStack(spacing: 4.0) {
                 Button {
-                    
+                    self.musicPlayer.play(item: self.album)
                 } label: {
                     HStack(spacing: 4.0) {
                         Image(systemName: "play.fill")
@@ -109,7 +110,7 @@ extension AlbumDetailsView {
                 .buttonStyle(.app(.primary))
                 
                 Button {
-                    
+                    self.musicPlayer.play(item: self.album, shuffleMode: .songs)
                 } label: {
                     HStack(spacing: 4.0) {
                         Image(systemName: "shuffle")
