@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		082683C92B81F55C007108E9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683C82B81F55C007108E9 /* Router.swift */; };
 		082683E72B83A197007108E9 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683E62B83A197007108E9 /* MusicPlayer.swift */; };
-		082683EA2B83C0A4007108E9 /* ISSoundAdditions in Frameworks */ = {isa = PBXBuildFile; productRef = 082683E92B83C0A4007108E9 /* ISSoundAdditions */; };
 		082683ED2B84B1B3007108E9 /* ShuffleMode + Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */; };
 		082683EF2B84B1FA007108E9 /* RepeatMode + Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683EE2B84B1FA007108E9 /* RepeatMode + Next.swift */; };
 		082683F32B872C9D007108E9 /* MusicPlayerAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683F22B872C9D007108E9 /* MusicPlayerAudio.swift */; };
@@ -235,7 +234,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				082683EA2B83C0A4007108E9 /* ISSoundAdditions in Frameworks */,
 				0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */,
 				082683F62B8796D6007108E9 /* Lottie in Frameworks */,
 			);
@@ -1017,7 +1015,6 @@
 			name = mupl;
 			packageProductDependencies = (
 				0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */,
-				082683E92B83C0A4007108E9 /* ISSoundAdditions */,
 				082683F52B8796D6007108E9 /* Lottie */,
 			);
 			productName = mupl;
@@ -1050,7 +1047,6 @@
 			mainGroup = 08B77F382B20F9D2004B6D8D;
 			packageReferences = (
 				0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */,
 				082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 08B77F422B20F9D2004B6D8D /* Products */;
@@ -1391,14 +1387,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/InerziaSoft/ISSoundAdditions";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
@@ -1418,11 +1406,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		082683E92B83C0A4007108E9 /* ISSoundAdditions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 082683E82B83C0A4007108E9 /* XCRemoteSwiftPackageReference "ISSoundAdditions" */;
-			productName = ISSoundAdditions;
-		};
 		082683F52B8796D6007108E9 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */;

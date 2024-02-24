@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import MusicKit
-import ISSoundAdditions
 import AVFoundation
 
 final class MusicPlayer: ObservableObject {
