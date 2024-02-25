@@ -127,6 +127,7 @@ final class MusicPlayer: ObservableObject {
     }
     
     func seek(to time: TimeInterval) {
+        self.playbackTime = time
         self.player.playbackTime = time
     }
     
@@ -163,11 +164,12 @@ final class MusicPlayer: ObservableObject {
     }
     
     private func handleBackwardSkipping() {
-        if self.player.playbackTime > 0.0 && self.player.playbackTime < 1.0 {
+        if self.player.playbackTime >= 0.0 && self.player.playbackTime <= 1.0 {
             Task {
                 try await self.player.skipToPreviousEntry()
             }
         } else {
+            self.playbackTime = 0.0
             self.player.playbackTime = 0.0
         }
     }
