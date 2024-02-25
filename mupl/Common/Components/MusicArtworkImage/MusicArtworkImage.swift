@@ -20,7 +20,15 @@ struct MusicArtworkImage: View {
         WebImage(url: self.artwork?.url(width: 512, height: 512))
             .resizable()
             .placeholder {
-                Color.secondaryFill
+                ZStack {
+                    Color.secondaryFill
+                    
+                    Image(systemName: "music.note")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundStyle(Color.primaryText)
+                        .padding(.all, 12.0)
+                }
             }
     }
 }
