@@ -103,7 +103,7 @@ extension HomeSectionProvider.RecommendationsSection {
                 .contentShape(Rectangle())
                 .clipShape(.rect(cornerRadius: 8.0))
                 .border(style: .quinaryFill, width: 2.0, cornerRadius: 8.0)
-                .animation(.easeInOut, value: self.isHovered)
+                .animation(.easeIn(duration: 0.2), value: self.isHovered)
                 .onHover { hovering in
                     self.isHovered = hovering
                 }

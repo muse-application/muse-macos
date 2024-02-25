@@ -9,7 +9,6 @@ import SwiftUI
 import MusicKit
 
 extension SearchOverviewSectionProvider {
-    
     struct GenresSection: ProvidableSection {
         struct Item: View {
             private let genre: Genre
@@ -83,5 +82,4 @@ extension SearchOverviewSectionProvider {
             }
         }
     }
-    
 }

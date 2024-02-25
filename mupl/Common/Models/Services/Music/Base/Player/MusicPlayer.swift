@@ -36,9 +36,7 @@ final class MusicPlayer: ObservableObject {
     
     @Published var currentSong: Song? = nil {
         didSet {
-            if currentSong == nil {
-                self.playbackTime = 0.0
-            }
+            self.playbackTime = 0.0
         }
     }
     
@@ -112,6 +110,13 @@ final class MusicPlayer: ObservableObject {
         self.play(shuffleMode: shuffleMode)
     }
     
+    func skip(to song: Song) {
+        guard self.queue.contains(where: { $0.id == song.id }) else { return }
+        
+        self.player.queue = .init(self.player.queue.entries, startingAt: .init(song))
+        self.play()
+    }
+    
     func skip(_ direction: ActionDirection = .forward) {
         switch direction {
         case .forward:
@@ -122,6 +127,7 @@ final class MusicPlayer: ObservableObject {
     }
     
     func seek(to time: TimeInterval) {
+        self.playbackTime = time
         self.player.playbackTime = time
     }
     
@@ -135,6 +141,13 @@ final class MusicPlayer: ObservableObject {
         self.player.stop()
     }
     
+    func remove(song: Song) {
+        self.player.queue.entries.removeAll { entry in
+            guard case .song(let item) = entry.item else { return false }
+            return item.id == song.id
+        }
+    }
+    
     private func handleForwardSkipping() {
         Task {
             try await self.player.skipToNextEntry()
@@ -144,16 +157,20 @@ final class MusicPlayer: ObservableObject {
                 song.id == self.currentSong?.id
             {
                 await MainActor.run {
-                    self.player.queue = []
-                    self.currentSong = nil
+                    self.player.queue.entries = []
                 }
             }
         }
     }
     
     private func handleBackwardSkipping() {
-        Task {
-            try await self.player.skipToPreviousEntry()
+        if self.player.playbackTime >= 0.0 && self.player.playbackTime <= 1.0 {
+            Task {
+                try await self.player.skipToPreviousEntry()
+            }
+        } else {
+            self.playbackTime = 0.0
+            self.player.playbackTime = 0.0
         }
     }
     

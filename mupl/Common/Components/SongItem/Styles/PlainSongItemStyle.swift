@@ -24,8 +24,8 @@ struct PlainSongItemStyle: SongItemStyle {
                                         .opacity(0.4)
                                     
                                     Image(systemName: context.isCurrentlyPlaying ? "pause.fill" : "play.fill")
-                                        .foregroundStyle(Color.white)
                                         .font(.system(size: 14.0, weight: .regular))
+                                        .foregroundStyle(Color.white)
                                 }
                             } else if context.isCurrent {
                                 ZStack {
@@ -70,7 +70,7 @@ struct PlainSongItemStyle: SongItemStyle {
                     }
                 }
             }
-            .animation(.easeInOut, value: context.isHovered)
+            .animation(.easeIn(duration: 0.2), value: context.isHovered)
             
             Divider()
         }
