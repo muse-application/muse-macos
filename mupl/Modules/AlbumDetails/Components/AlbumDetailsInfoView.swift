@@ -25,8 +25,7 @@ extension AlbumDetailsView {
         var body: some View {
             VStack(alignment: .leading, spacing: 16.0) {
                 VStack(alignment: .leading, spacing: 12.0) {
-                    MusicArtworkImage(artwork: self.album.artwork)
-                        .frame(width: 256.0, height: 256.0)
+                    MusicArtworkImage(artwork: self.album.artwork, width: 256.0, height: 256.0)
                         .clipShape(.rect(cornerRadius: 12.0))
                         .glow(
                             using: .init(

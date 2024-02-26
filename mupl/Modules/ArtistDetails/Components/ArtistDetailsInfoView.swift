@@ -21,8 +21,7 @@ extension ArtistDetailsView {
         var body: some View {
             HStack {
                 HStack(spacing: 16.0) {
-                    MusicArtworkImage(artwork: self.artist.artwork)
-                        .frame(width: 80.0, height: 80.0)
+                    MusicArtworkImage(artwork: self.artist.artwork, width: 80.0, height: 80.0)
                         .clipShape(.rect(cornerRadius: 40.0))
                     
                     VStack(alignment: .leading, spacing: 0.0) {

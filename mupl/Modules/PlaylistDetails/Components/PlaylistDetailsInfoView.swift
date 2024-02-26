@@ -21,7 +21,7 @@ extension PlaylistDetailsView {
         
         var body: some View {
             HStack(alignment: .bottom, spacing: 24.0) {
-                MusicArtworkImage(artwork: self.playlist.artwork)
+                MusicArtworkImage(artwork: self.playlist.artwork, width: 256.0, height: 256.0)
                     .frame(width: 256.0, height: 256.0)
                     .clipShape(.rect(cornerRadius: 12.0))
                     .glow(

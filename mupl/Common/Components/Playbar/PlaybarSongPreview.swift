@@ -38,19 +38,9 @@ struct PlaybarSongPreview: View {
     
     private func content(_ song: Song) -> some View {
         HStack(spacing: 12.0) {
-            Group {
-                // For some reason if we use MusicArtworkImage (SDWebImage)
-                // app throws unsupported url error and does not show the artwork.
-                // The following workaround solves the problem.
-                if let artwork = song.artwork {
-                    ArtworkImage(artwork, width: 36.0, height: 36.0)
-                } else {
-                    Color.secondaryFill
-                        .frame(width: 36.0, height: 36.0)
-                }
-            }
-            .clipShape(.rect(cornerRadius: 8.0))
-            .border(style: .quinaryFill, cornerRadius: 8.0)
+            MusicArtworkImage(artwork: song.artwork, width: 36.0, height: 36.0)
+                .clipShape(.rect(cornerRadius: 8.0))
+                .border(style: .quinaryFill, cornerRadius: 8.0)
             
             VStack(alignment: .leading, spacing: 0.0) {
                 Text(song.title)

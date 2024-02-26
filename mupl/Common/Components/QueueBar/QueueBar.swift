@@ -104,7 +104,7 @@ extension QueueBar {
             HStack {
                 HStack(spacing: 12.0) {
                     ZStack {
-                        MusicArtworkImage(artwork: self.song.artwork)
+                        MusicArtworkImage(artwork: self.song.artwork, width: 40.0, height: 40.0)
                         
                         if self.isHovered {
                             Color.black
