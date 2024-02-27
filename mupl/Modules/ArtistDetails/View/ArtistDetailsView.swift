@@ -43,7 +43,18 @@ struct ArtistDetailsView: View {
         .animation(.easeIn, value: self.artist.status)
         .onAppear {
             self.artist.load {
-                try await self.item.with(
+                var artist = self.item
+                
+                if artist.id.rawValue.isEmpty {
+                    // It is possible that ID of the artist
+                    // could be empty (Library). This leads to
+                    // errors when trying to fetch artist info.
+                    // Therefore we should handle this case by
+                    // trying to search for an artist first.
+                    artist = try await Artist.named(self.item.name)
+                }
+                
+                return try await artist.with(
                     .latestRelease,
                     .topSongs,
                     .featuredAlbums,

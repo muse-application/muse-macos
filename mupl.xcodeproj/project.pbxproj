@@ -35,6 +35,7 @@
 		08415D142B40BA6600764CD6 /* QueueBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D132B40BA6600764CD6 /* QueueBar.swift */; };
 		084E07BD2B8CBA4B00E14695 /* Chips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BC2B8CBA4B00E14695 /* Chips.swift */; };
 		084E07BF2B8CBF2900E14695 /* LibraryTrackCollectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BE2B8CBF2900E14695 /* LibraryTrackCollectionList.swift */; };
+		084E07C62B8DC25300E14695 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07C52B8DC25300E14695 /* Artist.swift */; };
 		0856A4B52B46E0D90073ACE7 /* MusicAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */; };
 		0856A4BA2B46FF0E0073ACE7 /* MusicCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4B92B46FF0E0073ACE7 /* MusicCatalog.swift */; };
 		0856A4BD2B470B4D0073ACE7 /* MusicCatalogPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4BC2B470B4D0073ACE7 /* MusicCatalogPersonal.swift */; };
@@ -147,6 +148,7 @@
 		08415D132B40BA6600764CD6 /* QueueBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueBar.swift; sourceTree = "<group>"; };
 		084E07BC2B8CBA4B00E14695 /* Chips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chips.swift; sourceTree = "<group>"; };
 		084E07BE2B8CBF2900E14695 /* LibraryTrackCollectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTrackCollectionList.swift; sourceTree = "<group>"; };
+		084E07C52B8DC25300E14695 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		0856A4B32B46D7A60073ACE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAuthenticator.swift; sourceTree = "<group>"; };
 		0856A4B92B46FF0E0073ACE7 /* MusicCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCatalog.swift; sourceTree = "<group>"; };
@@ -491,6 +493,14 @@
 			path = Chips;
 			sourceTree = "<group>";
 		};
+		084E07C42B8DC22200E14695 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				084E07C52B8DC25300E14695 /* Artist.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		0856A4B12B46D5870073ACE7 /* Music */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,6 +553,7 @@
 		0856A4D22B472BE80073ACE7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				084E07C42B8DC22200E14695 /* Models */,
 				0856A4D32B472C260073ACE7 /* Authenticator */,
 				082683E52B83A190007108E9 /* Player */,
 				0856A4BB2B470B370073ACE7 /* Catalog */,
@@ -1139,6 +1150,7 @@
 				08F423152B45AC85005158F2 /* Encodable.swift in Sources */,
 				08F423212B45B76B005158F2 /* NetworkData.swift in Sources */,
 				08C4A32F2B77D4A600734378 /* SearchOverviewView.swift in Sources */,
+				084E07C62B8DC25300E14695 /* Artist.swift in Sources */,
 				08B5F7062B55AF47006248A7 /* PlainSongItemStyle.swift in Sources */,
 				08D1B60A2B76576E005FB6FA /* PlaylistDetailsInfoView.swift in Sources */,
 				082683C92B81F55C007108E9 /* Router.swift in Sources */,
