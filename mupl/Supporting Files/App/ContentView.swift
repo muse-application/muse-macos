@@ -14,9 +14,6 @@ struct ContentView: View {
         )
     ]
     
-    @Environment(\.sidebarWidth) private var sidebarWidth
-    @Environment(\.playbarHeight) private var playbarHeight
-    
     @EnvironmentObject private var router: Router
     
     @State private var selectedItem: SidebarItem = .home
@@ -30,18 +27,21 @@ struct ContentView: View {
                             maxWidth: .infinity,
                             maxHeight: .infinity
                         )
-                        .padding(.leading, self.sidebarWidth + 24.0)
-                        .padding(.bottom, self.playbarHeight + 24.0)
+                        .padding(.leading, Sidebar.width + 24.0)
+                        .padding(.bottom, Playbar.height + AppInfo.height + 16.0 + 24.0)
                     
-                    Playbar()
-                        .padding(.horizontal, 24.0)
-                        .padding(.bottom, 24.0)
+                    VStack(spacing: 16.0) {
+                        Playbar()
+                        AppInfo()
+                    }
+                    .padding(.horizontal, 24.0)
+                    .padding(.bottom, 24.0)
                 }
                 
                 Sidebar(sections: self.sidebarSections, selectedItem: self.$selectedItem)
                     .padding(.top, 24.0)
                     .padding(.leading, 24.0)
-                    .padding(.bottom, self.playbarHeight + 24.0 + 24.0)
+                    .padding(.bottom, Playbar.height + AppInfo.height + 16.0 + 24.0 + 24.0)
             }
             .frame(minWidth: 1080.0, maxWidth: 1080.0, alignment: .top)
         }

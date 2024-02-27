@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Sidebar: View {
-    private let sections: [SidebarSection]
+    static let width: CGFloat = 48.0
     
-    @Environment(\.sidebarWidth) private var sidebarWidth
+    private let sections: [SidebarSection]
     
     @Binding private var selectedItem: SidebarItem
     
@@ -21,7 +21,7 @@ struct Sidebar: View {
     
     var body: some View {
         VStack(spacing: 24.0) {
-            Image("Common/logo")
+            Image("Common/Logo")
                 .resizable()
                 .frame(width: 32.0, height: 32.0)
                 .clipShape(.rect(cornerRadius: 8.0))
@@ -43,7 +43,7 @@ struct Sidebar: View {
             }
         }
         .padding(.vertical, 16.0)
-        .frame(width: self.sidebarWidth)
+        .frame(width: Self.width)
         .frame(maxHeight: .infinity, alignment: .top)
         .background(.ultraThinMaterial)
         .clipShape(.rect(cornerRadius: 12.0))

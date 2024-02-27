@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Playbar: View {
-    @Environment(\.playbarHeight) private var playbarHeight
+    static let height: CGFloat = 70.0
     
     @State private var isQueueBarPresented: Bool = false
     
@@ -31,7 +31,7 @@ struct Playbar: View {
                     }
             }
             .padding(.horizontal, 16.0)
-            .frame(height: self.playbarHeight)
+            .frame(height: Self.height)
             .frame(maxWidth: .infinity)
             .background(.ultraThickMaterial)
             .clipShape(.rect(cornerRadius: 12.0))
@@ -39,7 +39,7 @@ struct Playbar: View {
             
             QueueBar(isPresented: self.$isQueueBarPresented)
                 .padding(.top, 24.0)
-                .padding(.bottom, self.playbarHeight + 24.0)
+                .padding(.bottom, Self.height + 24.0)
         }
     }
 }

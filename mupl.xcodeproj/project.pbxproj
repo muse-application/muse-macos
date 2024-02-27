@@ -36,6 +36,8 @@
 		084E07BD2B8CBA4B00E14695 /* Chips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BC2B8CBA4B00E14695 /* Chips.swift */; };
 		084E07BF2B8CBF2900E14695 /* LibraryTrackCollectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BE2B8CBF2900E14695 /* LibraryTrackCollectionList.swift */; };
 		084E07C62B8DC25300E14695 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07C52B8DC25300E14695 /* Artist.swift */; };
+		084E07C92B8E1F7400E14695 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07C82B8E1F7400E14695 /* AppInfo.swift */; };
+		084E07CB2B8E200F00E14695 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07CA2B8E200F00E14695 /* Bundle.swift */; };
 		0856A4B52B46E0D90073ACE7 /* MusicAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */; };
 		0856A4BA2B46FF0E0073ACE7 /* MusicCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4B92B46FF0E0073ACE7 /* MusicCatalog.swift */; };
 		0856A4BD2B470B4D0073ACE7 /* MusicCatalogPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0856A4BC2B470B4D0073ACE7 /* MusicCatalogPersonal.swift */; };
@@ -69,7 +71,6 @@
 		086FDB9C2B7E63A600A4102E /* ArtistDetailsAlbumsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FDB9B2B7E63A600A4102E /* ArtistDetailsAlbumsSection.swift */; };
 		086FDBA02B7E645200A4102E /* ArtistDetailsPlaylistsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FDB9F2B7E645200A4102E /* ArtistDetailsPlaylistsSection.swift */; };
 		086FDBA32B7E653C00A4102E /* ArtistDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086FDBA22B7E653C00A4102E /* ArtistDetailsInfoView.swift */; };
-		08B4552C2B67F12C006007A9 /* EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B4552B2B67F12C006007A9 /* EnvironmentValues.swift */; };
 		08B4552F2B67F47C006007A9 /* LoadableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B4552E2B67F47C006007A9 /* LoadableValue.swift */; };
 		08B455322B6938F0006007A9 /* AlbumDetailsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B455312B6938F0006007A9 /* AlbumDetailsInfoView.swift */; };
 		08B455342B693938006007A9 /* AlbumDetailsTrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B455332B693938006007A9 /* AlbumDetailsTrackList.swift */; };
@@ -149,6 +150,8 @@
 		084E07BC2B8CBA4B00E14695 /* Chips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chips.swift; sourceTree = "<group>"; };
 		084E07BE2B8CBF2900E14695 /* LibraryTrackCollectionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTrackCollectionList.swift; sourceTree = "<group>"; };
 		084E07C52B8DC25300E14695 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		084E07C82B8E1F7400E14695 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		084E07CA2B8E200F00E14695 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		0856A4B32B46D7A60073ACE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0856A4B42B46E0D90073ACE7 /* MusicAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAuthenticator.swift; sourceTree = "<group>"; };
 		0856A4B92B46FF0E0073ACE7 /* MusicCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicCatalog.swift; sourceTree = "<group>"; };
@@ -182,7 +185,6 @@
 		086FDB9B2B7E63A600A4102E /* ArtistDetailsAlbumsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailsAlbumsSection.swift; sourceTree = "<group>"; };
 		086FDB9F2B7E645200A4102E /* ArtistDetailsPlaylistsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailsPlaylistsSection.swift; sourceTree = "<group>"; };
 		086FDBA22B7E653C00A4102E /* ArtistDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistDetailsInfoView.swift; sourceTree = "<group>"; };
-		08B4552B2B67F12C006007A9 /* EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentValues.swift; sourceTree = "<group>"; };
 		08B4552E2B67F47C006007A9 /* LoadableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableValue.swift; sourceTree = "<group>"; };
 		08B455312B6938F0006007A9 /* AlbumDetailsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsInfoView.swift; sourceTree = "<group>"; };
 		08B455332B693938006007A9 /* AlbumDetailsTrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsTrackList.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		08415CC92B321B3400764CD6 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				084E07C72B8E1F5A00E14695 /* AppInfo */,
 				0856A4D42B4738080073ACE7 /* Styles */,
 				0856A4EA2B48AD6F0073ACE7 /* Section */,
 				0856A4C32B4710420073ACE7 /* TrackCollectionItem */,
@@ -358,7 +361,6 @@
 			children = (
 				08415CCF2B321C9800764CD6 /* CGFloat + LayoutSize.swift */,
 				08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */,
-				08B4552B2B67F12C006007A9 /* EnvironmentValues.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -499,6 +501,14 @@
 				084E07C52B8DC25300E14695 /* Artist.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		084E07C72B8E1F5A00E14695 /* AppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				084E07C82B8E1F7400E14695 /* AppInfo.swift */,
+			);
+			path = AppInfo;
 			sourceTree = "<group>";
 		};
 		0856A4B12B46D5870073ACE7 /* Music */ = {
@@ -949,6 +959,7 @@
 				08F423142B45AC85005158F2 /* Encodable.swift */,
 				0856A4F52B49C8690073ACE7 /* TimeInterval.swift */,
 				08B5F7002B53EEF9006248A7 /* Date.swift */,
+				084E07CA2B8E200F00E14695 /* Bundle.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1152,6 +1163,7 @@
 				08C4A32F2B77D4A600734378 /* SearchOverviewView.swift in Sources */,
 				084E07C62B8DC25300E14695 /* Artist.swift in Sources */,
 				08B5F7062B55AF47006248A7 /* PlainSongItemStyle.swift in Sources */,
+				084E07C92B8E1F7400E14695 /* AppInfo.swift in Sources */,
 				08D1B60A2B76576E005FB6FA /* PlaylistDetailsInfoView.swift in Sources */,
 				082683C92B81F55C007108E9 /* Router.swift in Sources */,
 				08C4A3162B779F8500734378 /* AppTextFieldStyle.swift in Sources */,
@@ -1187,6 +1199,7 @@
 				0856A4E92B489BC40073ACE7 /* HomeRecommendationsSection.swift in Sources */,
 				08C4A30B2B77936E00734378 /* SearchOverviewSectionProvider.swift in Sources */,
 				086FDB7F2B7E32C900A4102E /* ChartView.swift in Sources */,
+				084E07CB2B8E200F00E14695 /* Bundle.swift in Sources */,
 				086FDB9A2B7E633200A4102E /* ArtistDetailsFeaturedAlbumsSection.swift in Sources */,
 				08B5F6FF2B53EC99006248A7 /* AlbumDetailsView.swift in Sources */,
 				0856A4BD2B470B4D0073ACE7 /* MusicCatalogPersonal.swift in Sources */,
@@ -1210,7 +1223,6 @@
 				08C4A31D2B77CE4500734378 /* SearchResultsView.swift in Sources */,
 				08B5F7012B53EEF9006248A7 /* Date.swift in Sources */,
 				08F4231B2B45AD0E005158F2 /* NetworkError.swift in Sources */,
-				08B4552C2B67F12C006007A9 /* EnvironmentValues.swift in Sources */,
 				08415CFD2B3DD03A00764CD6 /* View + Size.swift in Sources */,
 				08415CD72B32267F00764CD6 /* View + Border.swift in Sources */,
 				0856A4C52B4710600073ACE7 /* TrackCollectionItem.swift in Sources */,
@@ -1361,7 +1373,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.mupl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1391,7 +1403,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.mupl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
