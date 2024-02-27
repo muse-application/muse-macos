@@ -25,8 +25,7 @@ extension AlbumDetailsView {
         var body: some View {
             VStack(alignment: .leading, spacing: 16.0) {
                 VStack(alignment: .leading, spacing: 12.0) {
-                    MusicArtworkImage(artwork: self.album.artwork)
-                        .frame(width: 256.0, height: 256.0)
+                    MusicArtworkImage(artwork: self.album.artwork, width: 256.0, height: 256.0)
                         .clipShape(.rect(cornerRadius: 12.0))
                         .glow(
                             using: .init(
@@ -74,18 +73,9 @@ extension AlbumDetailsView {
                 }
                 .zIndex(1)
                 
-                HStack(spacing: 2.0) {
-                    if let genre = self.album.genreNames.first {
-                        Text(genre.uppercased())
-                    }
-                    
-                    if let releaseYear = self.album.releaseDate?.format("YYYY") {
-                        Text("•")
-                        Text(releaseYear)
-                    }
-                }
-                .font(.system(size: 12.0, weight: .bold))
-                .foregroundColor(Color.secondaryText)
+                Text(self.albumInfoText())
+                    .font(.system(size: 12.0, weight: .bold))
+                    .foregroundColor(Color.secondaryText)
                 
                 if let description = self.album.editorialNotes?.short {
                     Text(description)
@@ -180,6 +170,20 @@ extension AlbumDetailsView {
             }
             
             return result
+        }
+        
+        private func albumInfoText() -> String {
+            var info: [String] = .init()
+            
+            if let genre = self.album.genreNames.first {
+                info.append(genre.uppercased())
+            }
+            
+            if let releaseYear = self.album.releaseDate?.format("YYYY") {
+                info.append(releaseYear)
+            }
+            
+            return info.joined(separator: " • ")
         }
     }
     

@@ -10,6 +10,23 @@ import MusicKit
 
 extension MusicCatalog {
     struct Personal {
+        enum LibraryFilterType {
+            case albums
+            case playlists
+            case songs
+            
+            var type: any MusicLibraryRequestable.Type {
+                switch self {
+                case .albums:
+                    return Album.self
+                case .playlists:
+                    return Playlist.self
+                case .songs:
+                    return Song.self
+                }
+            }
+        }
+        
         var recommendations: [MusicPersonalRecommendationItem] {
             get async {
                 let request = MusicPersonalRecommendationsRequest()
@@ -30,6 +47,13 @@ extension MusicCatalog {
                 
                 return []
             }
+        }
+        
+        func library<MusicItemType: MusicLibraryRequestable>(of filterType: MusicItemType.Type) async -> MusicItemCollection<MusicItemType> {
+            let request = MusicLibraryRequest<MusicItemType>()
+            let response = try? await request.response()
+            
+            return response?.items ?? .init()
         }
     }
 }
