@@ -50,7 +50,7 @@ struct ArtistDetailsView: View {
                     // could be empty (Library). This leads to
                     // errors when trying to fetch artist info.
                     // Therefore we should handle this case by
-                    // trying to search for an artist first.
+                    // trying to search by name of an artist first.
                     artist = try await Artist.named(self.item.name)
                 }
                 
