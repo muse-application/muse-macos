@@ -1,0 +1,14 @@
+{
+    "meta": {
+        "status_code": 200,
+        "response_delay": 1.0
+    },
+    "data": {
+        "string": "Some string value",
+        "number": 1,
+        "object": {
+            "title": "Title",
+            "description": "Description"
+        }
+    }
+}
