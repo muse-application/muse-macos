@@ -10,7 +10,11 @@ import MusicKit
 
 @MainActor
 final class MusicAuthenticator: ObservableObject {
-    @AppStorage("music.auth.status") var status: MusicAuthorization.Status = .notDetermined
+    @Published var status: MusicAuthorization.Status
+    
+    init() {
+        self.status = MusicAuthorization.currentStatus
+    }
     
     func requestIfNeeded() async {
         guard self.status != .authorized else { return }

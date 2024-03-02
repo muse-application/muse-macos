@@ -18,10 +18,16 @@ struct muplApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .task {
-                    await self.musicAuthenticator.requestIfNeeded()
+            ZStack {
+                ContentView()
+                
+                if self.musicAuthenticator.status != .authorized {
+                    MusicAuthorizationPrompt()
                 }
+            }
+            .task {
+//                await self.musicAuthenticator.requestIfNeeded()
+            }
         }
         .environmentObject(self.musicAuthenticator)
         .environmentObject(self.musicCatalog)
