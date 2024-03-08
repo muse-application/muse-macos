@@ -19,16 +19,16 @@ struct muplApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                Group {
-                    if self.musicAuthenticator.status == .authorized {
-                        ContentView()
-                    } else {
-                        MusicAuthorizationPrompt()
-                    }
+                ContentView()
+                    .zIndex(0)
+                
+                if self.musicAuthenticator.status != .authorized {
+                    MusicAuthorizationPrompt()
+                        .zIndex(1)
                 }
-                .transition(.opacity)
             }
-            .animation(.easeIn, value: self.musicAuthenticator.status)
+            .transition(.opacity)
+            .animation(.easeIn(duration: 0.2), value: self.musicAuthenticator.status)
         }
         .environmentObject(self.musicAuthenticator)
         .environmentObject(self.musicCatalog)

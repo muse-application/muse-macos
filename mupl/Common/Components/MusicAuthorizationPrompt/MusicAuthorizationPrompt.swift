@@ -12,7 +12,7 @@ struct MusicAuthorizationPrompt: View {
     
     var body: some View {
         ZStack {
-            Color.primaryFill
+            Color.black
                 .opacity(0.8)
                 .ignoresSafeArea()
             

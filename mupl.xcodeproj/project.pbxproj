@@ -786,8 +786,8 @@
 		08B5F6FC2B53EBAA006248A7 /* AlbumDetails */ = {
 			isa = PBXGroup;
 			children = (
-				08B455302B6938BE006007A9 /* Components */,
 				08B5F6FD2B53EC8E006248A7 /* View */,
+				08B455302B6938BE006007A9 /* Components */,
 			);
 			path = AlbumDetails;
 			sourceTree = "<group>";
@@ -936,8 +936,8 @@
 		08D1B6042B7656F5005FB6FA /* PlaylistDetails */ = {
 			isa = PBXGroup;
 			children = (
-				08D1B6082B765762005FB6FA /* Components */,
 				08D1B6052B7656F9005FB6FA /* View */,
+				08D1B6082B765762005FB6FA /* Components */,
 			);
 			path = PlaylistDetails;
 			sourceTree = "<group>";

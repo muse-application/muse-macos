@@ -56,6 +56,7 @@ class LoadableValue<T: Hashable> {
     }
     
     func load(_ task: @Sendable @escaping () async throws -> T) {
+        self.task?.cancel()
         self.status = .loading
         
         self.task = Task {
