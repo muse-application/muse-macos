@@ -11,13 +11,23 @@ import MusicKit
 @MainActor
 final class MusicAuthenticator: ObservableObject {
     @Published var status: MusicAuthorization.Status
+    @Published var subscriptionStatus: MusicSubscription?
     
     init() {
         self.status = MusicAuthorization.currentStatus
+        self.startSubscriptionObservation()
     }
     
     func requestIfNeeded() async {
         guard self.status != .authorized else { return }
         self.status = await MusicAuthorization.request()
+    }
+    
+    private func startSubscriptionObservation() {
+        Task {
+            for await subscription in MusicSubscription.subscriptionUpdates {
+                self.subscriptionStatus = subscription
+            }
+        }
     }
 }

@@ -19,15 +19,16 @@ struct muplApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                ContentView()
-                
-                if self.musicAuthenticator.status != .authorized {
-                    MusicAuthorizationPrompt()
+                Group {
+                    if self.musicAuthenticator.status == .authorized {
+                        ContentView()
+                    } else {
+                        MusicAuthorizationPrompt()
+                    }
                 }
+                .transition(.opacity)
             }
-            .task {
-//                await self.musicAuthenticator.requestIfNeeded()
-            }
+            .animation(.easeIn, value: self.musicAuthenticator.status)
         }
         .environmentObject(self.musicAuthenticator)
         .environmentObject(self.musicCatalog)
@@ -46,6 +47,7 @@ struct muplApp: App {
                     Button("Quit \(Bundle.main.appName)") {
                         NSApplication.shared.terminate(nil)
                     }
+                    .keyboardShortcut("Q", modifiers: [.command])
                 }
             }
         }

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct MusicAuthorizationPrompt: View {
+    @EnvironmentObject private var musicAuthenticator: MusicAuthenticator
+    
     var body: some View {
         ZStack {
-            Color.black
+            Color.primaryFill
                 .opacity(0.8)
                 .ignoresSafeArea()
             
@@ -34,7 +36,13 @@ struct MusicAuthorizationPrompt: View {
                     }
                     
                     Button {
+                        if self.musicAuthenticator.status == .notDetermined {
+                            self.requestAccess()
+                        }
                         
+                        if self.musicAuthenticator.status == .denied {
+                            self.openSettings()
+                        }
                     } label: {
                         Text("Allow access")
                             .frame(maxWidth: .infinity)
@@ -49,5 +57,16 @@ struct MusicAuthorizationPrompt: View {
             .border(style: .quinaryFill, cornerRadius: 16.0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    private func requestAccess() {
+        Task {
+            await self.musicAuthenticator.requestIfNeeded()
+        }
+    }
+    
+    private func openSettings() {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Media") else { return }
+        NSWorkspace.shared.open(url)
     }
 }
