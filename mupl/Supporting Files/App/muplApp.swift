@@ -11,7 +11,7 @@ import SwiftUI
 struct muplApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    @StateObject private var musicAuthenticator: MusicAuthenticator = .init()
+    @StateObject private var musicManager: MusicManager = .init()
     @StateObject private var musicCatalog: MusicCatalog = .init()
     @StateObject private var musicPlayer: MusicPlayer = .init()
     @StateObject private var router: Router = .init()
@@ -22,15 +22,24 @@ struct muplApp: App {
                 ContentView()
                     .zIndex(0)
                 
-                if self.musicAuthenticator.status != .authorized {
-                    MusicAuthorizationPrompt()
-                        .zIndex(1)
+                Group {
+                    if self.musicManager.authorization.status != .authorized {
+                        self.prompt {
+                            MusicAuthorizationPrompt()
+                        }
+                    } else if self.musicManager.subscription.isOffering {
+                        self.prompt {
+                            MusicSubscriptionPrompt()
+                        }
+                    }
                 }
+                .zIndex(1)
             }
             .transition(.opacity)
-            .animation(.easeIn(duration: 0.2), value: self.musicAuthenticator.status)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.authorization.status)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.status)
         }
-        .environmentObject(self.musicAuthenticator)
+        .environmentObject(self.musicManager)
         .environmentObject(self.musicCatalog)
         .environmentObject(self.musicPlayer)
         .environmentObject(self.router)
@@ -53,5 +62,16 @@ struct muplApp: App {
         }
         .windowToolbarStyle(.unified(showsTitle: false))
         .windowStyle(.hiddenTitleBar)
+    }
+    
+    private func prompt<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        ZStack {
+            Color.black
+                .opacity(0.8)
+                .ignoresSafeArea()
+            
+            content()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

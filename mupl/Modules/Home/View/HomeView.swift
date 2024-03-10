@@ -16,7 +16,7 @@ struct HomeView: View {
     
     private let sectionProvider: HomeSectionProvider = .init()
     
-    @EnvironmentObject private var musicAuthenticator: MusicAuthenticator
+    @EnvironmentObject private var musicManager: MusicManager
     @EnvironmentObject private var musicCatalog: MusicCatalog
     @EnvironmentObject private var router: Router
     
@@ -55,7 +55,7 @@ struct HomeView: View {
             }
         }
         .onAppear(perform: self.loadValue)
-        .onChange(of: self.musicAuthenticator.status) { _, _ in
+        .onChange(of: self.musicManager.authorization.status) { _, _ in
             self.loadValue()
         }
     }
