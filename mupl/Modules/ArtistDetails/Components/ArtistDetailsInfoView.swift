@@ -41,8 +41,10 @@ extension ArtistDetailsView {
                 
                 HStack(spacing: 12.0) {
                     Button {
-                        if let topSongs = self.artist.topSongs {
-                            self.musicPlayer.play(songs: .init(topSongs), shuffleMode: .songs)
+                        Task {
+                            if let topSongs = self.artist.topSongs {
+                                await self.musicPlayer.play(songs: .init(topSongs), shuffleMode: .songs)
+                            }
                         }
                     } label: {
                         Image(systemName: "play.circle.fill")

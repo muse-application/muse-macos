@@ -157,7 +157,9 @@ extension QueueBar {
                 self.isHovered = hovering
             }
             .onTapGesture {
-                self.musicPlayer.skip(to: self.song)
+                Task {
+                    await self.musicPlayer.skip(to: self.song)
+                }
             }
         }
     }

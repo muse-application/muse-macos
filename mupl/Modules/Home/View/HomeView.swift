@@ -9,14 +9,18 @@ import SwiftUI
 import MusicKit
 
 struct HomeView: View {
+    private struct Value: Hashable {
+        let recommendations: [MusicPersonalRecommendationItem]
+        let charts: MusicChartsCompilation?
+    }
+    
     private let sectionProvider: HomeSectionProvider = .init()
     
+    @EnvironmentObject private var musicManager: MusicManager
     @EnvironmentObject private var musicCatalog: MusicCatalog
     @EnvironmentObject private var router: Router
     
-    @State private var recommendations: [MusicPersonalRecommendationItem] = []
-    @State private var charts: MusicChartsCompilation?
-    @State private var loadingState: LoadingState = .idle
+    @State private var value: LoadableValue<Value> = .init()
     
     var body: some View {
         NavigationStack(path: self.router.bindablePath(for: .home)) {
@@ -27,27 +31,19 @@ struct HomeView: View {
                         .foregroundStyle(Color.primaryText)
                     
                     Group {
-                        switch self.loadingState {
-                        case .idle, .loading:
+                        switch self.value.status {
+                        case .idle, .loading, .error:
                             self.skeleton
-                        case .loaded:
-                            self.content
+                        case .loaded(let content):
+                            self.content(content)
                         }
                     }
                     .transition(.opacity)
                 }
                 .padding(.all, 24.0)
-                .animation(.easeIn, value: self.loadingState)
+                .animation(.easeIn, value: self.value.status)
             }
-            .scrollDisabled(self.loadingState != .loaded)
-            .task {
-                self.loadingState = .loading
-                
-                self.recommendations = await self.musicCatalog.personal.recommendations
-                self.charts = await self.musicCatalog.charts.compilation()
-                
-                self.loadingState = .loaded
-            }
+            .scrollDisabled(!self.value.status.isLoaded)
             .navigationDestination(for: Artist.self) { artist in
                 ArtistDetailsView(artist: artist)
             }
@@ -58,15 +54,19 @@ struct HomeView: View {
                 PlaylistDetailsView(playlist: playlist)
             }
         }
+        .onAppear(perform: self.loadValue)
+        .onChange(of: self.musicManager.authorization.status) { _, _ in
+            self.loadValue()
+        }
     }
     
     // MARK: - Content
     
-    private var content: some View {
+    private func content(_ value: Value) -> some View {
         Group {
-            self.sectionProvider.section(for: \.recommendations, value: self.recommendations)
+            self.sectionProvider.section(for: \.recommendations, value: value.recommendations)
             
-            if let charts = self.charts {
+            if let charts = value.charts {
                 self.sectionProvider.section(for: \.charts, value: charts)
             }
         }
@@ -76,6 +76,17 @@ struct HomeView: View {
         Group {
             self.sectionProvider.skeleton(for: \.recommendations)
             self.sectionProvider.skeleton(for: \.charts)
+        }
+    }
+    
+    // MARK: - Utility
+    
+    private func loadValue() {
+        self.value.load {
+            return .init(
+                recommendations: try await self.musicCatalog.personal.recommendations,
+                charts: try await self.musicCatalog.charts.compilation()
+            )
         }
     }
 }

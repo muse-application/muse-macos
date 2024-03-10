@@ -38,7 +38,7 @@ extension AlbumDetailsView {
                     self.info
                 }
                 
-                self.buttons
+                self.playButtons
                 self.copyright
             }
             .frame(width: 256.0)
@@ -60,16 +60,6 @@ extension AlbumDetailsView {
                     }
                     
                     Spacer()
-                    
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .font(.system(size: 24.0))
-                            .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(Color.pinkAccent)
-                    }
-                    .buttonStyle(.plain)
                 }
                 .zIndex(1)
                 
@@ -86,10 +76,12 @@ extension AlbumDetailsView {
             }
         }
         
-        private var buttons: some View {
+        private var playButtons: some View {
             HStack(spacing: 4.0) {
                 Button {
-                    self.musicPlayer.play(item: self.album)
+                    Task {
+                        await self.musicPlayer.play(item: self.album)
+                    }
                 } label: {
                     HStack(spacing: 4.0) {
                         Image(systemName: "play.fill")
@@ -100,7 +92,9 @@ extension AlbumDetailsView {
                 .buttonStyle(.app(.primary))
                 
                 Button {
-                    self.musicPlayer.play(item: self.album, shuffleMode: .songs)
+                    Task {
+                        await self.musicPlayer.play(item: self.album, shuffleMode: .songs)
+                    }
                 } label: {
                     HStack(spacing: 4.0) {
                         Image(systemName: "shuffle")

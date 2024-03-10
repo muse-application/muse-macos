@@ -10,6 +10,7 @@ import Combine
 import MusicKit
 import AVFoundation
 
+@MainActor
 final class MusicPlayer: ObservableObject {
     typealias PlaybackStatus = MusicKit.MusicPlayer.PlaybackStatus
     typealias ShuffleMode = MusicKit.MusicPlayer.ShuffleMode
@@ -20,6 +21,7 @@ final class MusicPlayer: ObservableObject {
         case backward
     }
     
+    private let manager: MusicManager = .shared
     private let player: ApplicationMusicPlayer = .shared
     private let audio: Audio = .init()
     
@@ -82,39 +84,39 @@ final class MusicPlayer: ObservableObject {
             }
     }
     
-    func play(shuffleMode: ShuffleMode? = nil) {
-        Task {
-            if let shuffleMode = shuffleMode {
-                await MainActor.run {
-                    self.shuffleMode = shuffleMode
-                }
-            }
-            
-            try await self.player.prepareToPlay()
-            try await self.player.play()
+    func play(shuffleMode: ShuffleMode? = nil) async {
+        guard !self.manager.subscription.canOffer else {
+            return self.manager.subscription.offer()
         }
+        
+        if let shuffleMode = shuffleMode {
+            self.shuffleMode = shuffleMode
+        }
+        
+        try? await self.player.prepareToPlay()
+        try? await self.player.play()
     }
     
-    func play(item: PlayableMusicItem, shuffleMode: ShuffleMode? = nil) {
+    func play(item: PlayableMusicItem, shuffleMode: ShuffleMode? = nil) async {
         self.player.queue = [item]
-        self.play(shuffleMode: shuffleMode)
+        await self.play(shuffleMode: shuffleMode)
     }
     
-    func play(song: Song) {
+    func play(song: Song) async {
         self.player.queue = [song]
-        self.play()
+        await self.play()
     }
     
-    func play(songs: [Song], shuffleMode: ShuffleMode? = nil) {
+    func play(songs: [Song], shuffleMode: ShuffleMode? = nil) async {
         self.player.queue = .init(for: songs)
-        self.play(shuffleMode: shuffleMode)
+        await self.play(shuffleMode: shuffleMode)
     }
     
-    func skip(to song: Song) {
+    func skip(to song: Song) async {
         guard self.queue.contains(where: { $0.id == song.id }) else { return }
         
         self.player.queue = .init(self.player.queue.entries, startingAt: .init(song))
-        self.play()
+        await self.play()
     }
     
     func skip(_ direction: ActionDirection = .forward) {
@@ -156,9 +158,7 @@ final class MusicPlayer: ObservableObject {
                 case .song(let song) = self.player.queue.entries.last?.item,
                 song.id == self.currentSong?.id
             {
-                await MainActor.run {
-                    self.player.queue.entries = []
-                }
+                self.player.queue.entries = []
             }
         }
     }

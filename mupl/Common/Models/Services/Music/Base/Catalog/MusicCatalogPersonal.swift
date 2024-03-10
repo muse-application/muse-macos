@@ -28,24 +28,20 @@ extension MusicCatalog {
         }
         
         var recommendations: [MusicPersonalRecommendationItem] {
-            get async {
+            get async throws {
                 let request = MusicPersonalRecommendationsRequest()
-                let response = try? await request.response()
+                let response = try await request.response()
                 
-                if let recommendations = response?.recommendations {
-                    return recommendations
-                        .compactMap { recommendation in
-                            guard !recommendation.items.isEmpty else { return nil }
-                            
-                            return .init(
-                                type: .init(id: recommendation.id.rawValue),
-                                title: recommendation.title ?? "Recommended for You",
-                                items: recommendation.items
-                            )
-                        }
-                }
-                
-                return []
+                return response.recommendations
+                    .compactMap { recommendation in
+                        guard !recommendation.items.isEmpty else { return nil }
+                        
+                        return .init(
+                            type: .init(id: recommendation.id.rawValue),
+                            title: recommendation.title ?? "Recommended for You",
+                            items: recommendation.items
+                        )
+                    }
             }
         }
         

@@ -32,10 +32,12 @@ struct PlaybarSongControls: View {
                     Image(systemName: self.musicPlayer.playbackStatus == .playing ? "pause.fill" : "play.fill")
                         .foregroundStyle(Color.secondaryText)
                         .tappable {
-                            if self.musicPlayer.playbackStatus == .playing {
-                                self.musicPlayer.pause()
-                            } else {
-                                self.musicPlayer.play()
+                            Task {
+                                if self.musicPlayer.playbackStatus == .playing {
+                                    self.musicPlayer.pause()
+                                } else {
+                                    await self.musicPlayer.play()
+                                }
                             }
                         }
                     
@@ -66,7 +68,10 @@ struct PlaybarSongControls: View {
                     self.playbackTimePercentage = requestedPercentage
                     
                     self.musicPlayer.seek(to: requestedPercentage * duration)
-                    self.musicPlayer.play()
+                    
+                    Task {
+                        await self.musicPlayer.play()
+                    }
                 }
         }
         .onChange(of: self.musicPlayer.playbackTime) { _, value in

@@ -11,19 +11,35 @@ import SwiftUI
 struct muplApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    @StateObject private var musicAuthenticator: MusicAuthenticator = .init()
+    @StateObject private var musicManager: MusicManager = .shared
     @StateObject private var musicCatalog: MusicCatalog = .init()
     @StateObject private var musicPlayer: MusicPlayer = .init()
     @StateObject private var router: Router = .init()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .task {
-                    await self.musicAuthenticator.requestIfNeeded()
+            ZStack {
+                ContentView()
+                    .zIndex(0)
+                
+                Group {
+                    if self.musicManager.authorization.status != .authorized {
+                        self.prompt {
+                            MusicAuthorizationPrompt()
+                        }
+                    } else if self.musicManager.subscription.isOffering {
+                        self.prompt {
+                            MusicSubscriptionPrompt()
+                        }
+                    }
                 }
+                .zIndex(1)
+            }
+            .transition(.opacity)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.authorization.status)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.isOffering)
         }
-        .environmentObject(self.musicAuthenticator)
+        .environmentObject(self.musicManager)
         .environmentObject(self.musicCatalog)
         .environmentObject(self.musicPlayer)
         .environmentObject(self.router)
@@ -40,10 +56,22 @@ struct muplApp: App {
                     Button("Quit \(Bundle.main.appName)") {
                         NSApplication.shared.terminate(nil)
                     }
+                    .keyboardShortcut("Q", modifiers: [.command])
                 }
             }
         }
         .windowToolbarStyle(.unified(showsTitle: false))
         .windowStyle(.hiddenTitleBar)
+    }
+    
+    private func prompt<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        ZStack {
+            Color.black
+                .opacity(0.8)
+                .ignoresSafeArea()
+            
+            content()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

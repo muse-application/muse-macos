@@ -45,7 +45,7 @@ struct ChartView: View {
         .scrollDisabled(!self.charts.status.isLoaded)
         .task {
             self.charts.load {
-                await self.musicCatalog.charts.compilation(for: self.genre)
+                try await self.musicCatalog.charts.compilation(for: self.genre)
             }
         }
     }
