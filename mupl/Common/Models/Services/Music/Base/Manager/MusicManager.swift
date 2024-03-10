@@ -13,4 +13,3 @@ final class MusicManager: ObservableObject {
     @Published var authorization: Authorization = .init()
     @Published var subscription: Subscription = .init()
 }
-g
