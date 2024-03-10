@@ -49,7 +49,9 @@ struct TrackCollectionItem: View {
                             .zIndex(1)
                         
                         Button {
-                            self.musicPlayer.play(item: self.item)
+                            Task {
+                                await self.musicPlayer.play(item: self.item)
+                            }
                         } label: {
                             Image(systemName: "play.circle.fill")
                                 .font(.system(size: 24.0))

@@ -11,7 +11,7 @@ import SwiftUI
 struct muplApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
-    @StateObject private var musicManager: MusicManager = .init()
+    @StateObject private var musicManager: MusicManager = .shared
     @StateObject private var musicCatalog: MusicCatalog = .init()
     @StateObject private var musicPlayer: MusicPlayer = .init()
     @StateObject private var router: Router = .init()
@@ -37,7 +37,7 @@ struct muplApp: App {
             }
             .transition(.opacity)
             .animation(.easeIn(duration: 0.2), value: self.musicManager.authorization.status)
-            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.status)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.isOffering)
         }
         .environmentObject(self.musicManager)
         .environmentObject(self.musicCatalog)

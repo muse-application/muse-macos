@@ -13,6 +13,7 @@ extension PlaylistDetailsView {
     struct InfoView: View {
         private let playlist: Playlist
         
+        @EnvironmentObject private var musicManager: MusicManager
         @EnvironmentObject private var musicPlayer: MusicPlayer
         
         init(playlist: Playlist) {
@@ -36,6 +37,7 @@ extension PlaylistDetailsView {
                     self.info
                     self.buttons
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(height: 256.0)
         }
@@ -76,7 +78,9 @@ extension PlaylistDetailsView {
             HStack {
                 HStack(spacing: 4.0) {
                     Button {
-                        self.musicPlayer.play(item: self.playlist)
+                        Task {
+                            await self.musicPlayer.play(item: self.playlist)
+                        }
                     } label: {
                         HStack(spacing: 4.0) {
                             Image(systemName: "play.fill")
@@ -87,7 +91,9 @@ extension PlaylistDetailsView {
                     .buttonStyle(.app(.primary))
                     
                     Button {
-                        self.musicPlayer.play(item: self.playlist, shuffleMode: .songs)
+                        Task {
+                            await self.musicPlayer.play(item: self.playlist, shuffleMode: .songs)
+                        }
                     } label: {
                         HStack(spacing: 4.0) {
                             Image(systemName: "shuffle")
@@ -99,16 +105,6 @@ extension PlaylistDetailsView {
                 }
                 
                 Spacer()
-                
-                Button {
-                    
-                } label: {
-                    Image(systemName: "ellipsis.circle.fill")
-                        .font(.system(size: 24.0))
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(Color.pinkAccent)
-                }
-                .buttonStyle(.plain)
             }
         }
     }

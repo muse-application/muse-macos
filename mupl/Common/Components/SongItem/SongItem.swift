@@ -46,12 +46,14 @@ struct SongItem<S: SongItemStyle>: View {
             self.isHovered = hovering
         }
         .onTapGesture {
-            if self.isCurrentlyPlaying {
-                self.musicPlayer.pause()
-            } else if self.isCurrent {
-                self.musicPlayer.play()
-            } else {
-                self.musicPlayer.play(item: self.song)
+            Task {
+                if self.isCurrentlyPlaying {
+                    self.musicPlayer.pause()
+                } else if self.isCurrent {
+                    await self.musicPlayer.play()
+                } else {
+                    await self.musicPlayer.play(item: self.song)
+                }
             }
         }
     }

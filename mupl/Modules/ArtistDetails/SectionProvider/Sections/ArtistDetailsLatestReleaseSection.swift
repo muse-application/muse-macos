@@ -39,33 +39,16 @@ extension ArtistDetailsSectionProvider {
                                         .foregroundStyle(Color.secondaryText)
                                 }
                             }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "chevron.forward")
+                                .font(.system(size: 14.0))
+                                .foregroundStyle(Color.secondaryText)
                         }
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 8.0) {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "play.circle.fill")
-                                .font(.system(size: 24.0))
-                                .symbolRenderingMode(.multicolor)
-                                .foregroundStyle(Color.pinkAccent)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "ellipsis.circle.fill")
-                                .font(.system(size: 24.0))
-                                .symbolRenderingMode(.hierarchical)
-                                .foregroundStyle(Color.pinkAccent)
-                        }
-                        .buttonStyle(.plain)
-                    }
                 }
                 .padding(.vertical, 12.0)
                 .padding(.horizontal, 16.0)
