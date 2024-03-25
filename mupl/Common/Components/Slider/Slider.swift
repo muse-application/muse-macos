@@ -37,7 +37,6 @@ struct Slider: View {
                 .frame(width: self.percentage * self.currentSize.width)
                 .clipShape(.rect(cornerRadius: self.currentSize.height / 2.0))
         }
-        .animation(.easeIn, value: self.percentage)
         .opacity(self.opacity())
         .frame(
             minWidth: self.width.min,
@@ -48,16 +47,12 @@ struct Slider: View {
             maxHeight: self.height.max
         )
         .readSize { size in
-            withAnimation {
-                self.currentSize = size
-            }
+            self.currentSize = size
         }
         .padding(.all, self.height.ideal)
         .contentShape(Rectangle())
         .onHover { hovering in
-            withAnimation {
-                self.isHovered = hovering
-            }
+            self.isHovered = hovering
         }
         .onTapGesture(perform: self.tap(on:))
         .gesture(
@@ -107,18 +102,12 @@ extension Slider {
         let offset = max(0, min(dragLocation + self.dragDiff, width))
         self.percentage = offset / width
         
-        withAnimation {
-            self.isDragging = true
-        }
-        
+        self.isDragging = true
         self.onDragAction?()
     }
     
     private func dragEnded(on value: DragGesture.Value) {
-        withAnimation {
-            self.isDragging = false
-        }
-        
+        self.isDragging = false
         self.onChangeAction?(self.percentage)
     }
 }

@@ -25,7 +25,7 @@ struct GlowViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .shadow(
-                color: self.configuration.color.opacity(self.isAppeared ? 0.4 : 0.0),
+                color: self.configuration.color.opacity(self.isAppeared ? 0.8 : 0.0),
                 radius: self.configuration.radius
             )
             .animation(.easeIn(duration: self.configuration.duration).repeatForever(), value: self.isAppeared)
