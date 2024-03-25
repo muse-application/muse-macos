@@ -309,8 +309,8 @@
 			isa = PBXGroup;
 			children = (
 				086FDB8C2B7E5D7700A4102E /* ArtistDetails */,
-				08D1B6042B7656F5005FB6FA /* PlaylistDetails */,
 				08B5F6FC2B53EBAA006248A7 /* AlbumDetails */,
+				08D1B6042B7656F5005FB6FA /* PlaylistDetails */,
 				086FDB7D2B7E32B700A4102E /* Chart */,
 				08415CDA2B3C901500764CD6 /* Home */,
 				08415CE32B3CC06400764CD6 /* Search */,
@@ -333,18 +333,17 @@
 			isa = PBXGroup;
 			children = (
 				084E07C72B8E1F5A00E14695 /* AppInfo */,
+				084E07BB2B8CBA2F00E14695 /* Chips */,
+				0890981F2BB17C9D00D3DABF /* Prompts */,
+				08415CF22B3DBCAE00764CD6 /* Playbar */,
+				0856A4FA2B4B32500073ACE7 /* MusicArtworkImage */,
 				0856A4D42B4738080073ACE7 /* Styles */,
 				0856A4EA2B48AD6F0073ACE7 /* Section */,
-				0856A4C32B4710420073ACE7 /* TrackCollectionItem */,
 				0856A4F22B49C6DD0073ACE7 /* SongItem */,
-				0856A4FA2B4B32500073ACE7 /* MusicArtworkImage */,
-				084E07D02B8F750800E14695 /* MusicAuthorizationPrompt */,
-				08B6DC862B9C889F006FE677 /* MusicSubscriptionPrompt */,
-				084E07BB2B8CBA2F00E14695 /* Chips */,
-				08415D112B40BA5700764CD6 /* QueueBar */,
 				08415CF92B3DC1F400764CD6 /* Slider */,
-				08415CF22B3DBCAE00764CD6 /* Playbar */,
 				08415CCA2B321B3A00764CD6 /* Sidebar */,
+				0856A4C32B4710420073ACE7 /* TrackCollectionItem */,
+				08415D112B40BA5700764CD6 /* QueueBar */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -781,6 +780,15 @@
 				0878EED52B9DA0C7009EDAD2 /* MusicSubscriptionManager.swift */,
 			);
 			path = Submanagers;
+			sourceTree = "<group>";
+		};
+		0890981F2BB17C9D00D3DABF /* Prompts */ = {
+			isa = PBXGroup;
+			children = (
+				084E07D02B8F750800E14695 /* MusicAuthorizationPrompt */,
+				08B6DC862B9C889F006FE677 /* MusicSubscriptionPrompt */,
+			);
+			path = Prompts;
 			sourceTree = "<group>";
 		};
 		08B4552D2B67F46A006007A9 /* LoadableValue */ = {

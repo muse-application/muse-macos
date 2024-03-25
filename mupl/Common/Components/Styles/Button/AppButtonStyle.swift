@@ -33,6 +33,8 @@ struct AppButtonStyle: ButtonStyle {
     
     private let emphasis: Emphasis
     
+    @State private var isHovered: Bool = false
+    
     init(emphasis: Emphasis) {
         self.emphasis = emphasis
     }
@@ -43,7 +45,12 @@ struct AppButtonStyle: ButtonStyle {
             .foregroundStyle(self.emphasis.foregroundColor)
             .padding(.vertical, 12.0)
             .background(self.emphasis.backgroundColor)
+            .opacity(self.isHovered ? 0.8 : 1.0)
             .clipShape(.rect(cornerRadius: 8.0))
+            .animation(.easeIn(duration: 0.2), value: self.isHovered)
+            .onHover { hovered in
+                self.isHovered = hovered
+            }
     }
 }
 
