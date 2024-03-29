@@ -15,6 +15,7 @@
 
 - [Motivation](#motivation)
 - [Roadmap](#roadmap)
+- [Contributing](#contributing)
 - [Download](#download)
 - [License](#license)
 
@@ -31,7 +32,11 @@ Contrasting sharply with its iOS counterpart, which boasts a sleek design and su
 
 ## Roadmap
 
-Upcoming features and issues planned for the next iteration of the application are organized and presented on the [roadmap board](https://github.com/orgs/mupl-app/projects/1/views/8). Contributions are incredibly welcome and appreciated, truly making a difference in the project's direction and growth.
+Upcoming features and issues planned for the next iteration of the application are organized and presented on the [roadmap board](https://github.com/orgs/mupl-app/projects/1/views/8). Contributions are incredibly welcomed and appreciated, truly making a difference in the project's direction and growth.
+
+## Contributing
+
+Before making any contribution, it is recommended to review the [contribution guidelines](/CONTRIBUTING.md). Every contribution significantly impacts the project, enhancing its functionality and user experience.
 
 ## Download
 
