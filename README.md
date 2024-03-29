@@ -1,12 +1,19 @@
 # mupl for macOS
 
-<img align="right" src="https://github.com/mupl-app/mupl-macos/blob/feature/readme/.github/resources/logo.png?raw=true" height="128">
+<img align="right" src="/.github/resources/logo.png" height="128">
 
 ![](https://img.shields.io/badge/platform-macOS-blue)
 ![](https://img.shields.io/github/v/release/mupl-app/mupl-macos)
 ![](https://img.shields.io/github/downloads/mupl-app/mupl-macos/total?style=social)
 
 **mupl** – a music player that is fully-written on SwiftUI with a seamless and intuitive interface that feels right at home on macOS. Leveraging the powerful capabilities of [MusicKit](https://developer.apple.com/musickit/), it offers a fully integrated Apple Music experience, allowing users to access their library and explore new music.
+
+## Table of Contents
+
+- [Motivation](#motivation)
+- [Roadmap](#roadmap)
+- [Download](#download)
+- [License](#license)
 
 ## Motivation
 
@@ -18,6 +25,14 @@ Contrasting sharply with its iOS counterpart, which boasts a sleek design and su
   <source media="(prefers-color-scheme: dark)" srcset="./.github/resources/banner-dark.png">
   <img src="./.github/resources/banner-light.png">
 </picture>
+
+## Roadmap
+
+Upcoming features and issues planned for the next iteration of the application are organized and presented on the [roadmap board](https://github.com/orgs/mupl-app/projects/1/views/8). Contributions are incredibly welcome and appreciated, truly making a difference in the project's direction and growth.
+
+## Download
+
+All versions of the application, including the latest and previous iterations, are available for download in the [releases tab](https://github.com/mupl-app/mupl-macos/releases).
 
 ## License
 
