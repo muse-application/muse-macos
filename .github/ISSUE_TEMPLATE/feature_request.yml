@@ -1,0 +1,17 @@
+name: ✨ Feature Request
+description: Propose an idea for enhancing this project.
+title: "feature: "
+labels: ["feature"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      placeholder: A concise description of an idea...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Screenshots
+      placeholder: If relevant, please attach any applicable screenshots or screen recordings...
+    validations:
+      required: false
