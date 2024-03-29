@@ -8,6 +8,9 @@
 
 **mupl** – a music player that is fully-written on SwiftUI with a seamless and intuitive interface that feels right at home on macOS. Leveraging the powerful capabilities of [MusicKit](https://developer.apple.com/musickit/), it offers a fully integrated Apple Music experience, allowing users to access their library and explore new music.
 
+> [!IMPORTANT]
+> The application is currently in the development stage, which may lead to the presence of issues or absence of certain features. Feedback, feature requests, and bug reports are highly valued and contribute significantly to enhancing the app for everyone.
+
 ## Table of Contents
 
 - [Motivation](#motivation)
