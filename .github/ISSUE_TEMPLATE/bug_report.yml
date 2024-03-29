@@ -17,6 +17,12 @@ body:
       required: true
   - type: textarea
     attributes:
+      label: Steps to reproduce
+      placeholder: Steps to reliably reproduce the behavior...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: Environment
       placeholder: |
         - macOS:

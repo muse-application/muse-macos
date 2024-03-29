@@ -15,7 +15,7 @@
 
 <!--- REQUIRED: Every item on the checklist must be checked -->
 
-- [ ] I read and understood the [contributing guide]()
+- [ ] I read and understood the [contributing guide](/CONTRIBUTING.md)
 - [ ] The issues this PR addresses are related to each other
 - [ ] My code builds and runs on my machine
 
