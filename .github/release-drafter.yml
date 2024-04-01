@@ -1,0 +1,24 @@
+categories:
+  - title: '🚀 Features'
+    label: 'feature'
+  - title: '🐞 Bug Fixes'
+    collapse-after: 5
+    label: 'bug'
+  - title: '🧰 Maintenance'
+    collapse-after: 5
+    label: 'chore'
+change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
+autolabeler:
+  - label: 'feature'
+    branch:
+      - '/feat.+/i'
+  - label: 'bug'
+    branch:
+      - '/fix.+/i'
+replacers:
+  - search: '/((?:feature|bug):\s*)/i'
+    replace: ''
+template: |
+  ## What's new?
+
+  $CHANGES
