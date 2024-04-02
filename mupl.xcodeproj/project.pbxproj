@@ -1421,7 +1421,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = mupl;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
@@ -1452,7 +1452,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "mupl/Supporting Files/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = mupl;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";

@@ -4,5 +4,7 @@
 <dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Our app uses Music access to play and show music.</string>
+	<key>CFBundleShortVersionString</key>
+	<string>10.0.0</string>
 </dict>
 </plist>
