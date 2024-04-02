@@ -1,0 +1,20 @@
+name: 'Release Deployer'
+
+on:
+  pull_request:
+    branches: 
+      - master
+    types:
+      - closed
+
+jobs:
+  package:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    name: Package
+    uses: ./.github/workflows/package.yml
+    secrets: inherit
+  draft_release:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    name: Draft Release
+    uses: ./.github/workflows/release-drafter.yml
+    secrets: inherit

@@ -1,14 +1,26 @@
 name: 'Release Drafter'
 
 on:
-  push:
-    branches:
-      - master
+  workflow_call:
 
 jobs:
-  update_release_draft:
+  create_release_draft:
+    name: Create Release Draft
     runs-on: ubuntu-latest
     steps:
-      - uses: release-drafter/release-drafter@v5
+      - name: Download DMG
+        uses: actions/download-artifact@v3
+        with:
+          name: mupl
+      
+      - name: Prepare Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          files: mupl.dmg
+          draft: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate Release Notes
+        uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
