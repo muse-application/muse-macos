@@ -1,0 +1,37 @@
+name: 'Create New Version'
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  update_version:
+    name: Update Application Version
+    runs-on: [macos-14]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set Version
+        run: |
+          xcrun agvtool new-marketing-version ${{ github.ref_name }}
+          echo "APP_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: |
+            release: ${{ env.APP_VERSION }}
+          body: |
+            This is automatic action triggered by newly pushed version tag.
+          commit-message: |
+            Update Application Version to ${{ env.APP_VERSION }}
+          base: master
+          branch: release/${{ env.APP_VERSION }}
+          labels: release
+          author: GitHub Action <action@github.com>
+          committer: GitHub Action <action@github.com>
+          delete-branch: true
+          signoff: true

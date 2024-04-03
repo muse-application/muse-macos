@@ -1,0 +1,91 @@
+name: 'Package'
+
+on: 
+  workflow_call:
+    outputs:
+      version:
+        description: "The version of packaged application"
+        value: ${{ jobs.release.outputs.version }}
+
+jobs:
+  release:
+    runs-on: [macos-14]
+    outputs:
+      version: ${{ steps.output.outputs.VERSION }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install tools
+        run: |
+          brew install create-dmg
+
+      - name: Install code signing certificates
+        env:
+          DEV_CERT: ${{ secrets.DEV_CERT }}
+          DEV_CERT_PASSWORD: ${{ secrets.DEV_CERT_PASSWORD }}
+          DEV_ID_CERT: ${{ secrets.DEV_ID_CERT }}
+          DEV_ID_CERT_PASSWORD: ${{ secrets.DEV_ID_CERT_PASSWORD }}
+        run: |
+          DEV_P12=$RUNNER_TEMP/dev.p12
+          DEV_ID_P12=$RUNNER_TEMP/dev-id.p12
+          
+          KEYCHAIN_PATH=$RUNNER_TEMP/keychain.keychain-db
+          KEYCHAIN_PASSWORD=$(openssl rand -base64 12)
+
+          echo -n "$DEV_CERT" | base64 --decode -o $DEV_P12
+          echo -n "$DEV_ID_CERT" | base64 --decode -o $DEV_ID_P12
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $DEV_P12 -P "$DEV_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security import $DEV_ID_P12 -P "$DEV_ID_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+
+          security list-keychain -d user -s $KEYCHAIN_PATH
+        
+      - name: Build application
+        env: 
+          DEV_TEAM_ID: ${{ secrets.DEV_TEAM_ID }}
+        run: |
+          xcodebuild -scheme mupl -configuration Release -archivePath "$RUNNER_TEMP/mupl.xcarchive" DEVELOPMENT_TEAM=$DEV_TEAM_ID archive
+
+      - name: Sign application
+        env:
+          CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
+        run: |
+          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
+          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
+      
+      - name: Create DMG
+        env:
+          CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
+          DEV_TEAM_ID: ${{ secrets.DEV_TEAM_ID }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+        run: |
+          xcrun notarytool store-credentials mupl --apple-id "$APPLE_ID" --team-id "$DEV_TEAM_ID" --password "$APPLE_ID_PASSWORD"
+          create-dmg \
+            --volname "mupl" \
+            --window-pos 200 120 \
+            --window-size 699 518 \
+            --icon-size 128 \
+            --icon "mupl.app" 170 210 \
+            --hide-extension "mupl.app" \
+            --app-drop-link 530 210 \
+            --codesign "$CODESIGN_ID" \
+            --notarize "mupl" \
+            "$RUNNER_TEMP/mupl.dmg" \
+            "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/"
+      
+      - name: Upload DMG
+        uses: actions/upload-artifact@v3
+        with:
+          name: mupl
+          path: ${{ runner.temp }}/mupl.dmg
+      
+      - id: output
+        name: Output version
+        run: |
+          echo "VERSION=$(xcrun agvtool mvers -terse1)" >> $GITHUB_OUTPUT
