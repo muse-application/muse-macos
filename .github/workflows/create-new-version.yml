@@ -1,4 +1,4 @@
-name: 'Release Version'
+name: 'Create New Version'
 
 on:
   push:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with: 
-          ref: 'release/${{ github.ref_name }}'
       
       - name: Set Version
         run: |
@@ -22,15 +20,18 @@ jobs:
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
-        env: 
-          APP_VERSION: ${{ env.APP_VERSION }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: |
-            release: Update Application Version to $APP_VERSION
+            release: Update Application Version to ${{ env.APP_VERSION }}
           body: |
             This is automatic action triggered by newly pushed version tag.
-          branch: master
+          commit-message: |
+            release: Update Application Version to ${{ env.APP_VERSION }}
+          base: master
+          branch: release/${{ env.APP_VERSION }}
           labels: release
+          author: GitHub Action <action@github.com>
+          committer: GitHub Action <action@github.com>
           delete-branch: true
           signoff: true

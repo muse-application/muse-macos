@@ -1,7 +1,11 @@
-name: 'Release Drafter'
+name: 'Create Release Draft'
 
 on:
   workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
 
 jobs:
   create_release_draft:
@@ -16,9 +20,10 @@ jobs:
       - name: Prepare Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          files: mupl.dmg
-          draft: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          automatic_release_tag: ${{ inputs.tag }}
+          files: mupl.dmg
 
       - name: Generate Release Notes
         uses: release-drafter/release-drafter@v5

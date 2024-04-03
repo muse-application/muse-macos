@@ -2,10 +2,16 @@ name: 'Package'
 
 on: 
   workflow_call:
+    outputs:
+      version:
+        description: "The version of packaged application"
+        value: ${{ jobs.release.outputs.version }}
 
 jobs:
   release:
     runs-on: [macos-14]
+    outputs:
+      version: ${{ steps.output.outputs.VERSION }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -49,8 +55,8 @@ jobs:
         env:
           CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
         run: |
-          codesign -s $CODESIGN_ID -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
-          codesign -s $CODESIGN_ID -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
+          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
+          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
       
       - name: Create DMG
         env:
@@ -78,3 +84,8 @@ jobs:
         with:
           name: mupl
           path: ${{ runner.temp }}/mupl.dmg
+      
+      - id: output
+        name: Output version
+        run: |
+          echo "VERSION=$(xcrun agvtool mvers -terse1)" >> $GITHUB_OUTPUT
