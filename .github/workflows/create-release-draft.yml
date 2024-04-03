@@ -1,0 +1,31 @@
+name: 'Create Release Draft'
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        required: true
+        type: string
+
+jobs:
+  create_release_draft:
+    name: Create Release Draft
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download DMG
+        uses: actions/download-artifact@v3
+        with:
+          name: mupl
+      
+      - name: Prepare Release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+          automatic_release_tag: ${{ inputs.tag }}
+          files: mupl.dmg
+
+      - name: Generate Release Notes
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

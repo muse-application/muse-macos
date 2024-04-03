@@ -26,8 +26,8 @@ The motivation behind developing this macOS music player for Apple Music springs
 Contrasting sharply with its iOS counterpart, which boasts a sleek design and superior technical execution, the macOS version falls short, prompting the need for a reliable, user-friendly alternative that addresses these shortcomings and offers an enhanced listening experience on macOS.
 
 <picture width="1024">
-  <source media="(prefers-color-scheme: dark)" srcset="./.github/resources/banner-dark.png">
-  <img src="./.github/resources/banner-light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./.github/resources/banner-preview-dark.png">
+  <img src="./.github/resources/banner-preview-light.png">
 </picture>
 
 ## Roadmap
