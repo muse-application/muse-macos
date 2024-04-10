@@ -14,21 +14,10 @@ struct MusicSubscriptionPrompt: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
-            HStack {
-                Image("Common/AppleMusic")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 40.0, height: 40.0)
-                
-                Spacer()
-                
-                Image(systemName: "xmark.circle.fill")
-                    .font(.system(size: 16.0))
-                    .foregroundStyle(.white)
-                    .tappable {
-                        self.musicManager.subscription.isOffering = false
-                    }
-            }
+            Image("Common/AppleMusic")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40.0, height: 40.0)
             
             VStack(alignment: .leading, spacing: 8.0) {
                 Text("Join Apple Music")

@@ -27,7 +27,7 @@ struct muplApp: App {
                         self.prompt {
                             MusicAuthorizationPrompt()
                         }
-                    } else if self.musicManager.subscription.isOffering {
+                    } else if self.musicManager.subscription.needsOffer {
                         self.prompt {
                             MusicSubscriptionPrompt()
                         }
@@ -37,7 +37,7 @@ struct muplApp: App {
             }
             .transition(.opacity)
             .animation(.easeIn(duration: 0.2), value: self.musicManager.authorization.status)
-            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.isOffering)
+            .animation(.easeIn(duration: 0.2), value: self.musicManager.subscription.needsOffer)
         }
         .environmentObject(self.musicManager)
         .environmentObject(self.musicCatalog)
@@ -66,9 +66,9 @@ struct muplApp: App {
     
     private func prompt<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
         ZStack {
-            Color.black
-                .opacity(0.8)
+            Color.clear
                 .ignoresSafeArea()
+                .background(.ultraThinMaterial)
             
             content()
         }

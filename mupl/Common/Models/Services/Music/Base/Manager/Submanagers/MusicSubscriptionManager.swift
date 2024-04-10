@@ -12,7 +12,7 @@ extension MusicManager {
     @MainActor
     final class Subscription: ObservableObject {
         @Published var status: MusicSubscription?
-        @Published var isOffering: Bool = false
+        @Published var needsOffer: Bool = false
         
         var canOffer: Bool {
             return self.status?.canBecomeSubscriber ?? false
@@ -24,13 +24,14 @@ extension MusicManager {
         
         func offer() {
             guard self.canOffer else { return }
-            self.isOffering = true
+            self.needsOffer = true
         }
         
         private func startObservation() {
             Task {
                 for await subscription in MusicSubscription.subscriptionUpdates {
                     self.status = subscription
+                    self.needsOffer = subscription.canBecomeSubscriber
                 }
             }
         }
