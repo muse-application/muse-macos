@@ -16,12 +16,16 @@ autolabeler:
     branch:
       - '/fix.+/i'
 replacers:
-  - search: '/((?:feature|bug):\s*)/i'
+  - search: '/feature:\s*/i'
     replace: ''
+  - search: '/bug:\s*/i'
+    replace: 'Fixed '
 exclude-labels:
   - "release"
 header: |
-  ![](./resources/banner-release-universal.png)
+  <img src="./.github/resources/banner-release-universal" width="100%">
+  <br />
+  <br />
 template: |
   ## What's new?
 
