@@ -33,6 +33,7 @@
 		08415D0A2B3F550A00764CD6 /* View + Tappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D092B3F550A00764CD6 /* View + Tappable.swift */; };
 		08415D0C2B3F5D4700764CD6 /* Color + Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D0B2B3F5D4700764CD6 /* Color + Palette.swift */; };
 		08415D142B40BA6600764CD6 /* QueueBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08415D132B40BA6600764CD6 /* QueueBar.swift */; };
+		084AA2612BC7E1F900CD152B /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 084AA2602BC7E1F900CD152B /* Sparkle */; };
 		084E07BD2B8CBA4B00E14695 /* Chips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BC2B8CBA4B00E14695 /* Chips.swift */; };
 		084E07BF2B8CBF2900E14695 /* LibraryTrackCollectionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07BE2B8CBF2900E14695 /* LibraryTrackCollectionList.swift */; };
 		084E07C62B8DC25300E14695 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084E07C52B8DC25300E14695 /* Artist.swift */; };
@@ -254,6 +255,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				084AA2612BC7E1F900CD152B /* Sparkle in Frameworks */,
 				0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */,
 				082683F62B8796D6007108E9 /* Lottie in Frameworks */,
 			);
@@ -1110,6 +1112,7 @@
 			packageProductDependencies = (
 				0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */,
 				082683F52B8796D6007108E9 /* Lottie */,
+				084AA2602BC7E1F900CD152B /* Sparkle */,
 			);
 			productName = mupl;
 			productReference = 08B77F412B20F9D2004B6D8D /* mupl.app */;
@@ -1142,6 +1145,7 @@
 			packageReferences = (
 				0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				084AA25F2BC7E1F900CD152B /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = 08B77F422B20F9D2004B6D8D /* Products */;
 			projectDirPath = "";
@@ -1501,6 +1505,14 @@
 				minimumVersion = 4.4.1;
 			};
 		};
+		084AA25F2BC7E1F900CD152B /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
 		0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -1516,6 +1528,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		084AA2602BC7E1F900CD152B /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 084AA25F2BC7E1F900CD152B /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 		0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -29,5 +29,5 @@ jobs:
     name: Draft Release
     uses: ./.github/workflows/create-release-draft.yml
     with:
-      tag: ${{ needs.package.outputs.version }}
+      tag: ${{ needs.package.outputs.app_version }}
     secrets: inherit
