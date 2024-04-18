@@ -19,8 +19,8 @@
 	<key>SUEnableInstallerLauncherService</key>
 	<true/>
 	<key>SUFeedURL</key>
-    <string>https://mupl-app.github.io/mupl-macos/appcast.xml</string>
+	<string>https://github.com/mupl-app/mupl-macos/releases/latest/download/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-    <string>u0r3lg6U36Yz0Kz2i8s9UNc9P8Ymx19Z6erMXW4NfT0=</string>
+	<string>u0r3lg6U36Yz0Kz2i8s9UNc9P8Ymx19Z6erMXW4NfT0=</string>
 </dict>
 </plist>
