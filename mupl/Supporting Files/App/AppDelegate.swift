@@ -15,9 +15,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if self.appInfoWindow == nil {
             let window = NSWindow()
             
-            window.styleMask = [.closable, .miniaturizable, .titled]
-            window.title = "About \(Bundle.main.appName)"
+            window.styleMask = [.closable, .titled]
             window.contentView = NSHostingView(rootView: AppInfoView())
+            window.titlebarAppearsTransparent = true
+            window.toolbarStyle = .unified
             window.center()
             
             self.appInfoWindow = NSWindowController(window: window)
