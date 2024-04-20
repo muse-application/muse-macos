@@ -15,11 +15,14 @@ jobs:
       
       - name: Set Version
         run: |
+          xcrun agvtool new-version -all ${{ github.ref_name }}
           xcrun agvtool new-marketing-version ${{ github.ref_name }}
           echo "APP_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
+        env: 
+          APP_VERSION: ${{ env.APP_VERSION }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: |
@@ -32,6 +35,5 @@ jobs:
           branch: release/${{ env.APP_VERSION }}
           labels: release
           author: GitHub Action <action@github.com>
-          committer: GitHub Action <action@github.com>
+          reviewers: onl1ner
           delete-branch: true
-          signoff: true

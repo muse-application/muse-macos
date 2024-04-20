@@ -3,19 +3,19 @@ name: 'Package'
 on: 
   workflow_call:
     outputs:
-      version:
+      app_version:
         description: "The version of packaged application"
-        value: ${{ jobs.release.outputs.version }}
+        value: ${{ jobs.release.outputs.app_version }}
 
 jobs:
   release:
     runs-on: [macos-14]
     outputs:
-      version: ${{ steps.output.outputs.VERSION }}
+      app_version: ${{ steps.output.outputs.APP_VERSION }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
+        
       - name: Install tools
         run: |
           brew install create-dmg
@@ -44,20 +44,25 @@ jobs:
           security import $DEV_ID_P12 -P "$DEV_ID_CERT_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
 
           security list-keychain -d user -s $KEYCHAIN_PATH
-        
+      
+      - name: Get application version
+        run: |
+          echo "APP_VERSION=$(xcrun agvtool mvers -terse1)" >> $GITHUB_ENV
+
       - name: Build application
         env: 
           DEV_TEAM_ID: ${{ secrets.DEV_TEAM_ID }}
         run: |
-          xcodebuild -scheme mupl -configuration Release -archivePath "$RUNNER_TEMP/mupl.xcarchive" DEVELOPMENT_TEAM=$DEV_TEAM_ID archive
+          xcodebuild -scheme mupl -configuration Release -derivedDataPath "$RUNNER_TEMP/DerivedData" -archivePath "$RUNNER_TEMP/mupl.xcarchive" DEVELOPMENT_TEAM=$DEV_TEAM_ID archive
 
       - name: Sign application
         env:
           CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
         run: |
           codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
+          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime --deep "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Sparkle.framework"
           codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
-      
+          
       - name: Create DMG
         env:
           CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
@@ -79,13 +84,32 @@ jobs:
             "$RUNNER_TEMP/mupl.dmg" \
             "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/"
       
+      - name: Update AppCast
+        env:
+          APP_VERSION: ${{ env.APP_VERSION }}
+          SPARKLE_KEY: ${{ secrets.SPARKLE_KEY }}
+        run: |
+          SPARKLE_BIN="$RUNNER_TEMP/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin"
+          SPARKLE_ARCHIVE="$RUNNER_TEMP/Archive"
+          SPARKLE_LINK="https://github.com/mupl-app/mupl-macos"
+          SPARKLE_DOWNLOAD_PREFIX="https://github.com/mupl-app/mupl-macos/releases/download"
+
+          echo "$SPARKLE_KEY" > "$RUNNER_TEMP/sparkle-key"
+
+          mkdir "$SPARKLE_ARCHIVE"
+          cp "$RUNNER_TEMP/mupl.dmg" "$SPARKLE_ARCHIVE"
+
+          "$SPARKLE_BIN/generate_appcast" --ed-key-file "$RUNNER_TEMP/sparkle_key" --download-url-prefix "$SPARKLE_DOWNLOAD_PREFIX/${{ env.APP_VERSION }}/" --link "$SPARKLE_LINK" "$SPARKLE_ARCHIVE"
+
       - name: Upload DMG
         uses: actions/upload-artifact@v3
         with:
-          name: mupl
-          path: ${{ runner.temp }}/mupl.dmg
+          name: mupl-archive
+          path: ${{ runner.temp }}/Archive
       
       - id: output
         name: Output version
+        env:
+          APP_VERSION: ${{ env.APP_VERSION }}
         run: |
-          echo "VERSION=$(xcrun agvtool mvers -terse1)" >> $GITHUB_OUTPUT
+          echo "APP_VERSION=${{ env.APP_VERSION }}" >> $GITHUB_OUTPUT

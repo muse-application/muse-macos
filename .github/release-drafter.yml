@@ -6,7 +6,9 @@ categories:
     label: 'bug'
   - title: '🧰 Maintenance'
     collapse-after: 5
-    label: 'chore'
+    labels: 
+      - 'chore'
+      - 'doc'
 change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
 autolabeler:
   - label: 'feature'
@@ -15,16 +17,18 @@ autolabeler:
   - label: 'bug'
     branch:
       - '/fix.+/i'
+  - label: 'chore'
+    branch:
+      - '/chore.+/i'
+      - '/doc.+/i'
 replacers:
   - search: '/(feature:|bug:)\s*/i'
     replace: ''
 exclude-labels:
   - "release"
 header: |
-  <img src="./.github/resources/banner-release-universal" width="100%">
-  <br />
-  <br />
+  <img src="/.github/resources/banner-release-universal.png" width="100%">
 template: |
-  ## What's new?
+  # What's new?
 
   $CHANGES
