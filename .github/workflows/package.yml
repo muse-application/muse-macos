@@ -86,6 +86,7 @@ jobs:
       
       - name: Update AppCast
         env:
+          APP_VERSION: ${{ env.APP_VERSION }}
           SPARKLE_KEY: ${{ secrets.SPARKLE_KEY }}
         run: |
           SPARKLE_BIN="$RUNNER_TEMP/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin"
@@ -98,7 +99,7 @@ jobs:
           mkdir "$SPARKLE_ARCHIVE"
           cp "$RUNNER_TEMP/mupl.dmg" "$SPARKLE_ARCHIVE"
 
-          "$SPARKLE_BIN/generate_appcast" --ed-key-file "$RUNNER_TEMP/sparkle_key" --download-url-prefix "$SPARKLE_DOWNLOAD_PREFIX/${{ env.APP_VERSION }}/" --link "$SPARKLE_LINK" "$SPARKLE_ARCHIVE"
+          "$SPARKLE_BIN/generate_appcast" --ed-key-file "$RUNNER_TEMP/sparkle_key" --download-url-prefix "$SPARKLE_DOWNLOAD_PREFIX/$APP_VERSION/" --link "$SPARKLE_LINK" "$SPARKLE_ARCHIVE"
 
       - name: Upload DMG
         uses: actions/upload-artifact@v3

@@ -21,16 +21,18 @@ jobs:
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
+        env: 
+          APP_VERSION: ${{ env.APP_VERSION }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: |
-            release: ${{ env.APP_VERSION }}
+            release: $APP_VERSION
           body: |
             This is automatic action triggered by newly pushed version tag.
           commit-message: |
-            Update Application Version to ${{ env.APP_VERSION }}
+            Update Application Version to $APP_VERSION
           base: master
-          branch: release/${{ env.APP_VERSION }}
+          branch: release/$APP_VERSION
           labels: release
           author: GitHub Action <action@github.com>
           committer: GitHub Action <action@github.com>
