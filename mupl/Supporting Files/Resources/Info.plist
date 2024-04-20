@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleShortVersionString</key>
-	<string></string>
+	<string>0.1.0</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Our app uses Music access to play and show music.</string>
 	<key>CFBundleInfoDictionaryVersion</key>
