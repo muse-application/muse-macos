@@ -9,6 +9,8 @@ import SwiftUI
 import Sparkle
 
 struct AppInfoView: View {
+    private let appUpdater: AppUpdater = .shared
+    
     var body: some View {
         VStack(spacing: 0.0) {
             HStack(alignment: .top, spacing: 24.0) {
@@ -53,11 +55,16 @@ struct AppInfoView: View {
                     Text("•")
                         .foregroundStyle(Color.secondaryText)
                     
-                    Text("Check for Updates")
-                        .foregroundStyle(Color.pinkAccent)
-                        .tappable(hoverStyle: .init(padding: .init(vertical: 2.0, horizontal: 4.0))) {
-                            
-                        }
+                    if self.appUpdater.canCheckForUpdates {
+                        Text("Latest")
+                            .foregroundStyle(Color.secondaryText)
+                    } else {
+                        Text("Check for Updates")
+                            .foregroundStyle(Color.pinkAccent)
+                            .tappable(hoverStyle: .init(padding: .init(vertical: 2.0, horizontal: 4.0))) {
+                                self.appUpdater.checkForUpdates()
+                            }
+                    }
                 }
                 .font(.system(size: 12.0))
                 
