@@ -14,5 +14,7 @@
 	<string>6.0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.music</string>
 </dict>
 </plist>
