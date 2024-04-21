@@ -35,7 +35,6 @@ final class MusicPlayer: ObservableObject {
     
     @Published var queue: [Song] = []
     @Published var playbackTime: TimeInterval = 0.0
-    @Published var playbackLevel: Double = 0.0
     
     @Published var currentSong: Song? = nil {
         didSet {
@@ -180,7 +179,6 @@ final class MusicPlayer: ObservableObject {
             .autoconnect()
             .sink { _ in
                 self.playbackTime = self.player.playbackTime
-                self.playbackLevel = .random(in: 0.0...100.0)
             }
     }
     
