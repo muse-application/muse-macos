@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MusicKit
-import Lottie
 
 struct PlainSongItemStyle: SongItemStyle {
     func content(for song: Song, context: SongItemContext) -> some View {
@@ -32,11 +31,14 @@ struct PlainSongItemStyle: SongItemStyle {
                                     Color.black
                                         .opacity(0.4)
                                     
-                                    LottieView(animation: .named("soundwave"))
-                                        .playbackMode(
-                                            context.isCurrentlyPlaying ? .playing(.fromProgress(0.0, toProgress: 1.0, loopMode: .loop)) : .paused(at: .progress(0.0))
+                                    Image(systemName: "waveform")
+                                        .font(.system(size: 14.0))
+                                        .foregroundStyle(Color.white)
+                                        .symbolEffect(
+                                            .variableColor.iterative.dimInactiveLayers,
+                                            options: .repeating,
+                                            isActive: context.isCurrentlyPlaying
                                         )
-                                        .frame(width: 16.0, height: 16.0)
                                 }
                             }
                         }

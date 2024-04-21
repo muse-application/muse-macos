@@ -24,11 +24,14 @@ struct GroupedSongItemStyle: SongItemStyle {
                         .foregroundStyle(Color.pinkAccent)
                 } else {
                     if context.isCurrent {
-                        LottieView(animation: .named("soundwave"))
-                            .playbackMode(
-                                context.isCurrentlyPlaying ? .playing(.fromProgress(0.0, toProgress: 1.0, loopMode: .loop)) : .paused(at: .progress(0.0))
+                        Image(systemName: "waveform")
+                            .font(.system(size: 14.0))
+                            .foregroundStyle(Color.pinkAccent)
+                            .symbolEffect(
+                                .variableColor.iterative.dimInactiveLayers,
+                                options: .repeating,
+                                isActive: context.isCurrentlyPlaying
                             )
-                            .animationSpeed(0.5)
                     } else {
                         Text("\(self.position)")
                             .foregroundStyle(Color.secondaryText)
