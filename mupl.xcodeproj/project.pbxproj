@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0813C0F72BD481B50047ADF1 /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 0813C0F62BD481B50047ADF1 /* RiveRuntime */; };
+		0813C0F92BD54B1E0047ADF1 /* soundwave.riv in Resources */ = {isa = PBXBuildFile; fileRef = 0813C0F82BD54B1E0047ADF1 /* soundwave.riv */; };
 		082683C92B81F55C007108E9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683C82B81F55C007108E9 /* Router.swift */; };
 		082683E72B83A197007108E9 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683E62B83A197007108E9 /* MusicPlayer.swift */; };
 		082683ED2B84B1B3007108E9 /* ShuffleMode + Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */; };
@@ -128,6 +130,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0813C0F82BD54B1E0047ADF1 /* soundwave.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = soundwave.riv; sourceTree = "<group>"; };
 		082683C82B81F55C007108E9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		082683E62B83A197007108E9 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		082683EC2B84B1B3007108E9 /* ShuffleMode + Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShuffleMode + Toggle.swift"; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 			files = (
 				0856A4F92B4B2F3D0073ACE7 /* SDWebImageSwiftUI in Frameworks */,
 				082683F62B8796D6007108E9 /* Lottie in Frameworks */,
+				0813C0F72BD481B50047ADF1 /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +295,7 @@
 		082683F72B8796DE007108E9 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				0813C0F82BD54B1E0047ADF1 /* soundwave.riv */,
 				082683FB2B87985E007108E9 /* soundwave.json */,
 			);
 			path = Animations;
@@ -1110,6 +1115,7 @@
 			packageProductDependencies = (
 				0856A4F82B4B2F3D0073ACE7 /* SDWebImageSwiftUI */,
 				082683F52B8796D6007108E9 /* Lottie */,
+				0813C0F62BD481B50047ADF1 /* RiveRuntime */,
 			);
 			productName = mupl;
 			productReference = 08B77F412B20F9D2004B6D8D /* mupl.app */;
@@ -1142,6 +1148,7 @@
 			packageReferences = (
 				0856A4F72B4B2F3D0073ACE7 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				0813C0F52BD481B50047ADF1 /* XCRemoteSwiftPackageReference "rive-ios" */,
 			);
 			productRefGroup = 08B77F422B20F9D2004B6D8D /* Products */;
 			projectDirPath = "";
@@ -1161,6 +1168,7 @@
 				08F423342B45D885005158F2 /* network-mock-example-list.json in Resources */,
 				082683FC2B87985E007108E9 /* soundwave.json in Resources */,
 				08B77F492B20F9D3004B6D8D /* Assets.xcassets in Resources */,
+				0813C0F92BD54B1E0047ADF1 /* soundwave.riv in Resources */,
 				08F423302B45D2DB005158F2 /* network-mock-example-object.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1497,6 +1505,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0813C0F52BD481B50047ADF1 /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.0;
+			};
+		};
 		082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm";
@@ -1516,6 +1532,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0813C0F62BD481B50047ADF1 /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0813C0F52BD481B50047ADF1 /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
 		082683F52B8796D6007108E9 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 082683F42B8796D6007108E9 /* XCRemoteSwiftPackageReference "lottie-spm" */;

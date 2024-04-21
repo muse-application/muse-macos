@@ -55,8 +55,9 @@ jobs:
         env:
           CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
         run: |
-          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
-          codesign -s "$CODESIGN_ID" -f --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
+          codesign -s "$CODESIGN_ID" -f --strict --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app/Contents/Frameworks/Lottie.framework"
+          codesign -s "$CODESIGN_ID" -f --strict --timestamp -o runtime --entitlements "mupl/Supporting Files/Resources/mupl.entitlements" "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
+          codesign -s "$CODESIGN_ID" -f --strict --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
       
       - name: Create DMG
         env:

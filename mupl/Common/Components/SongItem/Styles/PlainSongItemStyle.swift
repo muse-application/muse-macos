@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MusicKit
-import Lottie
+import RiveRuntime
 
 struct PlainSongItemStyle: SongItemStyle {
     func content(for song: Song, context: SongItemContext) -> some View {
@@ -32,10 +32,8 @@ struct PlainSongItemStyle: SongItemStyle {
                                     Color.black
                                         .opacity(0.4)
                                     
-                                    LottieView(animation: .named("soundwave"))
-                                        .playbackMode(
-                                            context.isCurrentlyPlaying ? .playing(.fromProgress(0.0, toProgress: 1.0, loopMode: .loop)) : .paused(at: .progress(0.0))
-                                        )
+                                    RiveViewModel(fileName: "soundwave", stateMachineName: "State")
+                                        .view()
                                         .frame(width: 16.0, height: 16.0)
                                 }
                             }
