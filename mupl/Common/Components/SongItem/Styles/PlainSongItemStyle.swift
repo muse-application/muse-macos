@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MusicKit
-import RiveRuntime
 
 struct PlainSongItemStyle: SongItemStyle {
     func content(for song: Song, context: SongItemContext) -> some View {
@@ -32,9 +31,14 @@ struct PlainSongItemStyle: SongItemStyle {
                                     Color.black
                                         .opacity(0.4)
                                     
-                                    RiveViewModel(fileName: "soundwave", stateMachineName: "State")
-                                        .view()
-                                        .frame(width: 16.0, height: 16.0)
+                                    Image(systemName: "waveform")
+                                        .font(.system(size: 14.0))
+                                        .foregroundStyle(Color.white)
+                                        .symbolEffect(
+                                            .variableColor.iterative.dimInactiveLayers,
+                                            options: .repeating,
+                                            isActive: context.isCurrentlyPlaying
+                                        )
                                 }
                             }
                         }
