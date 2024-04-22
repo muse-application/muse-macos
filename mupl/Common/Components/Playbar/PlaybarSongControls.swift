@@ -43,17 +43,26 @@ extension Playbar {
                             self.musicPlayer.skip(.backward)
                         }
                     
-                    Image(systemName: self.musicPlayer.playbackStatus == .playing ? "pause.fill" : "play.fill")
-                        .foregroundStyle(Color.secondaryText)
-                        .tappable {
-                            Task {
-                                if self.musicPlayer.playbackStatus == .playing {
-                                    self.musicPlayer.pause()
-                                } else {
-                                    await self.musicPlayer.play()
+                    Group {
+                        if self.musicPlayer.playbackState == .loading {
+                            Image(systemName: "ellipsis")
+                                .foregroundStyle(Color.secondaryText)
+                                .symbolEffect(.variableColor.iterative.dimInactiveLayers, options: .repeating)
+                        } else {
+                            Image(systemName: self.musicPlayer.playbackState == .playing ? "pause.fill" : "play.fill")
+                                .foregroundStyle(Color.secondaryText)
+                                .tappable {
+                                    Task {
+                                        if self.musicPlayer.playbackState == .playing {
+                                            self.musicPlayer.pause()
+                                        } else {
+                                            await self.musicPlayer.play()
+                                        }
+                                    }
                                 }
-                            }
                         }
+                    }
+                    .frame(width: 20.0)
                     
                     Image(systemName: "forward.fill")
                         .foregroundStyle(Color.secondaryText)

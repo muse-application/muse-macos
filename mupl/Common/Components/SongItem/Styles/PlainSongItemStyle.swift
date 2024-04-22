@@ -64,12 +64,11 @@ struct PlainSongItemStyle: SongItemStyle {
                 
                 Spacer()
                 
-                HStack {
-                    if let duration = song.duration?.minutesAndSeconds {
-                        Text(duration)
-                            .font(.system(size: 12.0, weight: .medium))
-                            .foregroundStyle(Color.secondaryText)
-                    }
+                if let duration = song.duration?.minutesAndSeconds {
+                    Text(duration)
+                        .font(.system(size: 12.0, weight: .medium))
+                        .foregroundStyle(Color.secondaryText)
+                        .frame(width: 40.0, alignment: .leading)
                 }
             }
             .animation(.easeIn(duration: 0.2), value: context.isHovered)

@@ -21,6 +21,22 @@ final class MusicPlayer: ObservableObject {
         case backward
     }
     
+    enum PlaybackState {
+        case playing
+        case loading
+        case paused
+        case stopped
+        
+        init(playbackStatus: PlaybackStatus) {
+            self = switch playbackStatus {
+            case .playing: .playing
+            case .paused: .paused
+            case .stopped: .stopped
+            default: .stopped
+            }
+        }
+    }
+    
     private let manager: MusicManager = .shared
     private let player: ApplicationMusicPlayer = .shared
     private let audio: Audio = .init()
@@ -48,7 +64,7 @@ final class MusicPlayer: ObservableObject {
         }
     }
     
-    @Published private(set) var playbackStatus: PlaybackStatus = .stopped {
+    @Published private(set) var playbackState: PlaybackState = .stopped {
         didSet {
             self.updatePlaybackTimeObservation()
         }
@@ -93,8 +109,12 @@ final class MusicPlayer: ObservableObject {
             self.shuffleMode = shuffleMode
         }
         
+        self.playbackState = .loading
+        
         try? await self.player.prepareToPlay()
         try? await self.player.play()
+        
+        self.playbackState = .playing
     }
     
     func play(item: PlayableMusicItem, shuffleMode: ShuffleMode? = nil) async {
@@ -134,12 +154,12 @@ final class MusicPlayer: ObservableObject {
     }
     
     func pause() {
-        guard self.playbackStatus != .paused else { return }
+        guard self.playbackState != .paused else { return }
         self.player.pause()
     }
     
     func stop() {
-        guard self.playbackStatus != .stopped else { return }
+        guard self.playbackState != .stopped else { return }
         self.player.stop()
     }
     
@@ -192,20 +212,20 @@ final class MusicPlayer: ObservableObject {
     }
     
     private func updatePlaybackTimeObservation() {
-        switch self.playbackStatus {
+        switch self.playbackState {
         case .playing:
             self.runPlaybackTimeObservation()
-        case .paused, .interrupted, .seekingForward, .seekingBackward:
+        case .paused:
             self.pausePlaybackTimeObservation()
         case .stopped:
             self.stopPlaybackTimeObservation()
-        @unknown default:
+        default:
             break
         }
     }
     
     private func updateState() {
-        self.playbackStatus = self.player.state.playbackStatus
+        self.playbackState = .init(playbackStatus: self.player.state.playbackStatus)
         self.shuffleMode = self.player.state.shuffleMode ?? .off
         self.repeatMode = self.player.state.repeatMode ?? .none
     }
