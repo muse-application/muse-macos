@@ -34,12 +34,12 @@ struct SongItem<S: SongItemStyle>: View {
         )
         .onAppear {
             self.isCurrent = self.musicPlayer.currentSong?.id == self.song.id
-            self.isCurrentlyPlaying = self.isCurrent && self.musicPlayer.playbackStatus == .playing
+            self.isCurrentlyPlaying = self.isCurrent && self.musicPlayer.playbackState == .playing
         }
         .onChange(of: self.musicPlayer.currentSong) { _, value in
             self.isCurrent = value?.id == self.song.id
         }
-        .onChange(of: self.musicPlayer.playbackStatus) { _, value in
+        .onChange(of: self.musicPlayer.playbackState) { _, value in
             self.isCurrentlyPlaying = self.isCurrent && value == .playing
         }
         .onHover { hovering in

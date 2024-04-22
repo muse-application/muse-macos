@@ -52,7 +52,7 @@ struct GroupedSongItemStyle: SongItemStyle {
                 Text(duration)
                     .font(.system(size: 14.0, weight: .medium))
                     .foregroundStyle(Color.secondaryText)
-                    .frame(width: 40.0)
+                    .frame(width: 40.0, alignment: .leading)
             }
         }
         .padding(.all, 16.0)
