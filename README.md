@@ -1,12 +1,12 @@
-# mupl for macOS
+# Muse for macOS
 
 <img align="right" src="/.github/resources/logo.png" height="128">
 
 ![](https://img.shields.io/badge/platform-macOS-blue)
-![](https://img.shields.io/github/v/release/mupl-app/mupl-macos)
-![](https://img.shields.io/github/downloads/mupl-app/mupl-macos/total?style=social)
+![](https://img.shields.io/github/v/release/muse-application/muse-macos)
+![](https://img.shields.io/github/downloads/muse-application/muse-macos/total?style=social)
 
-**mupl** – a music player that is fully-written on SwiftUI with a seamless and intuitive interface that feels right at home on macOS. Leveraging the powerful capabilities of [MusicKit](https://developer.apple.com/musickit/), it offers a fully integrated Apple Music experience, allowing users to access their library and explore new music.
+**Muse** – a music player that is fully-written on SwiftUI with a seamless and intuitive interface that feels right at home on macOS. Leveraging the powerful capabilities of [MusicKit](https://developer.apple.com/musickit/), it offers a fully integrated Apple Music experience, allowing users to access their library and explore new music.
 
 > [!IMPORTANT]
 > The application is currently in the development stage, which may lead to the presence of issues or absence of certain features. Feedback, feature requests, and bug reports are highly valued and contribute significantly to enhancing the app for everyone.
@@ -32,7 +32,7 @@ Contrasting sharply with its iOS counterpart, which boasts a sleek design and su
 
 ## Roadmap
 
-Upcoming features and issues planned for the next iteration of the application are organized and presented on the [roadmap board](https://github.com/orgs/mupl-app/projects/1/views/8). Contributions are incredibly welcomed and appreciated, truly making a difference in the project's direction and growth.
+Upcoming features and issues planned for the next iteration of the application are organized and presented on the [roadmap board](https://github.com/orgs/muse-application/projects/1/views/8). Contributions are incredibly welcomed and appreciated, truly making a difference in the project's direction and growth.
 
 ## Contributing
 
@@ -40,7 +40,7 @@ Before making any contribution, it is recommended to review the [contribution gu
 
 ## Download
 
-All versions of the application, including the latest and previous iterations, are available for download in the [releases tab](https://github.com/mupl-app/mupl-macos/releases).
+All versions of the application, including the latest and previous iterations, are available for download in the [releases tab](https://github.com/muse-application/muse-macos/releases).
 
 ## License
 

@@ -31,7 +31,7 @@ struct AppInfoBar: View {
                 Text("Contribute")
                     .font(.system(size: 12.0))
                     .tappable(hoverStyle: .init(padding: .init(vertical: 4.0, horizontal: 4.0))) {
-                        if let url = URL(string: "https://github.com/mupl-app/mupl-macos") {
+                        if let url = URL(string: "https://github.com/muse-application/muse-macos") {
                             NSWorkspace.shared.open(url)
                         }
                     }
@@ -39,7 +39,7 @@ struct AppInfoBar: View {
                 Text("Report a bug")
                     .font(.system(size: 12.0))
                     .tappable(hoverStyle: .init(padding: .init(vertical: 4.0, horizontal: 4.0))) {
-                        if let url = URL(string: "https://github.com/mupl-app/mupl-macos/issues/new") {
+                        if let url = URL(string: "https://github.com/muse-application/muse-macos/issues/new") {
                             NSWorkspace.shared.open(url)
                         }
                     }

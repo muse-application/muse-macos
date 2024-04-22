@@ -43,7 +43,7 @@ struct AppInfoView: View {
                 Text("GitHub")
                     .foregroundStyle(Color.pinkAccent)
                     .tappable(hoverStyle: .init(padding: .init(vertical: 2.0, horizontal: 4.0))) {
-                        if let url = URL(string: "https://github.com/mupl-app/mupl-macos") {
+                        if let url = URL(string: "https://github.com/muse-application/muse-macos") {
                             NSWorkspace.shared.open(url)
                         }
                     }
