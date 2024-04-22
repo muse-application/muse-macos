@@ -15,7 +15,7 @@ jobs:
       - name: Download DMG
         uses: actions/download-artifact@v3
         with:
-          name: mupl
+          name: Muse
       
       - name: Prepare Release
         uses: marvinpinto/action-automatic-releases@latest
@@ -23,7 +23,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
           automatic_release_tag: ${{ inputs.tag }}
-          files: mupl.dmg
+          files: Muse.dmg
 
       - name: Generate Release Notes
         uses: release-drafter/release-drafter@v5
