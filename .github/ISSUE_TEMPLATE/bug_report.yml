@@ -26,7 +26,7 @@ body:
       label: Environment
       placeholder: |
         - macOS:
-        - mupl:
+        - Muse:
     validations:
       required: false
   - type: textarea

@@ -49,13 +49,13 @@ jobs:
         env: 
           DEV_TEAM_ID: ${{ secrets.DEV_TEAM_ID }}
         run: |
-          xcodebuild -scheme mupl -configuration Release -archivePath "$RUNNER_TEMP/mupl.xcarchive" DEVELOPMENT_TEAM=$DEV_TEAM_ID archive
+          xcodebuild -scheme Muse -configuration Release -archivePath "$RUNNER_TEMP/Muse.xcarchive" DEVELOPMENT_TEAM=$DEV_TEAM_ID archive
 
       - name: Sign application
         env:
           CODESIGN_ID: ${{ secrets.CODESIGN_ID }}
         run: |
-          codesign -s "$CODESIGN_ID" -f --strict --timestamp -o runtime "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/mupl.app"
+          codesign -s "$CODESIGN_ID" -f --strict --timestamp -o runtime "$RUNNER_TEMP/Muse.xcarchive/Products/Applications/Muse.app"
       
       - name: Create DMG
         env:
@@ -64,25 +64,26 @@ jobs:
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
         run: |
-          xcrun notarytool store-credentials mupl --apple-id "$APPLE_ID" --team-id "$DEV_TEAM_ID" --password "$APPLE_ID_PASSWORD"
+          xcrun notarytool store-credentials Muse --apple-id "$APPLE_ID" --team-id "$DEV_TEAM_ID" --password "$APPLE_ID_PASSWORD"
           create-dmg \
-            --volname "mupl" \
+            --volname "Muse" \
+            --background "$GITHUB_WORKSPACE/.github/resources/dmg-background.png" \
             --window-pos 200 120 \
-            --window-size 699 518 \
+            --window-size 800 600 \
             --icon-size 128 \
-            --icon "mupl.app" 170 210 \
-            --hide-extension "mupl.app" \
-            --app-drop-link 530 210 \
+            --icon "Muse.app" 128 240 \
+            --hide-extension "Muse.app" \
+            --app-drop-link 552 240 \
             --codesign "$CODESIGN_ID" \
-            --notarize "mupl" \
-            "$RUNNER_TEMP/mupl.dmg" \
-            "$RUNNER_TEMP/mupl.xcarchive/Products/Applications/"
+            --notarize "Muse" \
+            "$RUNNER_TEMP/Muse.dmg" \
+            "$RUNNER_TEMP/Muse.xcarchive/Products/Applications/"
       
       - name: Upload DMG
         uses: actions/upload-artifact@v3
         with:
-          name: mupl
-          path: ${{ runner.temp }}/mupl.dmg
+          name: Muse
+          path: ${{ runner.temp }}/Muse.dmg
       
       - id: output
         name: Output version
